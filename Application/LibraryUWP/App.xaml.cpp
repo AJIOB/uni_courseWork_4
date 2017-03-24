@@ -4,7 +4,7 @@
 //
 
 #include "pch.h"
-#include "MainPage.xaml.h"
+#include "AuthPage.xaml.h"
 
 using namespace LibraryUWP;
 
@@ -73,7 +73,7 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+                rootFrame->Navigate(TypeName(AuthPage::typeid), e->Arguments);
             }
             // Place the frame in the current Window
             Window::Current->Content = rootFrame;
@@ -90,7 +90,7 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+                rootFrame->Navigate(TypeName(AuthPage::typeid), e->Arguments);
             }
             // Ensure the current window is active
             Window::Current->Activate();

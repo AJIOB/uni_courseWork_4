@@ -5,38 +5,9 @@
     xmlns:local="using:LibraryUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    RequestedTheme="Light">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="75*"/>
-            <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="45*"/>
-            <ColumnDefinition Width="150*"/>
-            <ColumnDefinition Width="100*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="75*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="75*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="80*"/>
-        </Grid.RowDefinitions>
+    mc:Ignorable="d">
 
-        <TextBlock x:Name="Header_TextBlock" Grid.ColumnSpan="6" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Welcome to Library. Please, enter you login and password" FontSize="38" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock x:Name="Login_TextBlock" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="Login:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="46"/>
-        <TextBlock x:Name="Pwd_TextBlock" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" Text="Password:" HorizontalAlignment="Left" FontSize="46" VerticalAlignment="Center"/>
-        <TextBox x:Name="Login_TextBox" ScrollViewer.VerticalScrollMode="Auto" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="3" TextWrapping="Wrap" Text="" FontSize="46"/>
-        <PasswordBox x:Name="Pwd_PasswordBox" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="5" FontSize="46" Password=""/>
-        <Button x:Name="OK_Button" Content="OK" Grid.Column="4" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40"/>
-        <Button x:Name="Cancel_Button" Content="Exit" Grid.Column="6" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40" Click="ExitEvent"/>
-        <TextBlock x:Name="LoginAsGuest_TextBlock" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" Text="Login as guest" FontSize="46"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     </Grid>
 </Page>
