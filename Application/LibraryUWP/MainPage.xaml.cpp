@@ -25,3 +25,9 @@ MainPage::MainPage()
 {
 	InitializeComponent();
 }
+
+
+void LibraryUWP::MainPage::ExitEvent(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	//Application::Current::Exit();
+}

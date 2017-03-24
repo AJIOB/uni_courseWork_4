@@ -17,5 +17,7 @@ namespace LibraryUWP
 	public:
 		MainPage();
 
+	private:
+		void ExitEvent(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
