@@ -152,6 +152,9 @@
     <Page Include="AuthPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
