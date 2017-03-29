@@ -144,6 +144,9 @@
     <ClInclude Include="AuthPage.xaml.h">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="ShowBooksPage.xaml.h">
+      <DependentUpon>ShowBooksPage.xaml</DependentUpon>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -151,8 +154,9 @@
     </ApplicationDefinition>
     <Page Include="AuthPage.xaml">
       <SubType>Designer</SubType>
+      <FileType>Document</FileType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="ShowBooksPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -185,6 +189,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ShowBooksPage.xaml.cpp">
+      <DependentUpon>ShowBooksPage.xaml</DependentUpon>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -35,8 +35,8 @@
         <TextBlock x:Name="Pwd_TextBlock" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" Text="Password:" HorizontalAlignment="Left" FontSize="46" VerticalAlignment="Center"/>
         <TextBox x:Name="Login_TextBox" ScrollViewer.VerticalScrollMode="Auto" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="3" TextWrapping="Wrap" Text="" FontSize="46"/>
         <PasswordBox x:Name="Pwd_PasswordBox" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="5" FontSize="46" Password=""/>
-        <Button x:Name="OK_Button" Content="OK" Grid.Column="4" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40"/>
+        <Button x:Name="OK_Button" Content="OK" Grid.Column="4" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40" Click="GoToNextPage"/>
         <Button x:Name="Cancel_Button" Content="Exit" Grid.Column="6" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40" Click="ExitEvent"/>
-        <TextBlock x:Name="LoginAsGuest_TextBlock" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" Text="Login as guest" FontSize="46"/>
+        <TextBlock x:Name="LoginAsGuest_TextBlock" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" Text="Login as guest" FontSize="46" VerticalAlignment="Center"/>
     </Grid>
 </Page>

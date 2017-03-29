@@ -53,6 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="AuthPage.xaml" />
-    <Page Include="MainPage.xaml" />
+    <Page Include="ShowBooksPage.xaml" />
   </ItemGroup>
 </Project>

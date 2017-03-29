@@ -6,6 +6,7 @@
 #pragma once
 
 #include "AuthPage.g.h"
+#include "ShowBooksPage.xaml.h"
 
 namespace LibraryUWP
 {
@@ -19,5 +20,6 @@ namespace LibraryUWP
 
 	private:
 		void ExitEvent(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void GoToNextPage(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

@@ -31,3 +31,9 @@ void LibraryUWP::AuthPage::ExitEvent(Platform::Object^ sender, Windows::UI::Xaml
 {
 	Application::Current->Exit();
 }
+
+
+void LibraryUWP::AuthPage::GoToNextPage(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	this->Frame->Navigate(Windows::UI::Xaml::Interop::TypeName(ShowBooksPage::typeid));
+}
