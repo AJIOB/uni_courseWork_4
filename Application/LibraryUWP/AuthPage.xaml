@@ -37,6 +37,6 @@
         <PasswordBox x:Name="Pwd_PasswordBox" Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="5" FontSize="46" Password=""/>
         <Button x:Name="OK_Button" Content="OK" Grid.Column="4" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40" Click="GoToNextPage"/>
         <Button x:Name="Cancel_Button" Content="Exit" Grid.Column="6" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" FontSize="40" Click="ExitEvent"/>
-        <TextBlock x:Name="LoginAsGuest_TextBlock" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" Text="Login as guest" FontSize="46" VerticalAlignment="Center"/>
+        <Button x:Name="LoginAsGuest_TextBlock2" Content="Login as guest" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" Click="LoginAsGuest"/>
     </Grid>
 </Page>

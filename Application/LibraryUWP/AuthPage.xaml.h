@@ -21,5 +21,6 @@ namespace LibraryUWP
 	private:
 		void ExitEvent(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void GoToNextPage(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void LoginAsGuest(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

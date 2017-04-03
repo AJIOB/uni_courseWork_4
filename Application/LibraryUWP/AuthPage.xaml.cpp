@@ -37,3 +37,9 @@ void LibraryUWP::AuthPage::GoToNextPage(Platform::Object^ sender, Windows::UI::X
 {
 	this->Frame->Navigate(Windows::UI::Xaml::Interop::TypeName(ShowBooksPage::typeid));
 }
+
+
+void LibraryUWP::AuthPage::LoginAsGuest(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	MongoDBModel::run();
+}
