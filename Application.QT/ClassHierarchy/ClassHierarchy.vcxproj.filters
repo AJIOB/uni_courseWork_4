@@ -15,7 +15,18 @@
     </Filter>
     <Filter Include="Exceptions">
       <UniqueIdentifier>{e20e4953-1aff-4021-9de2-6de587bbe6db}</UniqueIdentifier>
-      <Extensions>*Exception.h;*Exception.cpp</Extensions>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="Exceptions\all">
+      <UniqueIdentifier>{c716732c-9274-4370-8bd8-552fccc90639}</UniqueIdentifier>
+      <Extensions>Exception.h</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ISBN">
+      <UniqueIdentifier>{7d83c9e3-0124-4213-83d1-f1d37224222d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ISBN">
+      <UniqueIdentifier>{ff3531b3-aeef-438b-93f5-acf1ac71c52d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,19 +39,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ISBNOnePart.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISBNType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StringFuncs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="typedefs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISBNClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
@@ -50,27 +52,36 @@
       <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="exceptions\MyException.h">
-      <Filter>Exceptions</Filter>
+      <Filter>Exceptions\all</Filter>
     </ClInclude>
     <ClInclude Include="exceptions\RangeException.h">
-      <Filter>Exceptions</Filter>
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="ISBNClass.h">
+      <Filter>Header Files\ISBN</Filter>
+    </ClInclude>
+    <ClInclude Include="ISBNOnePart.h">
+      <Filter>Header Files\ISBN</Filter>
+    </ClInclude>
+    <ClInclude Include="ISBNType.h">
+      <Filter>Header Files\ISBN</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ISBNOnePart.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StringFuncs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ISBNClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="exceptions\MyException.cpp">
-      <Filter>Exceptions</Filter>
+      <Filter>Exceptions\all</Filter>
+    </ClCompile>
+    <ClCompile Include="ISBNClass.cpp">
+      <Filter>Source Files\ISBN</Filter>
+    </ClCompile>
+    <ClCompile Include="ISBNOnePart.cpp">
+      <Filter>Source Files\ISBN</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
