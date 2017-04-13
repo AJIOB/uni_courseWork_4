@@ -5,10 +5,11 @@
 //  Original author: Alex
 ///////////////////////////////////////////////////////////
 
+
 #include "DBConnector.h"
 
 
-DBConnector::DBConnector()
+DBConnector::DBConnector() : config("dbconfig"), db_uri(config["uri"]), client(db_uri)
 {
 }
 

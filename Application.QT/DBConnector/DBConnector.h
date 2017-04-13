@@ -9,8 +9,12 @@
 #define EA_C9B1BA3E_E86D_454b_A78D_68365533B1BE__INCLUDED_
 
 #include <list>
+#include <mongocxx/instance.hpp>
+#include <mongocxx/uri.hpp>
+#include <mongocxx/client.hpp>
 
-#include "DB_ID.h"
+#include "ClassHierarchy/DB_ID.h"
+#include "Configuration/ConfigClass.h"
 
 class Author;
 class BookCopy;
@@ -19,6 +23,12 @@ class User;
 
 class DBConnector
 {
+	AJIOB::ConfigClass config;
+
+	mongocxx::instance inst;
+	mongocxx::uri db_uri;
+	mongocxx::client client;
+
 public:
 	DBConnector();
 	virtual ~DBConnector();

@@ -21,7 +21,7 @@
 
 #include "AllExceptions.h"
 
-#include "hash/sha3.h"
+#include "HashFuncs/hash/sha3.h"
 
 typedef SHA3 HashClass;
 
