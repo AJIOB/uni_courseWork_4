@@ -13,6 +13,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcxproj", "{B9FABB93-AA8F-4F23-91C8-2D67CF314E99}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassHierarchy", "ClassHierarchy\ClassHierarchy.vcxproj", "{469AF4B6-A64D-4B0D-B367-34EF312E32DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5} = {6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HashFuncs", "HashFuncs\HashFuncs.vcxproj", "{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +59,14 @@ Global
 		{469AF4B6-A64D-4B0D-B367-34EF312E32DC}.Release|x64.Build.0 = Release|x64
 		{469AF4B6-A64D-4B0D-B367-34EF312E32DC}.Release|x86.ActiveCfg = Release|Win32
 		{469AF4B6-A64D-4B0D-B367-34EF312E32DC}.Release|x86.Build.0 = Release|Win32
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Debug|x64.ActiveCfg = Debug|x64
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Debug|x64.Build.0 = Debug|x64
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Debug|x86.ActiveCfg = Debug|Win32
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Debug|x86.Build.0 = Debug|Win32
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Release|x64.ActiveCfg = Release|x64
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Release|x64.Build.0 = Release|x64
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Release|x86.ActiveCfg = Release|Win32
+		{6D3D3FE6-7128-49CB-8B2A-CCD2C2E8BAD5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

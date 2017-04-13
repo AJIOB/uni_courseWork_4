@@ -1,7 +1,5 @@
 ﻿#pragma once
 
-#include "stdafx.h"
-
 #ifndef AJIOB_STRPOS
 #define AJIOB_STRPOS
 typedef unsigned int strPos;

@@ -19,17 +19,15 @@ public:
 	User();
 	virtual ~User();
 
-	bool CheckPassword(const String& password) const;
+	bool isPasswordCorrect(const String& password) const;
 	bool SetPassword(const String& oldPassword, const String& newPassword);
 	void ResetPassword();
 
 
 	DB_ID getId() const;
-	void setId(const DB_ID& dbId);
 	String getLogin() const;
 	void setLogin(const String& login);
 	String getCryptedPassword() const;
-	void setCryptedPassword(const String& cryptedPassword);
 	UserPriveleges getPrivelege() const;
 	void setPrivelege(const UserPriveleges privelege);
 	UserPersonalInfo getPersonalInfo() const;

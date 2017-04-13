@@ -8,7 +8,7 @@
 #if !defined(EA_18AA30C7_1FD8_4bd2_ADC9_4EECF1F24FC6__INCLUDED_)
 #define EA_18AA30C7_1FD8_4bd2_ADC9_4EECF1F24FC6__INCLUDED_
 
-#include "typedefs.h"
+#include "stdafx.h"
 #include "DB_ID.h"
 #include "ISBNClass.h"
 #include "BookCopy.h"

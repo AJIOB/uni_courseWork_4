@@ -12,10 +12,17 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <algorithm>
+
+#include "typedefs.h"
 
 #include "ISBNType.h"
 #include "Constants.h"
 
 #include "AllExceptions.h"
+
+#include "hash/sha3.h"
+
+typedef SHA3 HashClass;
 
 // TODO: reference additional headers your program requires here

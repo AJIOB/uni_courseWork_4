@@ -10,7 +10,6 @@
 
 #include <list>
 
-#include "typedefs.h"
 #include "DB_ID.h"
 
 class Author;

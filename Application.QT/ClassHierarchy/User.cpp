@@ -19,30 +19,34 @@ User::~User()
 }
 
 
-bool User::CheckPassword(const String& password) const
+bool User::isPasswordCorrect(const String& password) const
 {
-	return (this->cryptedPassword == password);
+	HashClass hash;
+	return (cryptedPassword == hash(password));
+
 }
 
 bool User::SetPassword(const String& oldPassword, const String& newPassword)
 {
-	//todo
-	return false;
+	if (!isPasswordCorrect(oldPassword))
+	{
+		return false;
+	}
+
+	HashClass hash;
+	cryptedPassword = hash(newPassword);
+	return true;
 }
 
 void User::ResetPassword()
 {
-	//todo
+	HashClass hash;
+	cryptedPassword = hash(login);
 }
 
 DB_ID User::getId() const
 {
 	return _id;
-}
-
-void User::setId(const DB_ID& dbId)
-{
-	_id = dbId;
 }
 
 String User::getLogin() const
@@ -58,11 +62,6 @@ void User::setLogin(const String& login)
 String User::getCryptedPassword() const
 {
 	return cryptedPassword;
-}
-
-void User::setCryptedPassword(const String& cryptedPassword)
-{
-	this->cryptedPassword = cryptedPassword;
 }
 
 UserPriveleges User::getPrivelege() const

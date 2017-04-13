@@ -27,8 +27,11 @@ uli Book::GetNumOfAllCopies() const
 
 usi Book::GetNumOfCopiesInLibrary()
 {
-	//todo
-	return NULL;
+	return std::count_if(copies.begin(), copies.end(),
+	                     [](const BookCopy& copy)
+	                     {
+		                     return (!copy.getIsArchieved() && !copy.getIsGettedOut());
+	                     });
 }
 
 DB_ID Book::getId() const
