@@ -3,7 +3,7 @@
 
 void AJIOBStringFuncs::Invert(std::string& str)
 {
-	for (int i = 0, j = str.size() - 1; i < j; i++, j--)
+	for (int i = 0, j = str.size() - 1; i < j; i++ , j--)
 	{
 		char tmp = str[i];
 		str[i] = str[j];

@@ -1,0 +1,44 @@
+///////////////////////////////////////////////////////////
+//  User.h
+//  Implementation of the Class User
+//  Created on:      13-апр-2017 16:45:59
+//  Original author: Alex
+///////////////////////////////////////////////////////////
+
+#if !defined(EA_07E2DE28_F0E8_4507_B76A_97E0D85C2F89__INCLUDED_)
+#define EA_07E2DE28_F0E8_4507_B76A_97E0D85C2F89__INCLUDED_
+
+#include "typedefs.h"
+#include "DB_ID.h"
+#include "UserPersonalInfo.h"
+#include "UserPriveleges.h"
+
+class User
+{
+public:
+	User();
+	virtual ~User();
+
+	bool CheckPassword(const String& password) const;
+	bool SetPassword(const String& oldPassword, const String& newPassword);
+	void ResetPassword();
+
+
+	DB_ID getId() const;
+	void setId(const DB_ID& dbId);
+	String getLogin() const;
+	void setLogin(const String& login);
+	String getCryptedPassword() const;
+	void setCryptedPassword(const String& cryptedPassword);
+	UserPriveleges getPrivelege() const;
+	void setPrivelege(const UserPriveleges privelege);
+	UserPersonalInfo getPersonalInfo() const;
+	void setPersonalInfo(const UserPersonalInfo& personalInfo);
+private:
+	DB_ID _id;
+	String login;
+	String cryptedPassword;
+	UserPriveleges privelege;
+	UserPersonalInfo personalInfo;
+};
+#endif // !defined(EA_07E2DE28_F0E8_4507_B76A_97E0D85C2F89__INCLUDED_)

@@ -14,8 +14,8 @@ bool AJIOB::ConfigClass::LoadData()
 		return false;
 	}
 
-	unsigned maxSize = static_cast<unsigned> (f.tellg()) + 2;
-	char* tmpS = new (std::nothrow) char[maxSize];
+	unsigned maxSize = static_cast<unsigned>(f.tellg()) + 2;
+	char* tmpS = new(std::nothrow) char[maxSize];
 	if (!tmpS)
 	{
 		f.close();
@@ -37,7 +37,7 @@ bool AJIOB::ConfigClass::LoadData()
 			break;
 		}
 
-		tmpS[strlen(tmpS)] = '\0';							//delete '\n' at the end
+		tmpS[strlen(tmpS)] = '\0'; //delete '\n' at the end
 		pairToLoadFromFile.first = std::string(tmpS);
 
 		//read & save value
@@ -48,7 +48,7 @@ bool AJIOB::ConfigClass::LoadData()
 			break;
 		}
 
-		tmpS[strlen(tmpS)] = '\0';							//delete '\n' at the end
+		tmpS[strlen(tmpS)] = '\0'; //delete '\n' at the end
 		pairToLoadFromFile.second = std::string(tmpS);
 
 		cl_configData.insert(pairToLoadFromFile);
@@ -85,4 +85,3 @@ std::string AJIOB::ConfigClass::operator[](const std::string& key) const
 {
 	return Get(key);
 }
-

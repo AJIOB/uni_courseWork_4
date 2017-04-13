@@ -20,7 +20,9 @@ class AJIOB::ConfigClass
 	bool LoadData();
 
 	//block for copying class
-	ConfigClass(const ConfigClass&) {}
+	ConfigClass(const ConfigClass&)
+	{
+	}
 
 public:
 
@@ -30,5 +32,5 @@ public:
 
 	//return value by key. If cannot find key, return empty string
 	std::string Get(const std::string& key) const;
-	std::string operator[] (const std::string& key) const;
+	std::string operator[](const std::string& key) const;
 };

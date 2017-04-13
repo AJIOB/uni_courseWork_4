@@ -28,6 +28,18 @@
     <Filter Include="Source Files\ISBN">
       <UniqueIdentifier>{ff3531b3-aeef-438b-93f5-acf1ac71c52d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Users">
+      <UniqueIdentifier>{529c5745-fe49-4460-a85e-ab95f69011d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Books">
+      <UniqueIdentifier>{0e949447-c15e-485f-98f0-1983c065524e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Books">
+      <UniqueIdentifier>{72aed614-f218-4112-9574-6a68088e035e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Users">
+      <UniqueIdentifier>{3057396b-af04-4add-8377-23c30816da39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -66,6 +78,27 @@
     <ClInclude Include="ISBNType.h">
       <Filter>Header Files\ISBN</Filter>
     </ClInclude>
+    <ClInclude Include="DB_ID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Author.h">
+      <Filter>Header Files\Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Header Files\Books</Filter>
+    </ClInclude>
+    <ClInclude Include="BookCopy.h">
+      <Filter>Header Files\Books</Filter>
+    </ClInclude>
+    <ClInclude Include="UserPriveleges.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="UserPersonalInfo.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -82,6 +115,24 @@
     </ClCompile>
     <ClCompile Include="ISBNOnePart.cpp">
       <Filter>Source Files\ISBN</Filter>
+    </ClCompile>
+    <ClCompile Include="DB_ID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Author.cpp">
+      <Filter>Source Files\Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>Source Files\Books</Filter>
+    </ClCompile>
+    <ClCompile Include="BookCopy.cpp">
+      <Filter>Source Files\Books</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\Users</Filter>
+    </ClCompile>
+    <ClCompile Include="UserPersonalInfo.cpp">
+      <Filter>Source Files\Users</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

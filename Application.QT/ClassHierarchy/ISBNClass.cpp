@@ -12,7 +12,7 @@ uli ISBNClass::CalculateISBN10CheckDigit() const
 	uli sum = 0;
 	for (auto i = 2; i <= 10; i++)
 	{
-		sum += i*(num%10);
+		sum += i * (num % 10);
 		num /= 10;
 	}
 
@@ -27,7 +27,7 @@ uli ISBNClass::CalculateISBN13CheckDigit() const
 	uli sum = 0;
 	for (auto i = 2; i <= 13; i++)
 	{
-		sum += (3 - 2*(i%2))*(num%10);
+		sum += (3 - 2 * (i % 2)) * (num % 10);
 		num /= 10;
 	}
 
@@ -77,7 +77,7 @@ bool ISBNClass::ParseString(const std::string& str)
 	default:
 		return false;
 	}
-	
+
 	if (vectorOfStrings.size() != (numOfISBNFields + 1))
 	{
 		return false;
@@ -117,9 +117,9 @@ std::string ISBNClass::GetAsString() const
 {
 	std::string buf;
 
-	switch(cl_type)
+	switch (cl_type)
 	{
-	case AJIOBTypes::ISBNType::ISBN_13: 
+	case AJIOBTypes::ISBNType::ISBN_13:
 		buf = cl_fields[0].GetString() + '-';
 	case AJIOBTypes::ISBNType::ISBN_10:
 		break;
@@ -132,12 +132,12 @@ std::string ISBNClass::GetAsString() const
 		buf += cl_fields[i].GetString();
 		buf += '-';
 	}
-	
+
 	//дописывает контрольный символ
 	uli lastDigit = 0;
-	switch(cl_type)
+	switch (cl_type)
 	{
-	case AJIOBTypes::ISBNType::ISBN_13: 
+	case AJIOBTypes::ISBNType::ISBN_13:
 		lastDigit = CalculateISBN13CheckDigit();
 		if (lastDigit > 9) throw RangeException();
 		break;
