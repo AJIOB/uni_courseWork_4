@@ -99,6 +99,15 @@
     <ClInclude Include="UserPersonalInfo.h">
       <Filter>Header Files\Users</Filter>
     </ClInclude>
+    <ClInclude Include="exceptions\ConfigException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\OperationException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\DBOperationCancelledException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

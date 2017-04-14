@@ -37,7 +37,18 @@ bool AJIOB::ConfigClass::LoadData()
 			break;
 		}
 
-		tmpS[strlen(tmpS)] = '\0'; //delete '\n' at the end
+		//delete '\n' at the end
+		while (true)
+		{
+			auto len = strlen(tmpS);
+			if (tmpS[len] != '\n' || tmpS[len] != '\r')
+			{
+				break;
+			}
+
+			tmpS[len] = '\0';
+		}
+
 		pairToLoadFromFile.first = std::string(tmpS);
 
 		//read & save value
@@ -48,7 +59,18 @@ bool AJIOB::ConfigClass::LoadData()
 			break;
 		}
 
-		tmpS[strlen(tmpS)] = '\0'; //delete '\n' at the end
+		//delete '\n' at the end
+		while (true)
+		{
+			auto len = strlen(tmpS);
+			if (tmpS[len] != '\n' || tmpS[len] != '\r')
+			{
+				break;
+			}
+
+			tmpS[len] = '\0';
+		}
+
 		pairToLoadFromFile.second = std::string(tmpS);
 
 		cl_configData.insert(pairToLoadFromFile);

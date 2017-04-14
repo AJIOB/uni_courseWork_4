@@ -25,7 +25,7 @@ class Book
 	std::list<BookCopy> copies;
 
 public:
-	Book();
+	explicit Book(const DB_ID& id = DB_ID());
 	virtual ~Book();
 
 	uli GetNumOfAllCopies() const;

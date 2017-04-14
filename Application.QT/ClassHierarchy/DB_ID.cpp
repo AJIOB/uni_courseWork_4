@@ -9,18 +9,19 @@
 #include "DB_ID.h"
 
 
-DB_ID::DB_ID()
+DB_ID::DB_ID() : isEmpty(true)
 {
 }
 
+DB_ID::DB_ID(const std::string& id) : isEmpty(true), id(id)
+{
+}
 
 DB_ID::~DB_ID()
 {
 }
 
-
-String DB_ID::toString()
+String DB_ID::toString() const
 {
-	//todo
-	return NULL;
+	return isEmpty ? "" : id.to_string();
 }

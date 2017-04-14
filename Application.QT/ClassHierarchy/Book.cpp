@@ -8,11 +8,9 @@
 #include "stdafx.h"
 #include "Book.h"
 
-
-Book::Book(): year(0), pageCount(0)
+Book::Book(const DB_ID& id) : _id(id), year(0), pageCount(0)
 {
 }
-
 
 Book::~Book()
 {

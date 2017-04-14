@@ -8,14 +8,21 @@
 #if !defined(EA_B7E4D6F3_11D9_4ad5_867C_1DA7D5BAB3A1__INCLUDED_)
 #define EA_B7E4D6F3_11D9_4ad5_867C_1DA7D5BAB3A1__INCLUDED_
 
+#include <mongocxx/client.hpp>
+
 #include "typedefs.h"
 
 class DB_ID
 {
+	bool isEmpty;
+
+	bsoncxx::oid id;
+
 public:
 	DB_ID();
+	DB_ID(const std::string& id);
 	virtual ~DB_ID();
 
-	String toString();
+	String toString() const;
 };
 #endif // !defined(EA_B7E4D6F3_11D9_4ad5_867C_1DA7D5BAB3A1__INCLUDED_)

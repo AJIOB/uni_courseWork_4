@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
@@ -139,7 +139,10 @@
     <ClInclude Include="BookCopy.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DB_ID.h" />
+    <ClInclude Include="exceptions\ConfigException.h" />
+    <ClInclude Include="exceptions\DBOperationCancelledException.h" />
     <ClInclude Include="exceptions\MyException.h" />
+    <ClInclude Include="exceptions\OperationException.h" />
     <ClInclude Include="exceptions\RangeException.h" />
     <ClInclude Include="ISBNClass.h" />
     <ClInclude Include="ISBNOnePart.h" />

@@ -8,11 +8,9 @@
 #include "stdafx.h"
 #include "User.h"
 
-
-User::User(): privelege(guest)
+User::User(const DB_ID& id) : _id(id), privelege(UserPriveleges::guest)
 {
 }
-
 
 User::~User()
 {
@@ -23,12 +21,11 @@ bool User::isPasswordCorrect(const String& password) const
 {
 	HashClass hash;
 	return (cryptedPassword == hash(password));
-
 }
 
-bool User::SetPassword(const String& oldPassword, const String& newPassword)
+bool User::SetPassword(const String& newPassword, const String& oldPassword)
 {
-	if (!isPasswordCorrect(oldPassword))
+	if (!cryptedPassword.empty() && !isPasswordCorrect(oldPassword))
 	{
 		return false;
 	}

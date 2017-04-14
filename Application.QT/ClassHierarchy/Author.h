@@ -18,7 +18,7 @@ class Author
 	String surname;
 
 public:
-	Author();
+	explicit Author(const DB_ID& id = DB_ID());
 	virtual ~Author();
 
 	String getName() const;

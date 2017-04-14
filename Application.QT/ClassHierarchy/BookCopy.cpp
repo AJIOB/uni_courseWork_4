@@ -8,11 +8,9 @@
 #include "stdafx.h"
 #include "BookCopy.h"
 
-
-BookCopy::BookCopy(): isArchieved(false), isGettedOut(false)
+BookCopy::BookCopy(const DB_ID& id) : _id(id), isArchieved(false), isGettedOut(false)
 {
 }
-
 
 BookCopy::~BookCopy()
 {

@@ -12,6 +12,7 @@
 #include <mongocxx/instance.hpp>
 #include <mongocxx/uri.hpp>
 #include <mongocxx/client.hpp>
+#include <mongocxx/database.hpp>
 
 #include "ClassHierarchy/DB_ID.h"
 #include "Configuration/ConfigClass.h"
@@ -28,12 +29,15 @@ class DBConnector
 	mongocxx::instance inst;
 	mongocxx::uri db_uri;
 	mongocxx::client client;
+	mongocxx::database db;
+
+	bsoncxx::types::value Add(const std::string& collectionName, const bsoncxx::document::view_or_value& document) const;
 
 public:
 	DBConnector();
 	virtual ~DBConnector();
 
-	void Add(User& user);
+	void Add(User& user) const;
 	void Get(std::list<User>& users);
 	void Update(User& newUser);
 	void Delete(User& user);

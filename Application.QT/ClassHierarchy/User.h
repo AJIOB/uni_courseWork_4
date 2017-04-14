@@ -16,11 +16,11 @@
 class User
 {
 public:
-	User();
+	explicit User(const DB_ID& id = DB_ID());
 	virtual ~User();
 
 	bool isPasswordCorrect(const String& password) const;
-	bool SetPassword(const String& oldPassword, const String& newPassword);
+	bool SetPassword(const String& newPassword, const String& oldPassword = "");
 	void ResetPassword();
 
 

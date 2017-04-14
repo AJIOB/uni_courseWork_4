@@ -17,7 +17,7 @@ class BookCopy
 	bool isGettedOut;
 
 public:
-	BookCopy();
+	explicit BookCopy(const DB_ID& id = DB_ID());
 	virtual ~BookCopy();
 
 	DB_ID getId() const;

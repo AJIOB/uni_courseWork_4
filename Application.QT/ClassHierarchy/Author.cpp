@@ -9,10 +9,9 @@
 #include "Author.h"
 
 
-Author::Author()
+Author::Author(const DB_ID& id) : _id(id)
 {
 }
-
 
 Author::~Author()
 {
