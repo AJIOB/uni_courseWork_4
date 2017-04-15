@@ -5,7 +5,7 @@
 class DBOperationCancelledException : public MyException
 {
 public:
-	DBOperationCancelledException() : MyException("Ошибка. Была произведена отмена операции")
+	DBOperationCancelledException() : MyException("Error. Operation was cancelled")
 	{
 	}
 };

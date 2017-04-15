@@ -8,6 +8,8 @@
 #if !defined(EA_C9B1BA3E_E86D_454b_A78D_68365533B1BE__INCLUDED_)
 #define EA_C9B1BA3E_E86D_454b_A78D_68365533B1BE__INCLUDED_
 
+#define GTEST_LOCAL
+
 #include <list>
 #include <mongocxx/instance.hpp>
 #include <mongocxx/uri.hpp>
@@ -26,12 +28,16 @@ class DBConnector
 {
 	AJIOB::ConfigClass config;
 
+#if !defined(GTEST) && !defined(GTEST_LOCAL)
 	mongocxx::instance inst;
-	mongocxx::uri db_uri;
+#elif defined(GTEST) && !defined(GTEST_LOCAL)
+#error Please, define GTEST_LOCAL
+#endif
+
 	mongocxx::client client;
 	mongocxx::database db;
 
-	bsoncxx::types::value Add(const std::string& collectionName, const bsoncxx::document::view_or_value& document) const;
+	//bsoncxx::types::value Add(const std::string& collectionName, bsoncxx::builder::stream::document* document) const;
 
 public:
 	DBConnector();
@@ -50,7 +56,7 @@ public:
 	bool ArchieveBookCopy(BookCopy& bookCopy);
 	bool ReturnBookCopy(BookCopy& bookCopy);
 	void Add(Author& author);
-	int Get(std::list<Author>& authors);
+	void Get(std::list<Author>& authors);
 	void Update(Author& author);
 	void Delete(Author& author);
 };

@@ -151,6 +151,10 @@
   <ItemGroup>
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DB_Work.h" />
+    <ClInclude Include="Other.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

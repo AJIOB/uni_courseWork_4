@@ -4,7 +4,7 @@
 class RangeException : public MyException
 {
 public:
-	RangeException() : MyException("Ошибка промежутка. Возможно, вы перепутали местами минимальное и максимальное значение")
+	RangeException() : MyException("Range exception. Maybe you were swap min an max value")
 	{
 	}
 };

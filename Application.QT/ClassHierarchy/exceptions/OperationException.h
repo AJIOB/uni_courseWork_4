@@ -5,7 +5,7 @@
 class OperationException : public MyException
 {
 public:
-	OperationException() : MyException("Ошибка выполнения операции")
+	OperationException() : MyException("Operation execution error")
 	{
 	}
 };
