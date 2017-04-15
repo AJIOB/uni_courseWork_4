@@ -56,8 +56,12 @@ void DBConnector::Add(User& user) const
 		throw ConfigException();
 	}
 
-	//todo: using _id
 	bsoncxx::builder::stream::document document{};
+	if (!user.getId().isEmpty())
+	{
+		document <<
+			"_id" << user.getId().get();
+	}
 	bsoncxx::document::view_or_value view = document <<
 		"login" << user.getLogin() <<
 		"password" << user.getCryptedPassword() <<
@@ -143,7 +147,6 @@ void DBConnector::Add(Author& author) const
 		document <<
 			"_id" << author.getID().get();
 	}
-
 	bsoncxx::document::view_or_value view = document <<
 		"name" << author.getName() <<
 		"surname" << author.getSurname() <<
