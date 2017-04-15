@@ -288,4 +288,4 @@ __pycache__/
 *.xsd.cs
 
 # AJIOB excluded
-**/Generated Files/*
+**/GeneratedFiles/*
