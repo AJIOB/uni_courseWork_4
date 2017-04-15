@@ -9,11 +9,11 @@
 #include "DB_ID.h"
 
 
-DB_ID::DB_ID() : isEmpty(true)
+DB_ID::DB_ID() : cl_isEmpty(true)
 {
 }
 
-DB_ID::DB_ID(const std::string& id) : isEmpty(true), id(id)
+DB_ID::DB_ID(const std::string& id) : cl_isEmpty(false), id(id)
 {
 }
 
@@ -23,5 +23,15 @@ DB_ID::~DB_ID()
 
 String DB_ID::toString() const
 {
-	return isEmpty ? "" : id.to_string();
+	return cl_isEmpty ? "" : id.to_string();
+}
+
+bool DB_ID::isEmpty() const
+{
+	return cl_isEmpty;
+}
+
+bsoncxx::oid DB_ID::get() const
+{
+	return id;
 }

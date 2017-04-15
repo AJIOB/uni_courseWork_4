@@ -11,7 +11,7 @@ TEST(CheckTestsToWork, Hello)
 TEST(DB_Simple, tutorial)
 {
 	//mongocxx::instance inst{};
-	mongocxx::client conn{ mongocxx::uri{ "mongodb://localhost:27017" } };
+	mongocxx::client conn{mongocxx::uri{"mongodb://localhost:27017"}};
 
 	bsoncxx::builder::stream::document document{};
 
@@ -21,7 +21,8 @@ TEST(DB_Simple, tutorial)
 	collection.insert_one(document.view());
 	auto cursor = collection.find({});
 
-	for (auto&& doc : cursor) {
+	for (auto&& doc : cursor)
+	{
 		//std::cout << bsoncxx::to_json(doc) << std::endl;
 	}
 }

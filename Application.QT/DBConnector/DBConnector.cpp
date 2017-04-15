@@ -15,15 +15,14 @@
 
 #include "ClassHierarchy/AllExceptions.h"
 
-//static DBConnector::inst{};
-/*
-bsoncxx::types::value DBConnector::Add(const std::string& collectionName, bsoncxx::builder::stream::document* document) const
+
+bsoncxx::types::value DBConnector::Add(const std::string& collectionName, bsoncxx::document::view_or_value& view) const
 {
 	auto collection = db[collectionName];
 	mongocxx::stdx::optional<mongocxx::result::insert_one> res;
 	try
 	{
-		res = collection.insert_one(document->view());
+		res = collection.insert_one(view);
 	}
 	catch (mongocxx::bulk_write_exception e)
 	{
@@ -38,8 +37,8 @@ bsoncxx::types::value DBConnector::Add(const std::string& collectionName, bsoncx
 
 	return res->inserted_id();
 }
-*/
-DBConnector::DBConnector() : config("dbconfig"), client(mongocxx::uri{ config["uri"] }), db(client[config["database"]])
+
+DBConnector::DBConnector() : config("dbconfig"), client(mongocxx::uri{config["uri"]}), db(client[config["database"]])
 {
 	//config("dbconfig");
 }
@@ -57,6 +56,7 @@ void DBConnector::Add(User& user) const
 		throw ConfigException();
 	}
 
+	//todo: using _id
 	bsoncxx::builder::stream::document document{};
 	bsoncxx::document::view_or_value view = document <<
 		"login" << user.getLogin() <<
@@ -64,26 +64,7 @@ void DBConnector::Add(User& user) const
 		"priveleges" << UPtoS(user.getPrivelege()) <<
 		bsoncxx::builder::stream::finalize;
 
-	auto collection = db[config["userAuth"]];
-	mongocxx::stdx::optional<mongocxx::result::insert_one> res;
-	try
-	{
-		res = collection.insert_one(view);
-	}
-	catch (mongocxx::bulk_write_exception e)
-	{
-		throw DBOperationCancelledException();
-	}
-
-	if (res->result().inserted_count() == 0)
-	{
-		throw OperationException();
-	}
-
-
-	//return res->inserted_id();
-
-	//todo: using _id
+	Add(config["userAuth"], view);
 
 	//todo: add second part
 }
@@ -149,7 +130,7 @@ bool DBConnector::ReturnBookCopy(BookCopy& bookCopy)
 }
 
 
-void DBConnector::Add(Author& author)
+void DBConnector::Add(Author& author) const
 {
 	if (config["authors"] == "")
 	{
@@ -157,30 +138,22 @@ void DBConnector::Add(Author& author)
 	}
 
 	bsoncxx::builder::stream::document document{};
+	if (!author.getID().isEmpty())
+	{
+		document <<
+			"_id" << author.getID().get();
+	}
+
 	bsoncxx::document::view_or_value view = document <<
 		"name" << author.getName() <<
 		"surname" << author.getSurname() <<
 		bsoncxx::builder::stream::finalize;
 
-	auto collection = db[config["authors"]];
-	mongocxx::stdx::optional<mongocxx::result::insert_one> res;
-	try
-	{
-		res = collection.insert_one(view);
-	}
-	catch (mongocxx::bulk_write_exception e)
-	{
-		throw DBOperationCancelledException();
-	}
-
-	if (res->result().inserted_count() == 0)
-	{
-		throw OperationException();
-	}
+	Add(config["authors"], view);
 }
 
 
-void DBConnector::Get(std::list<Author>& authors)
+void DBConnector::Get(std::list<Author>& authors) const
 {
 	using namespace bsoncxx::builder::stream;
 
@@ -189,10 +162,21 @@ void DBConnector::Get(std::list<Author>& authors)
 		throw ConfigException();
 	}
 
-	auto collection = db[config["authors"]];
-	mongocxx::cursor cursor = collection.find(document{} << finalize);
-	for (auto doc : cursor) {
-		bsoncxx::to_json(doc);
+	mongocxx::cursor cursor = db[config["authors"]].find(document{}.view());
+	for (auto doc : cursor)
+	{
+		bsoncxx::document::element element = doc["_id"];
+		if (element.type() != bsoncxx::type::k_oid)
+		{
+			throw OperationException();
+		}
+
+		Author author(DB_ID(element.get_oid().value.to_string()));
+
+		author.setName(doc["name"].get_utf8().value.to_string());
+		author.setSurname(doc["surname"].get_utf8().value.to_string());
+
+		authors.push_back(author);
 	}
 }
 

@@ -37,7 +37,7 @@ class DBConnector
 	mongocxx::client client;
 	mongocxx::database db;
 
-	//bsoncxx::types::value Add(const std::string& collectionName, bsoncxx::builder::stream::document* document) const;
+	bsoncxx::types::value Add(const std::string& collectionName, bsoncxx::document::view_or_value& view) const;
 
 public:
 	DBConnector();
@@ -55,8 +55,8 @@ public:
 	bool RenewBookTime(BookCopy& bookCopy);
 	bool ArchieveBookCopy(BookCopy& bookCopy);
 	bool ReturnBookCopy(BookCopy& bookCopy);
-	void Add(Author& author);
-	void Get(std::list<Author>& authors);
+	void Add(Author& author) const;
+	void Get(std::list<Author>& authors) const;
 	void Update(Author& author);
 	void Delete(Author& author);
 };

@@ -42,5 +42,6 @@ TEST(DB_Work, addAuthor)
 TEST(DB_Work, getAuthors)
 {
 	DBConnector connector;
-	connector.Get(std::list<Author>());
+	std::list<Author> authors;
+	connector.Get(authors);
 }
