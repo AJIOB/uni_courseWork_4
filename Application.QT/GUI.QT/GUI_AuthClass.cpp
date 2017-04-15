@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GUI_AuthClass.h"
 
-GUI_AuthClass::GUI_AuthClass(QWidget *parent)
+GUI_AuthClass::GUI_AuthClass(QWidget* parent)
 	: QDialog(parent)
 {
 	setupUi(this);

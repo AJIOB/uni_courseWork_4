@@ -2,7 +2,7 @@
 #include "GUI_MainWindow.h"
 #include "GUI_AuthClass.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 	QApplication a(argc, argv);
 

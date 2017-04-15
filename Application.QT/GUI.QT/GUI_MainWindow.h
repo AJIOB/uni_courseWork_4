@@ -10,7 +10,7 @@ class GUI_MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	GUI_MainWindow(User u, QWidget *parent = Q_NULLPTR);
+	GUI_MainWindow(User u, QWidget* parent = Q_NULLPTR);
 	~GUI_MainWindow();
 
 private:

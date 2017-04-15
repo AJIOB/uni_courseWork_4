@@ -30,6 +30,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUI.QT", "GUI.QT\GUI.QT.vcx
 		{469AF4B6-A64D-4B0D-B367-34EF312E32DC} = {469AF4B6-A64D-4B0D-B367-34EF312E32DC}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Controller.QT", "Controller.QT\Controller.QT.vcxproj", "{671695DD-651F-40F5-88A6-05BD226001F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -84,6 +86,12 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|Win32
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.ActiveCfg = Release|Win32
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.Build.0 = Release|Win32
+		{671695DD-651F-40F5-88A6-05BD226001F2}.Debug|x64.ActiveCfg = Debug|Win32
+		{671695DD-651F-40F5-88A6-05BD226001F2}.Debug|x86.ActiveCfg = Debug|Win32
+		{671695DD-651F-40F5-88A6-05BD226001F2}.Debug|x86.Build.0 = Debug|Win32
+		{671695DD-651F-40F5-88A6-05BD226001F2}.Release|x64.ActiveCfg = Release|Win32
+		{671695DD-651F-40F5-88A6-05BD226001F2}.Release|x86.ActiveCfg = Release|Win32
+		{671695DD-651F-40F5-88A6-05BD226001F2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

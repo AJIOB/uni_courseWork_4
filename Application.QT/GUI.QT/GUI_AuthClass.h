@@ -8,7 +8,7 @@ class GUI_AuthClass : public QDialog, public Ui::GUI_AuthClass
 	Q_OBJECT
 
 public:
-	GUI_AuthClass(QWidget *parent = Q_NULLPTR);
+	GUI_AuthClass(QWidget* parent = Q_NULLPTR);
 	~GUI_AuthClass();
 
 	User getUser() const;

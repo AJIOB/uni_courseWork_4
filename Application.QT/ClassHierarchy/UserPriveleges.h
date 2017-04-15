@@ -47,6 +47,7 @@ inline int UPtoi(const UserPriveleges& up)
 	default: return 0;
 	}
 }
+
 /*
 inline UserPriveleges itoUP(const int& i)
 {

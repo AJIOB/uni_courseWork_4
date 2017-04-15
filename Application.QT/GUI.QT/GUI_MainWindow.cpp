@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GUI_MainWindow.h"
 
-GUI_MainWindow::GUI_MainWindow(User u, QWidget *parent)
+GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
 {
 	//todo: different interface, which depends of user
