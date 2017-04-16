@@ -19,4 +19,5 @@ private:
 
 private slots:
 	void on_ExitAction_triggered();
+	void on_AboutAction_triggered();
 };

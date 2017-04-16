@@ -17,3 +17,13 @@ void GUI_MainWindow::on_ExitAction_triggered()
 {
 	QApplication::exit();
 }
+
+void GUI_MainWindow::on_AboutAction_triggered()
+{
+	QMessageBox mbBox;
+	mbBox.setText("Данное программное обеспечение было разработано AJIOB");
+	mbBox.setWindowTitle("Об авторе");
+	mbBox.setButtonText(QMessageBox::Ok, "Хорошо");
+	mbBox.setIcon(QMessageBox::Information);
+	mbBox.exec();
+}
