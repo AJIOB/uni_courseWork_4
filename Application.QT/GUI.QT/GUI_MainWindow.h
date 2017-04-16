@@ -17,7 +17,11 @@ private:
 	Ui::GUI_MainWindow ui;
 	User user;
 
+	void ShowAllMustHave();
+	void HideAllMustHave();
+
 private slots:
 	void on_ExitAction_triggered();
 	void on_AboutAction_triggered();
+	void on_OKButton_AddUser_clicked();
 };
