@@ -51,17 +51,17 @@ TEST(DB_Work, getFilteredAuthors)
 	DBConnector connector;
 	std::list<Author> authors;
 	bsoncxx::builder::stream::document d{};
-	d <<	"Name" << "Alex";
+	d << "Name" << "Alex";
 
 	connector.Get(authors, d.view());
 	EXPECT_EQ(authors.size(), 0);
 
 	authors.clear();
 	d.clear();
-	d <<	"name" << 
-			bsoncxx::builder::stream::open_document <<
-				"$exists" << true <<
-			bsoncxx::builder::stream::close_document;
+	d << "name" <<
+		bsoncxx::builder::stream::open_document <<
+		"$exists" << true <<
+		bsoncxx::builder::stream::close_document;
 
 	connector.Get(authors, d.view());
 	EXPECT_TRUE(authors.size() > 0);

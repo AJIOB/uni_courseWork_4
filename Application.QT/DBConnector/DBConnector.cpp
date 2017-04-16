@@ -165,11 +165,11 @@ void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilte
 
 		auto id = element.get_oid().value.to_string();
 
-		auto it = std::find_if(buff.begin(), buff.end(), 
-			[&id](const User& u) -> bool
-			{
-				return (u.getId().toString() == id);
-			}
+		auto it = std::find_if(buff.begin(), buff.end(),
+		                       [&id](const User& u) -> bool
+		                       {
+			                       return (u.getId().toString() == id);
+		                       }
 		);
 
 		if (it == buff.end())

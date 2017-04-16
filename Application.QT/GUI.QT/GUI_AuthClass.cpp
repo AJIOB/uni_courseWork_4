@@ -26,7 +26,7 @@ void GUI_AuthClass::on_OKButton_clicked()
 	{
 		u = ControllerQT::get().checkAuth(loginText->text(), passwordText->text());
 	}
-	catch(MyException& e)
+	catch (MyException& e)
 	{
 		inputErrorText->show();
 		OKButton->setEnabled(true);
