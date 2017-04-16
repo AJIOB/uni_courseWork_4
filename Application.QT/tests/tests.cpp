@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[])
 {
-	mongocxx::instance ins{};
+	DB_START
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }

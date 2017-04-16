@@ -37,19 +37,22 @@ bool AJIOB::ConfigClass::LoadData()
 			break;
 		}
 
-		//delete '\n' at the end
-		while (true)
-		{
-			auto len = strlen(tmpS);
-			if (tmpS[len] != '\n' || tmpS[len] != '\r')
-			{
-				break;
-			}
+		std::string s(tmpS);
 
-			tmpS[len] = '\0';
+		//delete '\n' at the end
+		while (!s.empty() && (s.back() == '\n' || s.back() == '\r' || s.back() == '='))
+			s.pop_back();
+
+		//delete \r && \n at the beginning of the line
+		while (!s.empty() && (s.front() == '\n' || s.front() == '\r'))
+			s.erase(0, 1);
+
+		if (s.empty())
+		{
+			continue;
 		}
 
-		pairToLoadFromFile.first = std::string(tmpS);
+		pairToLoadFromFile.first = s;
 
 		//read & save value
 		f.getline(tmpS, maxSize);
@@ -59,19 +62,13 @@ bool AJIOB::ConfigClass::LoadData()
 			break;
 		}
 
+		s = std::string(tmpS);
+
 		//delete '\n' at the end
-		while (true)
-		{
-			auto len = strlen(tmpS);
-			if (tmpS[len] != '\n' || tmpS[len] != '\r')
-			{
-				break;
-			}
+		while (!s.empty() && (s.back() == '\n' || s.back() == '\r' || s.back() == '='))
+			s.pop_back();
 
-			tmpS[len] = '\0';
-		}
-
-		pairToLoadFromFile.second = std::string(tmpS);
+		pairToLoadFromFile.second = s;
 
 		cl_configData.insert(pairToLoadFromFile);
 	}

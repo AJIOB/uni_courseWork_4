@@ -4,6 +4,8 @@
 
 int main(int argc, char* argv[])
 {
+	DB_START
+
 	QApplication a(argc, argv);
 
 	GUI_AuthClass auth;

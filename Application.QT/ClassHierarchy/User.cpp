@@ -23,7 +23,7 @@ bool User::isPasswordCorrect(const String& password) const
 	return (cryptedPassword == hash(password));
 }
 
-bool User::SetPassword(const String& newPassword, const String& oldPassword)
+bool User::setPassword(const String& newPassword, const String& oldPassword)
 {
 	if (!cryptedPassword.empty() && !isPasswordCorrect(oldPassword))
 	{
@@ -35,7 +35,7 @@ bool User::SetPassword(const String& newPassword, const String& oldPassword)
 	return true;
 }
 
-void User::ResetPassword()
+void User::resetPassword()
 {
 	HashClass hash;
 	cryptedPassword = hash(login);

@@ -20,9 +20,8 @@ public:
 	virtual ~User();
 
 	bool isPasswordCorrect(const String& password) const;
-	bool SetPassword(const String& newPassword, const String& oldPassword = "");
-	void ResetPassword();
-
+	bool setPassword(const String& newPassword, const String& oldPassword = "");
+	void resetPassword();
 
 	DB_ID getId() const;
 	String getLogin() const;

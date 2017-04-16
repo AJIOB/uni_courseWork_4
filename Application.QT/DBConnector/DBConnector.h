@@ -8,7 +8,7 @@
 #if !defined(EA_C9B1BA3E_E86D_454b_A78D_68365533B1BE__INCLUDED_)
 #define EA_C9B1BA3E_E86D_454b_A78D_68365533B1BE__INCLUDED_
 
-#define GTEST_LOCAL
+#define DB_START mongocxx::instance inst{};
 
 #include <list>
 #include <mongocxx/instance.hpp>
@@ -16,39 +16,42 @@
 #include <mongocxx/client.hpp>
 #include <mongocxx/database.hpp>
 
-#include "ClassHierarchy/DB_ID.h"
 #include "Configuration/ConfigClass.h"
+#include "ClassHierarchy/typedefs.h"
 
 class Author;
 class BookCopy;
 class Book;
 class User;
+class DB_ID;
+enum class UserPriveleges;
 
 class DBConnector
 {
 	AJIOB::ConfigClass config;
-
-#if !defined(GTEST) && !defined(GTEST_LOCAL)
-	mongocxx::instance inst;
-#elif defined(GTEST) && !defined(GTEST_LOCAL)
-#error Please, define GTEST_LOCAL
-#endif
 
 	mongocxx::client client;
 	mongocxx::database db;
 
 	bsoncxx::types::value Add(const std::string& collectionName, bsoncxx::document::view_or_value& view) const;
 
+	bool isAuthorized;
+	UserPriveleges privelege;
+
+	void CheckAuth() const;
+
 public:
 	DBConnector();
 	virtual ~DBConnector();
 
+	User Authorize(const String& login, const String& password);
+
 	void Add(User& user) const;
-	void Get(std::list<User>& users);
+	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), bsoncxx::document::view& privateFilter = bsoncxx::builder::stream::document{}.view()) const;
 	void Update(User& newUser);
 	void Delete(User& user);
 	void Add(Book& book);
-	void Get(std::list<Book>& books);
+	void Get(std::list<Book>& books, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view()) const;
 	void Update(Book& book);
 	void Delete(Book& book);
 	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
@@ -56,7 +59,7 @@ public:
 	bool ArchieveBookCopy(BookCopy& bookCopy);
 	bool ReturnBookCopy(BookCopy& bookCopy);
 	void Add(Author& author) const;
-	void Get(std::list<Author>& authors) const;
+	void Get(std::list<Author>& authors, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view()) const;
 	void Update(Author& author);
 	void Delete(Author& author);
 };

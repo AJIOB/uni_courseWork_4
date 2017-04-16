@@ -108,6 +108,9 @@
     <ClInclude Include="exceptions\DBOperationCancelledException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
+    <ClInclude Include="exceptions\NoAuthException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

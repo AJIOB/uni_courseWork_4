@@ -142,6 +142,7 @@
     <ClInclude Include="exceptions\ConfigException.h" />
     <ClInclude Include="exceptions\DBOperationCancelledException.h" />
     <ClInclude Include="exceptions\MyException.h" />
+    <ClInclude Include="exceptions\NoAuthException.h" />
     <ClInclude Include="exceptions\OperationException.h" />
     <ClInclude Include="exceptions\RangeException.h" />
     <ClInclude Include="ISBNClass.h" />

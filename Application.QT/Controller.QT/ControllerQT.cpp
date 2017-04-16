@@ -27,6 +27,5 @@ ControllerQT& ControllerQT::get()
 
 User ControllerQT::checkAuth(const QString& login, const QString& password)
 {
-	//todo
-	return User();
+	return connector.Authorize(login.toStdString(), password.toStdString());
 }

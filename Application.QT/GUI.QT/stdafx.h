@@ -5,3 +5,6 @@
 
 #include "ClassHierarchy/UserPriveleges.h"
 #include "ClassHierarchy/User.h"
+#include "ClassHierarchy/AllExceptions.h"
+
+#include "Controller.QT/ControllerQT.h"

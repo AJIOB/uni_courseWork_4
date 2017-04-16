@@ -10,6 +10,7 @@
 
 #include "DBConnector.h"
 
+#include "ClassHierarchy/DB_ID.h"
 #include "ClassHierarchy/User.h"
 #include "ClassHierarchy/Author.h"
 
@@ -38,14 +39,56 @@ bsoncxx::types::value DBConnector::Add(const std::string& collectionName, bsoncx
 	return res->inserted_id();
 }
 
-DBConnector::DBConnector() : config("dbconfig"), client(mongocxx::uri{config["uri"]}), db(client[config["database"]])
+void DBConnector::CheckAuth() const
 {
-	//config("dbconfig");
+	if (!isAuthorized)
+	{
+		throw NoAuthException();
+	}
+}
+
+
+DBConnector::DBConnector() : config("dbconfig"), client(mongocxx::uri{config["uri"]}), db(client[config["database"]]), isAuthorized(false), privelege(UserPriveleges::none)
+{
 }
 
 
 DBConnector::~DBConnector()
 {
+}
+
+User DBConnector::Authorize(const String& login, const String& password)
+{
+	if (login == config["guest_login"] && password == config["guest_password"])
+	{
+		User u;
+		u.setLogin(login);
+		u.setPassword(password);
+		u.setPrivelege(UserPriveleges::guest);
+		return u;
+	}
+
+	using namespace bsoncxx::builder::stream;
+
+	User u;
+	u.setLogin(login);
+	u.setPassword(password);
+	document d{};
+	d <<
+		"login" << u.getLogin() <<
+		"password" << u.getCryptedPassword();
+
+	std::list<User> users;
+	Get(users, d.view());
+	if (users.size() == 0)
+	{
+		throw NoAuthException();
+	}
+
+	isAuthorized = true;
+	privelege = users.front().getPrivelege();
+
+	return users.front();
 }
 
 
@@ -65,17 +108,86 @@ void DBConnector::Add(User& user) const
 	bsoncxx::document::view_or_value view = document <<
 		"login" << user.getLogin() <<
 		"password" << user.getCryptedPassword() <<
-		"priveleges" << UPtoS(user.getPrivelege()) <<
+		"privelege" << UPtoS(user.getPrivelege()) <<
 		bsoncxx::builder::stream::finalize;
 
-	Add(config["userAuth"], view);
+	auto id = Add(config["userAuth"], view);
 
-	//todo: add second part
+	UserPersonalInfo pi = user.getPersonalInfo();
+	view = document <<
+		"_id" << id.get_oid() <<
+		"name" << pi.getName() <<
+		"surname" << pi.getSurname() <<
+		"father_name" << pi.getFatherName() <<
+		"passport_number" << pi.getPassportNumber() <<
+		bsoncxx::builder::stream::finalize;
+
+	Add(config["userPrivateInfo"], view);
 }
 
-
-void DBConnector::Get(std::list<User>& users)
+void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilter, bsoncxx::document::view& privateFilter) const
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
+	{
+		throw ConfigException();
+	}
+
+	std::list<User> buff;
+
+	mongocxx::cursor cursor = db[config["userAuth"]].find(authFilter);
+	for (auto doc : cursor)
+	{
+		bsoncxx::document::element element = doc["_id"];
+		if (element.type() != bsoncxx::type::k_oid)
+		{
+			throw OperationException();
+		}
+
+		User user(DB_ID(element.get_oid().value.to_string()));
+
+		user.setLogin(doc["login"].get_utf8().value.to_string());
+		user.setPassword(doc["password"].get_utf8().value.to_string());
+		user.setPrivelege(StoUP(doc["privelege"].get_utf8().value.to_string()));
+
+		buff.push_back(user);
+	}
+
+	cursor = db[config["userPrivateInfo"]].find(privateFilter);
+	for (auto doc : cursor)
+	{
+		bsoncxx::document::element element = doc["_id"];
+		if (element.type() != bsoncxx::type::k_oid)
+		{
+			throw OperationException();
+		}
+
+		auto id = element.get_oid().value.to_string();
+
+		auto it = std::find_if(buff.begin(), buff.end(), 
+			[&id](const User& u) -> bool
+			{
+				return (u.getId().toString() == id);
+			}
+		);
+
+		if (it == buff.end())
+		{
+			continue;
+		}
+
+		User user = *it;
+		buff.erase(it);
+		UserPersonalInfo upi;
+		upi.setName(doc["name"].get_utf8().value.to_string());
+		upi.setSurname(doc["surname"].get_utf8().value.to_string());
+		upi.setFatherName(doc["father_name"].get_utf8().value.to_string());
+		upi.setPassportNumber(doc["passport_number"].get_utf8().value.to_string());
+
+		user.setPersonalInfo(upi);
+		users.push_back(user);
+	}
 }
 
 
@@ -93,8 +205,7 @@ void DBConnector::Add(Book& book)
 {
 }
 
-
-void DBConnector::Get(std::list<Book>& books)
+void DBConnector::Get(std::list<Book>& books, bsoncxx::document::view& filter) const
 {
 }
 
@@ -155,8 +266,7 @@ void DBConnector::Add(Author& author) const
 	Add(config["authors"], view);
 }
 
-
-void DBConnector::Get(std::list<Author>& authors) const
+void DBConnector::Get(std::list<Author>& authors, bsoncxx::document::view& filter) const
 {
 	using namespace bsoncxx::builder::stream;
 
@@ -165,7 +275,7 @@ void DBConnector::Get(std::list<Author>& authors) const
 		throw ConfigException();
 	}
 
-	mongocxx::cursor cursor = db[config["authors"]].find(document{}.view());
+	mongocxx::cursor cursor = db[config["authors"]].find(filter);
 	for (auto doc : cursor)
 	{
 		bsoncxx::document::element element = doc["_id"];

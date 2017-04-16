@@ -20,6 +20,18 @@ User GUI_AuthClass::getUser() const
 
 void GUI_AuthClass::on_OKButton_clicked()
 {
-	//todo: add query to DB
-	inputErrorText->show();
+	OKButton->setDisabled(true);
+
+	try
+	{
+		u = ControllerQT::get().checkAuth(loginText->text(), passwordText->text());
+	}
+	catch(MyException& e)
+	{
+		inputErrorText->show();
+		OKButton->setEnabled(true);
+		return;
+	}
+
+	done(UPtoi(u.getPrivelege()));
 }
