@@ -19,6 +19,7 @@ private:
 
 	void ShowAllMustHave();
 	void HideAllMustHave();
+	void ClearAll();
 
 private slots:
 	void on_ExitAction_triggered();

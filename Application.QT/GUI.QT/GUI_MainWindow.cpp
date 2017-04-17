@@ -35,6 +35,17 @@ void GUI_MainWindow::HideAllMustHave()
 	ui.fillFieldsLabel_AddUser->hide();
 }
 
+void GUI_MainWindow::ClearAll()
+{
+	HideAllMustHave();
+	ui.nameText_AddUser->clear();
+	ui.surnameText_AddUser->clear();
+	ui.fatherNameText_AddUser->clear();
+	ui.passportNumText_AddUser->clear();
+	ui.loginText_AddUser->clear();
+	ui.userRoleComboBox_AddUser->setCurrentIndex(1);
+}
+
 void GUI_MainWindow::on_ExitAction_triggered()
 {
 	QApplication::exit();
@@ -66,6 +77,12 @@ void GUI_MainWindow::on_OKButton_AddUser_clicked()
 	}
 
 	//todo: add user to DB
+
+	if (ControllerQT::get().addUser(ui.nameText_AddUser->text(), ui.surnameText_AddUser->text(), ui.fatherNameText_AddUser->text(),
+	                                ui.passportNumText_AddUser->text(), ui.loginText_AddUser->text(), ui.userRoleComboBox_AddUser->currentIndex()))
+	{
+		ClearAll();
+	}
 
 	ui.OKButton_AddUser->setEnabled(true);
 	ui.CancelButton_AddUser->setEnabled(true);

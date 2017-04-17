@@ -48,13 +48,12 @@ inline int UPtoi(const UserPriveleges& up)
 	}
 }
 
-/*
 inline UserPriveleges itoUP(const int& i)
 {
 	if (i == 1) return UserPriveleges::guest;
 	if (i == 2) return UserPriveleges::user;
 	if (i == 3) return UserPriveleges::admin;
 	return UserPriveleges::none;
-}*/
+}
 
 #endif // !defined(EA_B0EC3481_A0A2_4ccf_8B17_95C72F41B804__INCLUDED_)
