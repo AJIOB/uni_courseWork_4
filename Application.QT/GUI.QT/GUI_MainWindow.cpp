@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GUI_MainWindow.h"
+#include "FindBlockWidget.h"
 
 GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
@@ -8,14 +9,19 @@ GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 
 	ui.setupUi(this);
 
-	HideAllMustHave();
+	HideAllMustHave_AddUser();
+	ui.moreInfoButton_USER->setDisabled(true);
 }
 
 GUI_MainWindow::~GUI_MainWindow()
 {
+	for(auto f : filters)
+	{
+		delete f;
+	}
 }
 
-void GUI_MainWindow::ShowAllMustHave()
+void GUI_MainWindow::ShowAllMustHave_AddUser()
 {
 	ui.nameMUST_AddUser->show();
 	ui.surnameMUST_AddUser->show();
@@ -25,7 +31,7 @@ void GUI_MainWindow::ShowAllMustHave()
 	ui.fillFieldsLabel_AddUser->show();
 }
 
-void GUI_MainWindow::HideAllMustHave()
+void GUI_MainWindow::HideAllMustHave_AddUser()
 {
 	ui.nameMUST_AddUser->hide();
 	ui.surnameMUST_AddUser->hide();
@@ -35,9 +41,9 @@ void GUI_MainWindow::HideAllMustHave()
 	ui.fillFieldsLabel_AddUser->hide();
 }
 
-void GUI_MainWindow::ClearAll()
+void GUI_MainWindow::ClearAll_AddUser()
 {
-	HideAllMustHave();
+	HideAllMustHave_AddUser();
 	ui.nameText_AddUser->clear();
 	ui.surnameText_AddUser->clear();
 	ui.fatherNameText_AddUser->clear();
@@ -65,25 +71,52 @@ void GUI_MainWindow::on_OKButton_AddUser_clicked()
 {
 	ui.OKButton_AddUser->setDisabled(true);
 	ui.CancelButton_AddUser->setDisabled(true);
-	HideAllMustHave();
+	HideAllMustHave_AddUser();
 
 	if (ui.nameText_AddUser->text().isEmpty() || ui.surnameText_AddUser->text().isEmpty() || ui.passportNumText_AddUser->text().isEmpty()
 		|| ui.loginText_AddUser->text().isEmpty() || ui.userRoleComboBox_AddUser->currentIndex() < 0)
 	{
-		ShowAllMustHave();
+		ShowAllMustHave_AddUser();
 		ui.OKButton_AddUser->setEnabled(true);
 		ui.CancelButton_AddUser->setEnabled(true);
 		return;
 	}
 
-	//todo: add user to DB
-
 	if (ControllerQT::get().addUser(ui.nameText_AddUser->text(), ui.surnameText_AddUser->text(), ui.fatherNameText_AddUser->text(),
 	                                ui.passportNumText_AddUser->text(), ui.loginText_AddUser->text(), ui.userRoleComboBox_AddUser->currentIndex()))
 	{
-		ClearAll();
+		ClearAll_AddUser();
 	}
 
 	ui.OKButton_AddUser->setEnabled(true);
 	ui.CancelButton_AddUser->setEnabled(true);
+}
+
+void GUI_MainWindow::on_searchButton_USER_clicked()
+{
+	ui.tableWidget_USERS->clear();
+	auto users = ControllerQT::get().findUsers(filters);
+	for (auto u: users)
+	{
+		//ui.tableWidget_USERS->insertRow(0);
+		//todo
+	}
+}
+
+void GUI_MainWindow::on_moreInfoButton_USER_clicked()
+{
+	//todo
+}
+
+void GUI_MainWindow::on_addFilterButton_USER_clicked()
+{
+	FindBlockWidget* fbw = new FindBlockWidget(filters, this);
+	fbw->addVariant("Идентификатор", "_id");
+	fbw->addVariant("Имя", "name");
+	fbw->addVariant("Фамилия", "surname");
+	fbw->addVariant("Отчество", "father_name");
+	fbw->addVariant("Номер паспорта", "passport_number");
+
+	ui.listLayout->addWidget(fbw);
+	filters.push_back(fbw);
 }
