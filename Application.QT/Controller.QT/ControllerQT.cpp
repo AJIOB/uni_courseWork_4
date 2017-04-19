@@ -65,19 +65,10 @@ bool ControllerQT::addUser(const QString& name, const QString& surname, const QS
 	return res;
 }
 
-std::list<User> ControllerQT::findUsers(const std::list<FindBlockWidget*> filters)
+std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> filters)
 {
 	std::list<User> users;
 	//todo
-
-	std::map<QString, QString> filterMap;
-	for (auto f : filters)
-	{
-		if (filterMap.count(f->getCurrentText()))
-		{
-
-		}
-	}
 
 	return users;
 }

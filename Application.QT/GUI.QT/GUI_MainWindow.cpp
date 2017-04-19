@@ -15,7 +15,7 @@ GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 
 GUI_MainWindow::~GUI_MainWindow()
 {
-	for(auto f : filters)
+	for (auto f : filters)
 	{
 		delete f;
 	}
@@ -95,11 +95,18 @@ void GUI_MainWindow::on_OKButton_AddUser_clicked()
 void GUI_MainWindow::on_searchButton_USER_clicked()
 {
 	ui.tableWidget_USERS->clear();
-	auto users = ControllerQT::get().findUsers(filters);
+
+	std::multimap<QString, QString> mmap;
+	for (auto f: filters)
+	{
+		mmap.insert(std::pair<QString, QString>(f->getCurrentData(), f->getCurrentText()));
+	}
+
+	auto users = ControllerQT::get().findUsers(mmap);
 	for (auto u: users)
 	{
 		//ui.tableWidget_USERS->insertRow(0);
-		//todo
+		//todo: add rows to table
 	}
 }
 

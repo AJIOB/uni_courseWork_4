@@ -5,4 +5,3 @@
 
 #include "ClassHierarchy/User.h"
 #include "DBConnector/DBConnector.h"
-#include "GUI.QT/FindBlockWidget.h"

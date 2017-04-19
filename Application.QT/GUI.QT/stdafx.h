@@ -8,3 +8,4 @@
 #include "ClassHierarchy/AllExceptions.h"
 
 #include "Controller.QT/ControllerQT.h"
+#include "DBConnector/DBConnector.h"

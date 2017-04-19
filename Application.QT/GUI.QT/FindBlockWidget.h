@@ -8,7 +8,7 @@ class FindBlockWidget : public QWidget
 	Q_OBJECT
 
 public:
-	explicit FindBlockWidget(std::list<FindBlockWidget*>& removeMyselfList, QWidget *parent = Q_NULLPTR);
+	explicit FindBlockWidget(std::list<FindBlockWidget*>& removeMyselfList, QWidget* parent = Q_NULLPTR);
 	~FindBlockWidget();
 
 	void addVariant(const QString& text, const QString& data);
