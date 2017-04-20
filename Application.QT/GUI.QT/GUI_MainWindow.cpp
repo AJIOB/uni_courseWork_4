@@ -99,7 +99,7 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 	std::multimap<QString, QString> mmap;
 	for (auto f: filters)
 	{
-		mmap.insert(std::pair<QString, QString>(f->getCurrentData(), f->getCurrentText()));
+		mmap.emplace(f->getCurrentData(), f->getCurrentText());
 	}
 
 	auto users = ControllerQT::get().findUsers(mmap);

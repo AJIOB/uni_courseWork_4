@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QString>
 #include "controllerqt_global.h"
 #include "DBConnector/DBConnector.h"
 

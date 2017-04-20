@@ -125,7 +125,7 @@ void DBConnector::Add(User& user) const
 	Add(config["userPrivateInfo"], view);
 }
 
-void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilter, bsoncxx::document::view& privateFilter) const
+void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilter, const bsoncxx::document::view_or_value& privateFilter) const
 {
 	using namespace bsoncxx::builder::stream;
 

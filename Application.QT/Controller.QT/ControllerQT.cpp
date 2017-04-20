@@ -67,8 +67,33 @@ bool ControllerQT::addUser(const QString& name, const QString& surname, const QS
 
 std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> filters)
 {
+	using namespace bsoncxx::builder::stream;
+
 	std::list<User> users;
-	//todo
+	std::set<QString> keys;
+	document info{};
+
+	for (auto f : filters)
+	{
+		keys.insert(f.first);
+	}
+
+	//формируме совпадающие элементы по "или"
+	for (auto k : keys)
+	{
+		auto inArray = document{} << k.toStdString() << open_document << "$in" << open_array;
+
+		for (auto it = filters.find(k); it != filters.end(); ++it)
+		{
+			inArray = inArray << it->second.toStdString();
+		}
+
+		auto i = inArray << close_array << close_document;
+		info << concatenate(i << finalize);
+	}
+
+	connector.Get(users, document{}.view(), info << finalize);
+	//todo: test
 
 	return users;
 }

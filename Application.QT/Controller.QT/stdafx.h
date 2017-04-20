@@ -1,5 +1,7 @@
 #pragma once
 
+#include <set>
+
 #include <QString>
 #include <QtWidgets/qmessagebox.h>
 

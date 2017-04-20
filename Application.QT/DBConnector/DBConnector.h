@@ -47,7 +47,7 @@ public:
 	User Authorize(const String& login, const String& password);
 
 	void Add(User& user) const;
-	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), bsoncxx::document::view& privateFilter = bsoncxx::builder::stream::document{}.view()) const;
+	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view()) const;
 	void Update(User& newUser);
 	void Delete(User& user);
 	void Add(Book& book);
