@@ -81,7 +81,8 @@ std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> fi
 	//формируме совпадающие элементы по "или"
 	for (auto k : keys)
 	{
-		auto inArray = document{} << k.toStdString() << open_document << "$in" << open_array;
+		document d{};
+		auto inArray = d << k.toStdString() << open_document << "$in" << open_array;
 
 		for (auto it = filters.find(k); it != filters.end(); ++it)
 		{
@@ -93,7 +94,5 @@ std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> fi
 	}
 
 	connector.Get(users, document{}.view(), info << finalize);
-	//todo: test
-
 	return users;
 }

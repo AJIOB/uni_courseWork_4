@@ -52,6 +52,22 @@ void GUI_MainWindow::ClearAll_AddUser()
 	ui.userRoleComboBox_AddUser->setCurrentIndex(1);
 }
 
+void GUI_MainWindow::ClearAllTable_AddUser()
+{
+	ui.tableWidget_USERS->clearContents();
+	while (ui.tableWidget_USERS->rowCount() > 0)
+	{
+		ui.tableWidget_USERS->removeRow(0);
+	}
+
+	for (auto tl : tableLabels)
+	{
+		delete tl;
+	}
+
+	tableLabels.clear();
+}
+
 void GUI_MainWindow::on_ExitAction_triggered()
 {
 	QApplication::exit();
@@ -94,7 +110,7 @@ void GUI_MainWindow::on_OKButton_AddUser_clicked()
 
 void GUI_MainWindow::on_searchButton_USER_clicked()
 {
-	ui.tableWidget_USERS->clear();
+	ClearAllTable_AddUser();
 
 	std::multimap<QString, QString> mmap;
 	for (auto f: filters)
@@ -105,7 +121,20 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 	auto users = ControllerQT::get().findUsers(mmap);
 	for (auto u: users)
 	{
-		//ui.tableWidget_USERS->insertRow(0);
+		auto table = ui.tableWidget_USERS;
+		int rowNum = table->rowCount();
+		table->insertRow(rowNum);
+
+		//name
+		QLabel* label = new QLabel(QString::fromStdString(u.getPersonalInfo().getSurname()), table);
+		table->setCellWidget(rowNum, 0, label);
+		tableLabels.push_back(label);
+		
+		//id
+		label = new QLabel(QString::fromStdString(u.getId().toString()), table);
+		table->setCellWidget(rowNum, 1, label);
+		tableLabels.push_back(label);
+		
 		//todo: add rows to table
 	}
 }

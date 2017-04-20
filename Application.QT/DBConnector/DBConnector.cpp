@@ -145,10 +145,9 @@ void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilte
 			throw OperationException();
 		}
 
-		User user(DB_ID(element.get_oid().value.to_string()));
+		User user(DB_ID(element.get_oid().value.to_string()), doc["password"].get_utf8().value.to_string());
 
 		user.setLogin(doc["login"].get_utf8().value.to_string());
-		user.setPassword(doc["password"].get_utf8().value.to_string());
 		user.setPrivelege(StoUP(doc["privelege"].get_utf8().value.to_string()));
 
 		buff.push_back(user);

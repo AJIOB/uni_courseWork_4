@@ -19,10 +19,12 @@ private:
 	User user;
 
 	std::list<FindBlockWidget*> filters;
+	std::list<QLabel*> tableLabels;
 
 	void ShowAllMustHave_AddUser();
 	void HideAllMustHave_AddUser();
 	void ClearAll_AddUser();
+	void ClearAllTable_AddUser();
 
 private slots:
 	//head

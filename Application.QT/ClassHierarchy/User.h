@@ -16,7 +16,7 @@
 class User
 {
 public:
-	explicit User(const DB_ID& id = DB_ID());
+	explicit User(const DB_ID& id = DB_ID(), const std::string cryptedPassword = "");
 	virtual ~User();
 
 	bool isPasswordCorrect(const String& password) const;

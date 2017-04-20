@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "User.h"
 
-User::User(const DB_ID& id) : _id(id), privelege(UserPriveleges::guest)
+User::User(const DB_ID& id, const std::string cryptedPassword) : _id(id), privelege(UserPriveleges::guest), cryptedPassword(cryptedPassword)
 {
 }
 
