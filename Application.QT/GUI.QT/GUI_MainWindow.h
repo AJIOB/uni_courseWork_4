@@ -29,6 +29,7 @@ private:
 private slots:
 	//head
 	void on_ExitAction_triggered();
+	void on_ChangePasswordAction_triggered();
 	void on_AboutAction_triggered();
 
 	//add user tab
@@ -38,4 +39,5 @@ private slots:
 	void on_searchButton_USER_clicked();
 	void on_moreInfoButton_USER_clicked();
 	void on_addFilterButton_USER_clicked();
+	void on_clearFilters_USER_clicked();
 };

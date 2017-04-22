@@ -21,6 +21,7 @@ User GUI_AuthClass::getUser() const
 void GUI_AuthClass::on_OKButton_clicked()
 {
 	OKButton->setDisabled(true);
+	OKButton->repaint();
 
 	try
 	{
@@ -29,6 +30,15 @@ void GUI_AuthClass::on_OKButton_clicked()
 	catch (MyException& e)
 	{
 		inputErrorText->show();
+		OKButton->setEnabled(true);
+		return;
+	}
+	catch (std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация об авторизации");
+		mb.setText(QString::fromStdString("Ошибка получения данных от сервера. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
 		OKButton->setEnabled(true);
 		return;
 	}

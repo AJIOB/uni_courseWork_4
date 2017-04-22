@@ -93,6 +93,17 @@ std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> fi
 		info << concatenate(i << finalize);
 	}
 
-	connector.Get(users, document{}.view(), info << finalize);
+	try
+	{
+		connector.Get(users, document{}.view(), info << finalize);
+	}
+	catch(std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация о поиске пользователей");
+		mb.setText(QString::fromStdString("Ошибка получения списка пользователей. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+	}
+
 	return users;
 }

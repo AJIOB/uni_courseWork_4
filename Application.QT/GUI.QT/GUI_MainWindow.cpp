@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GUI_MainWindow.h"
 #include "FindBlockWidget.h"
+#include "GUI_ChangePassword.h"
 
 GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
@@ -10,7 +11,6 @@ GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	ui.setupUi(this);
 
 	HideAllMustHave_AddUser();
-	ui.moreInfoButton_USER->setDisabled(true);
 }
 
 GUI_MainWindow::~GUI_MainWindow()
@@ -66,11 +66,18 @@ void GUI_MainWindow::ClearAllTable_AddUser()
 	}
 
 	tableLabels.clear();
+	ui.tableWidget_USERS->repaint();
 }
 
 void GUI_MainWindow::on_ExitAction_triggered()
 {
 	QApplication::exit();
+}
+
+void GUI_MainWindow::on_ChangePasswordAction_triggered()
+{/*todo: write
+	GUI_ChangePassword changePassword(&user, this);
+	changePassword.exec();*/
 }
 
 void GUI_MainWindow::on_AboutAction_triggered()
@@ -110,7 +117,10 @@ void GUI_MainWindow::on_OKButton_AddUser_clicked()
 
 void GUI_MainWindow::on_searchButton_USER_clicked()
 {
+	ui.searchButton_USER->setDisabled(true);
+	ui.searchButton_USER->repaint();
 	ClearAllTable_AddUser();
+	ui.moreInfoButton_USER->setEnabled(false);
 
 	std::multimap<QString, QString> mmap;
 	for (auto f: filters)
@@ -134,9 +144,8 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 		label = new QLabel(QString::fromStdString(u.getId().toString()), table);
 		table->setCellWidget(rowNum, 1, label);
 		tableLabels.push_back(label);
-		
-		//todo: add rows to table
 	}
+	ui.searchButton_USER->setDisabled(false);
 }
 
 void GUI_MainWindow::on_moreInfoButton_USER_clicked()
@@ -153,6 +162,16 @@ void GUI_MainWindow::on_addFilterButton_USER_clicked()
 	fbw->addVariant("Отчество", "father_name");
 	fbw->addVariant("Номер паспорта", "passport_number");
 
-	ui.listLayout->addWidget(fbw);
+	ui.listLayout_USER->addWidget(fbw);
 	filters.push_back(fbw);
+}
+
+void GUI_MainWindow::on_clearFilters_USER_clicked()
+{
+	for (auto f : filters)
+	{
+		delete f;
+	}
+
+	filters.clear();
 }
