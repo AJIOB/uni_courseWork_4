@@ -107,3 +107,40 @@ std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> fi
 
 	return users;
 }
+
+bool ControllerQT::changePassword(User* u, const QString& oldPassword, const QString& newPassword, const QString& duplicatePassword)
+{
+	QMessageBox mb;
+	mb.setWindowTitle("Смена пароля");
+	mb.setIcon(QMessageBox::Information);
+
+	if (newPassword != duplicatePassword)
+	{
+		mb.setText("Введенные вами новые пароли не совпадают");
+		mb.exec();
+		return false;
+	}
+
+	if (!u->isPasswordCorrect(oldPassword.toStdString()))
+	{
+		mb.setText("Ввведен некорректный старый пароль");
+		mb.exec();
+		return false;
+	}
+
+	try
+	{
+		u->setPassword(newPassword.toStdString(), oldPassword.toStdString());
+		connector.Update(*u);
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка смены пароля. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+
+		u->setPassword(oldPassword.toStdString(), newPassword.toStdString());
+		return false;
+	}
+
+	return true;
+}

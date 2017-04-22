@@ -48,7 +48,7 @@ public:
 
 	void Add(User& user) const;
 	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view()) const;
-	void Update(User& newUser);
+	void Update(User& user);
 	void Delete(User& user);
 	void Add(Book& book);
 	void Get(std::list<Book>& books, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view()) const;

@@ -115,8 +115,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>496</width>
-               <height>363</height>
+               <width>98</width>
+               <height>28</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
@@ -302,9 +302,6 @@
          </layout>
         </item>
        </layout>
-       <zorder>scrollArea_2</zorder>
-       <zorder></zorder>
-       <zorder></zorder>
       </widget>
       <widget class="QWidget" name="addBookTab">
        <attribute name="icon">

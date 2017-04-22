@@ -23,4 +23,5 @@ public:
 	User checkAuth(const QString& login, const QString& password);
 	bool addUser(const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole);
 	std::list<User> findUsers(const std::multimap<QString, QString> filters);
+	bool changePassword(User* u, const QString& oldPassword, const QString& newPassword, const QString& duplicatePassword);
 };

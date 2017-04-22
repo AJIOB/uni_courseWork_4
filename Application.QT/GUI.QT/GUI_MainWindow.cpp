@@ -75,9 +75,9 @@ void GUI_MainWindow::on_ExitAction_triggered()
 }
 
 void GUI_MainWindow::on_ChangePasswordAction_triggered()
-{/*todo: write
+{
 	GUI_ChangePassword changePassword(&user, this);
-	changePassword.exec();*/
+	changePassword.exec();
 }
 
 void GUI_MainWindow::on_AboutAction_triggered()

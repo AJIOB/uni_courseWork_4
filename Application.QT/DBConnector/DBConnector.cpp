@@ -190,8 +190,37 @@ void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilte
 }
 
 
-void DBConnector::Update(User& newUser)
+void DBConnector::Update(User& user)
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
+	{
+		throw ConfigException();
+	}
+
+	if (user.getLogin() == config["guest_login"] && user.isPasswordCorrect(config["guest_password"]))
+	{
+		return;
+	}
+
+	db[config["userAuth"]].update_one(document{} << "_id" << user.getId().get() << finalize, 
+		document{} << "$set" << open_document <<
+			"login" << user.getLogin() <<
+			"password" << user.getCryptedPassword() <<
+			"privelege" << UPtoS(user.getPrivelege()) <<
+		close_document << finalize
+	);
+	
+	UserPersonalInfo pi = user.getPersonalInfo();
+	db[config["userPrivateInfo"]].update_one(document{} << "_id" << user.getId().get() << finalize, 
+		document{} << "$set" << open_document <<
+			"name" << pi.getName() <<
+			"surname" << pi.getSurname() <<
+			"father_name" << pi.getFatherName() <<
+			"passport_number" << pi.getPassportNumber() <<
+		close_document << finalize
+	);
 }
 
 
