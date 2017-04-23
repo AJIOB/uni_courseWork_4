@@ -65,6 +65,38 @@ bool ControllerQT::addUser(const QString& name, const QString& surname, const QS
 	return res;
 }
 
+bool ControllerQT::updateUser(User* oldUser, const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole)
+{
+	//todo
+	return false;
+}
+
+bool ControllerQT::resetPassword(User* u)
+{
+	QMessageBox mb;
+	mb.setWindowTitle("Смена пароля");
+	mb.setIcon(QMessageBox::Information);
+
+	User tmp = *u;
+
+	try
+	{
+		tmp.resetPassword();
+		connector.Update(tmp);
+		mb.setText("Пароль сброшен успешно");
+		mb.exec();
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка сброса пароля. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+		return false;
+	}
+
+	*u = tmp;
+	return true;
+}
+
 bool ControllerQT::deleteUser(User& u)
 {
 	try

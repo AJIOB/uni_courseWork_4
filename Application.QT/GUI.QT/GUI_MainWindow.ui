@@ -39,7 +39,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -346,49 +346,7 @@
        <attribute name="title">
         <string>Зарегистрировать пользователя</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="1">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1">
-         <widget class="QWidget" name="widget" native="true"/>
-        </item>
+       <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="1">
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -408,56 +366,21 @@
            </widget>
           </item>
           <item>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="5" column="1">
-             <widget class="QLabel" name="userPrivelegesMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="2">
+             <widget class="QLineEdit" name="surnameText_AddUser"/>
             </item>
-            <item row="4" column="1">
-             <widget class="QLabel" name="loginMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
+            <item row="1" column="2">
+             <widget class="QLineEdit" name="nameText_AddUser"/>
             </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="surnameLabel_AddUser">
-              <property name="text">
-               <string>Фамилия:</string>
-              </property>
-             </widget>
+            <item row="2" column="2">
+             <widget class="QLineEdit" name="fatherNameText_AddUser"/>
             </item>
             <item row="3" column="2">
              <widget class="QLineEdit" name="passportNumText_AddUser"/>
             </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="passportNumMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="fatherNameLabel_AddUser">
-              <property name="text">
-               <string>Отчество:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLineEdit" name="surnameText_AddUser"/>
+            <item row="4" column="2">
+             <widget class="QLineEdit" name="loginText_AddUser"/>
             </item>
             <item row="5" column="2">
              <widget class="QComboBox" name="userRoleComboBox_AddUser">
@@ -487,13 +410,17 @@
               </item>
              </widget>
             </item>
-            <item row="4" column="2">
-             <widget class="QLineEdit" name="loginText_AddUser"/>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="loginLabel_AddUser">
+            <item row="1" column="0">
+             <widget class="QLabel" name="nameLabel_AddUser">
               <property name="text">
-               <string>Логин:</string>
+               <string>Имя:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="surnameLabel_AddUser">
+              <property name="text">
+               <string>Фамилия:</string>
               </property>
              </widget>
             </item>
@@ -511,15 +438,22 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="nameLabel_AddUser">
+            <item row="4" column="0">
+             <widget class="QLabel" name="loginLabel_AddUser">
               <property name="text">
-               <string>Имя:</string>
+               <string>Логин:</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="surnameMUST_AddUser">
+            <item row="2" column="0">
+             <widget class="QLabel" name="fatherNameLabel_AddUser">
+              <property name="text">
+               <string>Отчество:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="passportNumMUST_AddUser">
               <property name="styleSheet">
                <string notr="true">color : red;</string>
               </property>
@@ -528,7 +462,7 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
+            <item row="1" column="1">
              <widget class="QLabel" name="nameMUST_AddUser">
               <property name="styleSheet">
                <string notr="true">color : red;</string>
@@ -538,11 +472,35 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="2">
-             <widget class="QLineEdit" name="fatherNameText_AddUser"/>
+            <item row="0" column="1">
+             <widget class="QLabel" name="surnameMUST_AddUser">
+              <property name="styleSheet">
+               <string notr="true">color : red;</string>
+              </property>
+              <property name="text">
+               <string notr="true">*</string>
+              </property>
+             </widget>
             </item>
-            <item row="0" column="2">
-             <widget class="QLineEdit" name="nameText_AddUser"/>
+            <item row="5" column="1">
+             <widget class="QLabel" name="userPrivelegesMUST_AddUser">
+              <property name="styleSheet">
+               <string notr="true">color : red;</string>
+              </property>
+              <property name="text">
+               <string notr="true">*</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLabel" name="loginMUST_AddUser">
+              <property name="styleSheet">
+               <string notr="true">color : red;</string>
+              </property>
+              <property name="text">
+               <string notr="true">*</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -591,6 +549,45 @@
            </layout>
           </item>
          </layout>
+        </item>
+        <item row="0" column="0">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -657,12 +654,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>nameText_AddUser</tabstop>
   <tabstop>surnameText_AddUser</tabstop>
+  <tabstop>nameText_AddUser</tabstop>
   <tabstop>fatherNameText_AddUser</tabstop>
   <tabstop>passportNumText_AddUser</tabstop>
   <tabstop>loginText_AddUser</tabstop>
   <tabstop>userRoleComboBox_AddUser</tabstop>
+  <tabstop>OKButton_AddUser</tabstop>
+  <tabstop>addFilterButton_USER</tabstop>
+  <tabstop>clearFilters_USER</tabstop>
+  <tabstop>searchButton_USER</tabstop>
+  <tabstop>tableWidget_USER</tabstop>
+  <tabstop>moreInfoButton_USER</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>CancelButton_AddUser</tabstop>
+  <tabstop>deleteButton_USER</tabstop>
+  <tabstop>scrollArea_2</tabstop>
  </tabstops>
  <resources>
   <include location="Resouces.qrc"/>
@@ -687,54 +694,6 @@
   <connection>
    <sender>CancelButton_AddUser</sender>
    <signal>clicked()</signal>
-   <receiver>passportNumMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>642</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>198</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>loginMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>665</x>
-     <y>292</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>472</x>
-     <y>225</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>userPrivelegesMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>656</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>250</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
    <receiver>loginText_AddUser</receiver>
    <slot>clear()</slot>
    <hints>
@@ -751,22 +710,6 @@
   <connection>
    <sender>CancelButton_AddUser</sender>
    <signal>clicked()</signal>
-   <receiver>surnameMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>621</x>
-     <y>301</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>147</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
    <receiver>nameText_AddUser</receiver>
    <slot>clear()</slot>
    <hints>
@@ -776,7 +719,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>683</x>
-     <y>116</y>
+     <y>142</y>
     </hint>
    </hints>
   </connection>
@@ -824,7 +767,23 @@
     </hint>
     <hint type="destinationlabel">
      <x>683</x>
-     <y>149</y>
+     <y>123</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CancelButton_AddUser</sender>
+   <signal>clicked()</signal>
+   <receiver>passportNumMUST_AddUser</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>642</x>
+     <y>298</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>198</y>
     </hint>
    </hints>
   </connection>
@@ -840,7 +799,55 @@
     </hint>
     <hint type="destinationlabel">
      <x>473</x>
-     <y>123</y>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CancelButton_AddUser</sender>
+   <signal>clicked()</signal>
+   <receiver>surnameMUST_AddUser</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>621</x>
+     <y>301</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>121</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CancelButton_AddUser</sender>
+   <signal>clicked()</signal>
+   <receiver>userPrivelegesMUST_AddUser</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>656</x>
+     <y>298</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CancelButton_AddUser</sender>
+   <signal>clicked()</signal>
+   <receiver>loginMUST_AddUser</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>665</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>472</x>
+     <y>225</y>
     </hint>
    </hints>
   </connection>

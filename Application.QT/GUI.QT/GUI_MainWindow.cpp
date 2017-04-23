@@ -2,6 +2,7 @@
 #include "GUI_MainWindow.h"
 #include "FindBlockWidget.h"
 #include "GUI_ChangePassword.h"
+#include "GUI_UserInfo.h"
 
 GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
@@ -145,7 +146,8 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 
 void GUI_MainWindow::on_moreInfoButton_USER_clicked()
 {
-	//todo
+	GUI_UserInfo userInfo(&usersFromTable[currentSelectedRow_USER]);
+	userInfo.exec();
 }
 
 void GUI_MainWindow::on_addFilterButton_USER_clicked()
