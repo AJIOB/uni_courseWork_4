@@ -10,7 +10,7 @@ class GUI_UserInfo : public QDialog, public Ui::GUI_UserInfo
 	Q_OBJECT
 
 public:
-	GUI_UserInfo(User* u, QWidget *parent = Q_NULLPTR);
+	GUI_UserInfo(User* u, QWidget* parent = Q_NULLPTR);
 	~GUI_UserInfo();
 
 private:
@@ -26,4 +26,6 @@ private slots:
 	void on_resetPasswordButton_clicked();
 	void on_editModeButtons_accepted();
 	void on_editModeButtons_rejected();
+	void on_getOutBookButton_clicked();
+	void on_getBackBookButton_clicked();
 };

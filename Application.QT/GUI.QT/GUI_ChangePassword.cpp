@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GUI_ChangePassword.h"
 
-GUI_ChangePassword::GUI_ChangePassword(User* u, QWidget *parent)
+GUI_ChangePassword::GUI_ChangePassword(User* u, QWidget* parent)
 	: QDialog(parent), cl_user(u)
 {
 	setupUi(this);

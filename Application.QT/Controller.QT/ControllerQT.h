@@ -26,7 +26,7 @@ public:
 	bool addUser(const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole);
 	bool updateUser(User* oldUser, const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole);
 	std::list<User> findUsers(const std::multimap<QString, QString> filters);
-	bool deleteUser(User &u);
+	bool deleteUser(User& u);
 
 	bool changePassword(User* u, const QString& oldPassword, const QString& newPassword, const QString& duplicatePassword);
 	bool resetPassword(User* u);

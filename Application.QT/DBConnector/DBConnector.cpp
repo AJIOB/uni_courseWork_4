@@ -204,22 +204,22 @@ void DBConnector::Update(User& user)
 		throw GuestUpdateException();
 	}
 
-	db[config["userAuth"]].update_one(document{} << "_id" << user.getId().get() << finalize, 
-		document{} << "$set" << open_document <<
-			"login" << user.getLogin() <<
-			"password" << user.getCryptedPassword() <<
-			"privelege" << UPtoS(user.getPrivelege()) <<
-		close_document << finalize
+	db[config["userAuth"]].update_one(document{} << "_id" << user.getId().get() << finalize,
+	                                  document{} << "$set" << open_document <<
+	                                  "login" << user.getLogin() <<
+	                                  "password" << user.getCryptedPassword() <<
+	                                  "privelege" << UPtoS(user.getPrivelege()) <<
+	                                  close_document << finalize
 	);
-	
+
 	UserPersonalInfo pi = user.getPersonalInfo();
-	db[config["userPrivateInfo"]].update_one(document{} << "_id" << user.getId().get() << finalize, 
-		document{} << "$set" << open_document <<
-			"name" << pi.getName() <<
-			"surname" << pi.getSurname() <<
-			"father_name" << pi.getFatherName() <<
-			"passport_number" << pi.getPassportNumber() <<
-		close_document << finalize
+	db[config["userPrivateInfo"]].update_one(document{} << "_id" << user.getId().get() << finalize,
+	                                         document{} << "$set" << open_document <<
+	                                         "name" << pi.getName() <<
+	                                         "surname" << pi.getSurname() <<
+	                                         "father_name" << pi.getFatherName() <<
+	                                         "passport_number" << pi.getPassportNumber() <<
+	                                         close_document << finalize
 	);
 }
 

@@ -1,56 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ui version="4.0">
- <class>FindBlockWidget</class>
- <widget class="QWidget" name="FindBlockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>245</width>
-    <height>24</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>FindBlockWidget</string>
-  </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="spacing">
-    <number>6</number>
-   </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
-   <item>
-    <widget class="QPushButton" name="deleteButton">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Resouces.qrc">
-       <normaloff>:/resource/icons/x.png</normaloff>:/resource/icons/x.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QComboBox" name="variants"/>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="infoText"/>
-   </item>
-  </layout>
- </widget>
- <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="Resouces.qrc"/>
- </resources>
- <connections/>
+  <class>FindBlockWidget</class>
+  <widget class="QWidget" name="FindBlockWidget">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>245</width>
+        <height>24</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>FindBlockWidget</string>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+        <number>6</number>
+      </property>
+      <property name="leftMargin">
+        <number>0</number>
+      </property>
+      <property name="topMargin">
+        <number>0</number>
+      </property>
+      <property name="rightMargin">
+        <number>0</number>
+      </property>
+      <property name="bottomMargin">
+        <number>0</number>
+      </property>
+      <item>
+        <widget class="QPushButton" name="deleteButton">
+          <property name="text">
+            <string />
+          </property>
+          <property name="icon">
+            <iconset resource="Resouces.qrc">
+              <normaloff>:/resource/icons/x.png</normaloff>:/resource/icons/x.png
+            </iconset>
+          </property>
+        </widget>
+      </item>
+      <item>
+        <widget class="QComboBox" name="variants" />
+      </item>
+      <item>
+        <widget class="QLineEdit" name="infoText" />
+      </item>
+    </layout>
+  </widget>
+  <layoutdefault spacing="6" margin="11" />
+  <resources>
+    <include location="Resouces.qrc" />
+  </resources>
+  <connections />
 </ui>

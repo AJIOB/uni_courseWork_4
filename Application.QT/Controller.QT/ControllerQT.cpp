@@ -139,7 +139,7 @@ bool ControllerQT::deleteUser(User& u)
 	{
 		connector.Delete(u);
 	}
-	catch(std::exception& e)
+	catch (std::exception& e)
 	{
 		QMessageBox mb;
 		mb.setWindowTitle("Информация об удалении пользователя");
@@ -183,7 +183,7 @@ std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> fi
 	{
 		connector.Get(users, document{}.view(), info << finalize);
 	}
-	catch(std::exception& e)
+	catch (std::exception& e)
 	{
 		QMessageBox mb;
 		mb.setWindowTitle("Информация о поиске пользователей");

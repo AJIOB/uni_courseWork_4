@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GUI_UserInfo.h"
 
-GUI_UserInfo::GUI_UserInfo(User* u, QWidget *parent)
+GUI_UserInfo::GUI_UserInfo(User* u, QWidget* parent)
 	: QDialog(parent), cl_user(u)
 {
 	setupUi(this);
@@ -88,4 +88,14 @@ void GUI_UserInfo::on_editModeButtons_rejected()
 	fillAllUserInfo();
 	editModeButtons->hide();
 	mainButtonsWidget->show();
+}
+
+void GUI_UserInfo::on_getOutBookButton_clicked()
+{
+	//todo
+}
+
+void GUI_UserInfo::on_getBackBookButton_clicked()
+{
+	//todo
 }

@@ -134,7 +134,7 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 		//name
 		QLabel* label = new QLabel(QString::fromStdString(u.getPersonalInfo().getSurname()), table);
 		table->setCellWidget(rowNum, 0, label);
-		
+
 		//id
 		label = new QLabel(QString::fromStdString(u.getId().toString()), table);
 		table->setCellWidget(rowNum, 1, label);
@@ -148,7 +148,8 @@ void GUI_MainWindow::on_moreInfoButton_USER_clicked()
 {
 	GUI_UserInfo userInfo(&usersFromTable[currentSelectedRow_USER]);
 	userInfo.exec();
-	ui.tableWidget_USER->item(currentSelectedRow_USER, 0)->setText(QString::fromStdString(usersFromTable[currentSelectedRow_USER].getPersonalInfo().getSurname()));
+	QLabel* label = new QLabel(QString::fromStdString(usersFromTable[currentSelectedRow_USER].getPersonalInfo().getSurname()), ui.tableWidget_USER);
+	ui.tableWidget_USER->setCellWidget(currentSelectedRow_USER, 0, label);
 }
 
 void GUI_MainWindow::on_addFilterButton_USER_clicked()
@@ -190,4 +191,6 @@ void GUI_MainWindow::on_deleteButton_USER_clicked()
 		ui.tableWidget_USER->removeRow(currentSelectedRow_USER);
 	}
 	ui.deleteButton_USER->setEnabled(true);
+
+	//todo: check if books are getted out
 }

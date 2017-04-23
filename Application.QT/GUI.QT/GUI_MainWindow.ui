@@ -1,855 +1,860 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <ui version="4.0">
- <class>GUI_MainWindow</class>
- <widget class="QMainWindow" name="GUI_MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1040</width>
-    <height>538</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Приложение &quot;Библиотека&quot;</string>
-  </property>
-  <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <property name="spacing">
-     <number>0</number>
+  <class>GUI_MainWindow</class>
+  <widget class="QMainWindow" name="GUI_MainWindow">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1040</width>
+        <height>538</height>
+      </rect>
     </property>
-    <property name="leftMargin">
-     <number>0</number>
+    <property name="windowTitle">
+      <string>Приложение &quot;Библиотека&quot;</string>
     </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
-    <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
-      </property>
-      <property name="elideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <widget class="QWidget" name="booksTab">
-       <attribute name="icon">
-        <iconset resource="Resouces.qrc">
-         <normaloff>:/resource/icons/books.png</normaloff>:/resource/icons/books.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Книги</string>
-       </attribute>
-       <attribute name="toolTip">
-        <string>Вся информация по работе с книгами</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="personTab">
-       <attribute name="icon">
-        <iconset resource="Resouces.qrc">
-         <normaloff>:/resource/icons/persons.png</normaloff>:/resource/icons/persons.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Читатели</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+    <widget class="QWidget" name="centralWidget">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+          <number>0</number>
+        </property>
+        <property name="leftMargin">
+          <number>0</number>
+        </property>
+        <property name="topMargin">
+          <number>0</number>
+        </property>
+        <property name="rightMargin">
+          <number>0</number>
+        </property>
+        <property name="bottomMargin">
+          <number>0</number>
+        </property>
         <item>
-         <spacer name="horizontalSpacer_7">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>117</width>
-            <height>17</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Для удаления фильтра нажмите &quot;X&quot;</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QScrollArea" name="scrollArea_2">
-            <property name="widgetResizable">
-             <bool>true</bool>
+          <widget class="QTabWidget" name="tabWidget">
+            <property name="tabPosition">
+              <enum>QTabWidget::North</enum>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>496</width>
-               <height>363</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_5">
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <property name="spacing">
-               <number>5</number>
-              </property>
-              <item row="0" column="0">
-               <layout class="QVBoxLayout" name="listLayout_USER">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-               </layout>
-              </item>
-             </layout>
+            <property name="tabShape">
+              <enum>QTabWidget::Rounded</enum>
+            </property>
+            <property name="currentIndex">
+              <number>0</number>
+            </property>
+            <property name="iconSize">
+              <size>
+                <width>32</width>
+                <height>32</height>
+              </size>
+            </property>
+            <property name="elideMode">
+              <enum>Qt::ElideNone</enum>
+            </property>
+            <widget class="QWidget" name="booksTab">
+              <attribute name="icon">
+                <iconset resource="Resouces.qrc">
+                  <normaloff>:/resource/icons/books.png</normaloff>:/resource/icons/books.png
+                </iconset>
+              </attribute>
+              <attribute name="title">
+                <string>Книги</string>
+              </attribute>
+              <attribute name="toolTip">
+                <string>Вся информация по работе с книгами</string>
+              </attribute>
             </widget>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="middleButtons">
-            <item>
-             <spacer name="horizontalSpacer_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="addFilterButton_USER">
-              <property name="text">
-               <string>Добавить фильтр</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_10">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="clearFilters_USER">
-              <property name="text">
-               <string>Очистить все фильтры</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="searchButton_USER">
-              <property name="text">
-               <string>Поиск</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-         </layout>
+            <widget class="QWidget" name="personTab">
+              <attribute name="icon">
+                <iconset resource="Resouces.qrc">
+                  <normaloff>:/resource/icons/persons.png</normaloff>:/resource/icons/persons.png
+                </iconset>
+              </attribute>
+              <attribute name="title">
+                <string>Читатели</string>
+              </attribute>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                  <spacer name="horizontalSpacer_7">
+                    <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>117</width>
+                        <height>17</height>
+                      </size>
+                    </property>
+                  </spacer>
+                </item>
+                <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_3">
+                    <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_3">
+                        <item>
+                          <widget class="QLabel" name="label">
+                            <property name="font">
+                              <font>
+                                <pointsize>10</pointsize>
+                              </font>
+                            </property>
+                            <property name="text">
+                              <string>Для удаления фильтра нажмите &quot;X&quot;</string>
+                            </property>
+                            <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                            </property>
+                          </widget>
+                        </item>
+                      </layout>
+                    </item>
+                    <item>
+                      <widget class="QScrollArea" name="scrollArea_2">
+                        <property name="widgetResizable">
+                          <bool>true</bool>
+                        </property>
+                        <widget class="QWidget" name="scrollAreaWidgetContents_2">
+                          <property name="geometry">
+                            <rect>
+                              <x>0</x>
+                              <y>0</y>
+                              <width>496</width>
+                              <height>363</height>
+                            </rect>
+                          </property>
+                          <layout class="QGridLayout" name="gridLayout_5">
+                            <property name="leftMargin">
+                              <number>0</number>
+                            </property>
+                            <property name="topMargin">
+                              <number>0</number>
+                            </property>
+                            <property name="rightMargin">
+                              <number>0</number>
+                            </property>
+                            <property name="bottomMargin">
+                              <number>0</number>
+                            </property>
+                            <property name="spacing">
+                              <number>5</number>
+                            </property>
+                            <item row="0" column="0">
+                              <layout class="QVBoxLayout" name="listLayout_USER">
+                                <property name="spacing">
+                                  <number>0</number>
+                                </property>
+                                <property name="rightMargin">
+                                  <number>0</number>
+                                </property>
+                              </layout>
+                            </item>
+                          </layout>
+                        </widget>
+                      </widget>
+                    </item>
+                    <item>
+                      <layout class="QHBoxLayout" name="middleButtons">
+                        <item>
+                          <spacer name="horizontalSpacer_9">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>40</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="addFilterButton_USER">
+                            <property name="text">
+                              <string>Добавить фильтр</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item>
+                          <spacer name="horizontalSpacer_10">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>40</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="clearFilters_USER">
+                            <property name="text">
+                              <string>Очистить все фильтры</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item>
+                          <spacer name="horizontalSpacer_5">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>40</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="searchButton_USER">
+                            <property name="text">
+                              <string>Поиск</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item>
+                          <spacer name="horizontalSpacer_4">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>40</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                      </layout>
+                    </item>
+                  </layout>
+                </item>
+                <item>
+                  <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>117</width>
+                        <height>17</height>
+                      </size>
+                    </property>
+                  </spacer>
+                </item>
+                <item>
+                  <layout class="QVBoxLayout" name="rigthPart_USER">
+                    <item>
+                      <widget class="QTableWidget" name="tableWidget_USER">
+                        <property name="editTriggers">
+                          <set>QAbstractItemView::NoEditTriggers</set>
+                        </property>
+                        <property name="selectionMode">
+                          <enum>QAbstractItemView::SingleSelection</enum>
+                        </property>
+                        <property name="selectionBehavior">
+                          <enum>QAbstractItemView::SelectRows</enum>
+                        </property>
+                        <attribute name="horizontalHeaderDefaultSectionSize">
+                          <number>120</number>
+                        </attribute>
+                        <attribute name="horizontalHeaderHighlightSections">
+                          <bool>false</bool>
+                        </attribute>
+                        <attribute name="verticalHeaderVisible">
+                          <bool>false</bool>
+                        </attribute>
+                        <column>
+                          <property name="text">
+                            <string>Фамилия</string>
+                          </property>
+                        </column>
+                        <column>
+                          <property name="text">
+                            <string>Идентификатор (ID)</string>
+                          </property>
+                        </column>
+                      </widget>
+                    </item>
+                    <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_4">
+                        <item>
+                          <spacer name="horizontalSpacer_11">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>40</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="deleteButton_USER">
+                            <property name="enabled">
+                              <bool>false</bool>
+                            </property>
+                            <property name="text">
+                              <string>Удалить</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item>
+                          <spacer name="horizontalSpacer_6">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>37</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="moreInfoButton_USER">
+                            <property name="enabled">
+                              <bool>false</bool>
+                            </property>
+                            <property name="text">
+                              <string>Подробнее</string>
+                            </property>
+                          </widget>
+                        </item>
+                      </layout>
+                    </item>
+                  </layout>
+                </item>
+              </layout>
+            </widget>
+            <widget class="QWidget" name="addBookTab">
+              <attribute name="icon">
+                <iconset resource="Resouces.qrc">
+                  <normaloff>:/resource/icons/add books.png</normaloff>:/resource/icons/add books.png
+                </iconset>
+              </attribute>
+              <attribute name="title">
+                <string>Добавить новую книгу</string>
+              </attribute>
+            </widget>
+            <widget class="QWidget" name="addPersonTab">
+              <attribute name="icon">
+                <iconset resource="Resouces.qrc">
+                  <normaloff>:/resource/icons/add person.png</normaloff>:/resource/icons/add person.png
+                </iconset>
+              </attribute>
+              <attribute name="title">
+                <string>Зарегистрировать пользователя</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_2">
+                <item row="0" column="1">
+                  <layout class="QVBoxLayout" name="verticalLayout">
+                    <item>
+                      <widget class="QLabel" name="headLabel_AddUser">
+                        <property name="font">
+                          <font>
+                            <pointsize>12</pointsize>
+                            <kerning>false</kerning>
+                          </font>
+                        </property>
+                        <property name="text">
+                          <string>Добавление нового пользователя</string>
+                        </property>
+                        <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                        </property>
+                      </widget>
+                    </item>
+                    <item>
+                      <layout class="QGridLayout" name="gridLayout">
+                        <item row="0" column="2">
+                          <widget class="QLineEdit" name="surnameText_AddUser" />
+                        </item>
+                        <item row="1" column="2">
+                          <widget class="QLineEdit" name="nameText_AddUser" />
+                        </item>
+                        <item row="2" column="2">
+                          <widget class="QLineEdit" name="fatherNameText_AddUser" />
+                        </item>
+                        <item row="3" column="2">
+                          <widget class="QLineEdit" name="passportNumText_AddUser" />
+                        </item>
+                        <item row="4" column="2">
+                          <widget class="QLineEdit" name="loginText_AddUser" />
+                        </item>
+                        <item row="5" column="2">
+                          <widget class="QComboBox" name="userRoleComboBox_AddUser">
+                            <property name="toolTip">
+                              <string>Выберите права доступа для нового пользователя</string>
+                            </property>
+                            <property name="currentText">
+                              <string>Читатель</string>
+                            </property>
+                            <property name="currentIndex">
+                              <number>1</number>
+                            </property>
+                            <item>
+                              <property name="text">
+                                <string comment="guest">Гость</string>
+                              </property>
+                            </item>
+                            <item>
+                              <property name="text">
+                                <string comment="user">Читатель</string>
+                              </property>
+                            </item>
+                            <item>
+                              <property name="text">
+                                <string comment="admin">Работник</string>
+                              </property>
+                            </item>
+                          </widget>
+                        </item>
+                        <item row="1" column="0">
+                          <widget class="QLabel" name="nameLabel_AddUser">
+                            <property name="text">
+                              <string>Имя:</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="0" column="0">
+                          <widget class="QLabel" name="surnameLabel_AddUser">
+                            <property name="text">
+                              <string>Фамилия:</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="3" column="0">
+                          <widget class="QLabel" name="passportNumLabel_AddUser">
+                            <property name="text">
+                              <string>Номер паспорта:</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="5" column="0">
+                          <widget class="QLabel" name="userRoleLabel_AddUser">
+                            <property name="text">
+                              <string>Права пользователя:</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="4" column="0">
+                          <widget class="QLabel" name="loginLabel_AddUser">
+                            <property name="text">
+                              <string>Логин:</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="2" column="0">
+                          <widget class="QLabel" name="fatherNameLabel_AddUser">
+                            <property name="text">
+                              <string>Отчество:</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="3" column="1">
+                          <widget class="QLabel" name="passportNumMUST_AddUser">
+                            <property name="styleSheet">
+                              <string notr="true">color : red;</string>
+                            </property>
+                            <property name="text">
+                              <string notr="true">*</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="1" column="1">
+                          <widget class="QLabel" name="nameMUST_AddUser">
+                            <property name="styleSheet">
+                              <string notr="true">color : red;</string>
+                            </property>
+                            <property name="text">
+                              <string notr="true">*</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="0" column="1">
+                          <widget class="QLabel" name="surnameMUST_AddUser">
+                            <property name="styleSheet">
+                              <string notr="true">color : red;</string>
+                            </property>
+                            <property name="text">
+                              <string notr="true">*</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="5" column="1">
+                          <widget class="QLabel" name="userPrivelegesMUST_AddUser">
+                            <property name="styleSheet">
+                              <string notr="true">color : red;</string>
+                            </property>
+                            <property name="text">
+                              <string notr="true">*</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item row="4" column="1">
+                          <widget class="QLabel" name="loginMUST_AddUser">
+                            <property name="styleSheet">
+                              <string notr="true">color : red;</string>
+                            </property>
+                            <property name="text">
+                              <string notr="true">*</string>
+                            </property>
+                          </widget>
+                        </item>
+                      </layout>
+                    </item>
+                    <item>
+                      <widget class="QLabel" name="fillFieldsLabel_AddUser">
+                        <property name="styleSheet">
+                          <string notr="true">color:red</string>
+                        </property>
+                        <property name="text">
+                          <string>Пожалуйста, заполните все поля, содержащие *</string>
+                        </property>
+                        <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                        </property>
+                      </widget>
+                    </item>
+                    <item>
+                      <layout class="QHBoxLayout" name="buttons">
+                        <item>
+                          <spacer name="horizontalSpacer_2">
+                            <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                              <size>
+                                <width>40</width>
+                                <height>20</height>
+                              </size>
+                            </property>
+                          </spacer>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="OKButton_AddUser">
+                            <property name="text">
+                              <string>Добавить</string>
+                            </property>
+                          </widget>
+                        </item>
+                        <item>
+                          <widget class="QPushButton" name="CancelButton_AddUser">
+                            <property name="text">
+                              <string>Очистить форму</string>
+                            </property>
+                          </widget>
+                        </item>
+                      </layout>
+                    </item>
+                  </layout>
+                </item>
+                <item row="0" column="0">
+                  <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>40</width>
+                        <height>20</height>
+                      </size>
+                    </property>
+                  </spacer>
+                </item>
+                <item row="0" column="2">
+                  <spacer name="horizontalSpacer_3">
+                    <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>40</width>
+                        <height>20</height>
+                      </size>
+                    </property>
+                  </spacer>
+                </item>
+                <item row="1" column="1">
+                  <spacer name="verticalSpacer">
+                    <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                      <size>
+                        <width>20</width>
+                        <height>40</height>
+                      </size>
+                    </property>
+                  </spacer>
+                </item>
+              </layout>
+            </widget>
+          </widget>
         </item>
-        <item>
-         <spacer name="horizontalSpacer_8">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>117</width>
-            <height>17</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="rigthPart_USER">
-          <item>
-           <widget class="QTableWidget" name="tableWidget_USER">
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="selectionMode">
-             <enum>QAbstractItemView::SingleSelection</enum>
-            </property>
-            <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
-            </property>
-            <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>120</number>
-            </attribute>
-            <attribute name="horizontalHeaderHighlightSections">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>Фамилия</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Идентификатор (ID)</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <spacer name="horizontalSpacer_11">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="deleteButton_USER">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Удалить</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_6">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>37</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="moreInfoButton_USER">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Подробнее</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-       </layout>
+      </layout>
+    </widget>
+    <widget class="QMenuBar" name="menuBar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1040</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <widget class="QMenu" name="File">
+        <property name="title">
+          <string>Файл</string>
+        </property>
+        <addaction name="ExitAction" />
       </widget>
-      <widget class="QWidget" name="addBookTab">
-       <attribute name="icon">
-        <iconset resource="Resouces.qrc">
-         <normaloff>:/resource/icons/add books.png</normaloff>:/resource/icons/add books.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Добавить новую книгу</string>
-       </attribute>
+      <widget class="QMenu" name="Help">
+        <property name="title">
+          <string>Справка</string>
+        </property>
+        <addaction name="AboutAction" />
       </widget>
-      <widget class="QWidget" name="addPersonTab">
-       <attribute name="icon">
-        <iconset resource="Resouces.qrc">
-         <normaloff>:/resource/icons/add person.png</normaloff>:/resource/icons/add person.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Зарегистрировать пользователя</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QLabel" name="headLabel_AddUser">
-            <property name="font">
-             <font>
-              <pointsize>12</pointsize>
-              <kerning>false</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Добавление нового пользователя</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="2">
-             <widget class="QLineEdit" name="surnameText_AddUser"/>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLineEdit" name="nameText_AddUser"/>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLineEdit" name="fatherNameText_AddUser"/>
-            </item>
-            <item row="3" column="2">
-             <widget class="QLineEdit" name="passportNumText_AddUser"/>
-            </item>
-            <item row="4" column="2">
-             <widget class="QLineEdit" name="loginText_AddUser"/>
-            </item>
-            <item row="5" column="2">
-             <widget class="QComboBox" name="userRoleComboBox_AddUser">
-              <property name="toolTip">
-               <string>Выберите права доступа для нового пользователя</string>
-              </property>
-              <property name="currentText">
-               <string>Читатель</string>
-              </property>
-              <property name="currentIndex">
-               <number>1</number>
-              </property>
-              <item>
-               <property name="text">
-                <string comment="guest">Гость</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string comment="user">Читатель</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string comment="admin">Работник</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="nameLabel_AddUser">
-              <property name="text">
-               <string>Имя:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="surnameLabel_AddUser">
-              <property name="text">
-               <string>Фамилия:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="passportNumLabel_AddUser">
-              <property name="text">
-               <string>Номер паспорта:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="userRoleLabel_AddUser">
-              <property name="text">
-               <string>Права пользователя:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="loginLabel_AddUser">
-              <property name="text">
-               <string>Логин:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="fatherNameLabel_AddUser">
-              <property name="text">
-               <string>Отчество:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="passportNumMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="nameMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="surnameMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLabel" name="userPrivelegesMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLabel" name="loginMUST_AddUser">
-              <property name="styleSheet">
-               <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-               <string notr="true">*</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QLabel" name="fillFieldsLabel_AddUser">
-            <property name="styleSheet">
-             <string notr="true">color:red</string>
-            </property>
-            <property name="text">
-             <string>Пожалуйста, заполните все поля, содержащие *</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="buttons">
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="OKButton_AddUser">
-              <property name="text">
-               <string>Добавить</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="CancelButton_AddUser">
-              <property name="text">
-               <string>Очистить форму</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="0" column="0">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
+      <widget class="QMenu" name="menu">
+        <property name="title">
+          <string>Настройки</string>
+        </property>
+        <addaction name="ChangePasswordAction" />
       </widget>
-     </widget>
-    </item>
-   </layout>
+      <addaction name="File" />
+      <addaction name="menu" />
+      <addaction name="Help" />
+    </widget>
+    <widget class="QStatusBar" name="statusBar" />
+    <widget class="QToolBar" name="mainToolBar">
+      <attribute name="toolBarArea">
+        <enum>TopToolBarArea</enum>
+      </attribute>
+      <attribute name="toolBarBreak">
+        <bool>false</bool>
+      </attribute>
+      <addaction name="separator" />
+    </widget>
+    <action name="ExitAction">
+      <property name="text">
+        <string>Выход</string>
+      </property>
+    </action>
+    <action name="AboutAction">
+      <property name="text">
+        <string>О программе</string>
+      </property>
+    </action>
+    <action name="ChangePasswordAction">
+      <property name="text">
+        <string>Изменить пароль</string>
+      </property>
+    </action>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1040</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="File">
-    <property name="title">
-     <string>Файл</string>
-    </property>
-    <addaction name="ExitAction"/>
-   </widget>
-   <widget class="QMenu" name="Help">
-    <property name="title">
-     <string>Справка</string>
-    </property>
-    <addaction name="AboutAction"/>
-   </widget>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Настройки</string>
-    </property>
-    <addaction name="ChangePasswordAction"/>
-   </widget>
-   <addaction name="File"/>
-   <addaction name="menu"/>
-   <addaction name="Help"/>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="separator"/>
-  </widget>
-  <action name="ExitAction">
-   <property name="text">
-    <string>Выход</string>
-   </property>
-  </action>
-  <action name="AboutAction">
-   <property name="text">
-    <string>О программе</string>
-   </property>
-  </action>
-  <action name="ChangePasswordAction">
-   <property name="text">
-    <string>Изменить пароль</string>
-   </property>
-  </action>
- </widget>
- <layoutdefault spacing="6" margin="11"/>
- <tabstops>
-  <tabstop>surnameText_AddUser</tabstop>
-  <tabstop>nameText_AddUser</tabstop>
-  <tabstop>fatherNameText_AddUser</tabstop>
-  <tabstop>passportNumText_AddUser</tabstop>
-  <tabstop>loginText_AddUser</tabstop>
-  <tabstop>userRoleComboBox_AddUser</tabstop>
-  <tabstop>OKButton_AddUser</tabstop>
-  <tabstop>addFilterButton_USER</tabstop>
-  <tabstop>clearFilters_USER</tabstop>
-  <tabstop>searchButton_USER</tabstop>
-  <tabstop>tableWidget_USER</tabstop>
-  <tabstop>moreInfoButton_USER</tabstop>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>CancelButton_AddUser</tabstop>
-  <tabstop>deleteButton_USER</tabstop>
-  <tabstop>scrollArea_2</tabstop>
- </tabstops>
- <resources>
-  <include location="Resouces.qrc"/>
- </resources>
- <connections>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>passportNumText_AddUser</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>670</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>203</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>loginText_AddUser</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>675</x>
-     <y>297</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>223</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>nameText_AddUser</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>654</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>142</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>fatherNameText_AddUser</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>651</x>
-     <y>294</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>171</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>fillFieldsLabel_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>637</x>
-     <y>297</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>471</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>surnameText_AddUser</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>635</x>
-     <y>297</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>683</x>
-     <y>123</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>passportNumMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>642</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>198</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>nameMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>629</x>
-     <y>296</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>surnameMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>621</x>
-     <y>301</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>121</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>userPrivelegesMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>656</x>
-     <y>298</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>473</x>
-     <y>250</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CancelButton_AddUser</sender>
-   <signal>clicked()</signal>
-   <receiver>loginMUST_AddUser</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>665</x>
-     <y>292</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>472</x>
-     <y>225</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+  <layoutdefault spacing="6" margin="11" />
+  <tabstops>
+    <tabstop>surnameText_AddUser</tabstop>
+    <tabstop>nameText_AddUser</tabstop>
+    <tabstop>fatherNameText_AddUser</tabstop>
+    <tabstop>passportNumText_AddUser</tabstop>
+    <tabstop>loginText_AddUser</tabstop>
+    <tabstop>userRoleComboBox_AddUser</tabstop>
+    <tabstop>OKButton_AddUser</tabstop>
+    <tabstop>addFilterButton_USER</tabstop>
+    <tabstop>clearFilters_USER</tabstop>
+    <tabstop>searchButton_USER</tabstop>
+    <tabstop>tableWidget_USER</tabstop>
+    <tabstop>moreInfoButton_USER</tabstop>
+    <tabstop>tabWidget</tabstop>
+    <tabstop>CancelButton_AddUser</tabstop>
+    <tabstop>deleteButton_USER</tabstop>
+    <tabstop>scrollArea_2</tabstop>
+  </tabstops>
+  <resources>
+    <include location="Resouces.qrc" />
+  </resources>
+  <connections>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>passportNumText_AddUser</receiver>
+      <slot>clear()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>670</x>
+          <y>298</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>683</x>
+          <y>203</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>loginText_AddUser</receiver>
+      <slot>clear()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>675</x>
+          <y>297</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>683</x>
+          <y>223</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>nameText_AddUser</receiver>
+      <slot>clear()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>654</x>
+          <y>298</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>683</x>
+          <y>142</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>fatherNameText_AddUser</receiver>
+      <slot>clear()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>651</x>
+          <y>294</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>683</x>
+          <y>171</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>fillFieldsLabel_AddUser</receiver>
+      <slot>hide()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>637</x>
+          <y>297</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>471</x>
+          <y>274</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>surnameText_AddUser</receiver>
+      <slot>clear()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>635</x>
+          <y>297</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>683</x>
+          <y>123</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>passportNumMUST_AddUser</receiver>
+      <slot>hide()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>642</x>
+          <y>298</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>473</x>
+          <y>198</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>nameMUST_AddUser</receiver>
+      <slot>hide()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>629</x>
+          <y>296</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>473</x>
+          <y>149</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>surnameMUST_AddUser</receiver>
+      <slot>hide()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>621</x>
+          <y>301</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>473</x>
+          <y>121</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>userPrivelegesMUST_AddUser</receiver>
+      <slot>hide()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>656</x>
+          <y>298</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>473</x>
+          <y>250</y>
+        </hint>
+      </hints>
+    </connection>
+    <connection>
+      <sender>CancelButton_AddUser</sender>
+      <signal>clicked()</signal>
+      <receiver>loginMUST_AddUser</receiver>
+      <slot>hide()</slot>
+      <hints>
+        <hint type="sourcelabel">
+          <x>665</x>
+          <y>292</y>
+        </hint>
+        <hint type="destinationlabel">
+          <x>472</x>
+          <y>225</y>
+        </hint>
+      </hints>
+    </connection>
+  </connections>
 </ui>
