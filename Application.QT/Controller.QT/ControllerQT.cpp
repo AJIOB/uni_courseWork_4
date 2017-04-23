@@ -67,8 +67,44 @@ bool ControllerQT::addUser(const QString& name, const QString& surname, const QS
 
 bool ControllerQT::updateUser(User* oldUser, const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole)
 {
-	//todo
-	return false;
+	bool res = true;
+
+	QMessageBox mb;
+	mb.setWindowTitle("Информация об обновлении пользователя");
+
+	if (name.isEmpty() || surname.isEmpty() || passportNum.isEmpty() || login.isEmpty())
+	{
+		mb.setText("Пожалуйста, заполните все поля, обозначенные символом '*'");
+		mb.exec();
+		return false;
+	}
+
+	User u(oldUser->getId(), oldUser->getCryptedPassword());
+	u.setLogin(login.toStdString());
+	u.setPrivelege(itoUP(userRole + 1));
+
+	UserPersonalInfo upi;
+	upi.setName(name.toStdString());
+	upi.setSurname(surname.toStdString());
+	upi.setFatherName(fatherName.toStdString());
+	upi.setPassportNumber(passportNum.toStdString());
+
+	u.setPersonalInfo(upi);
+
+	try
+	{
+		connector.Update(u);
+		mb.setText("Информация о пользователе успешно обновлена");
+		*oldUser = u;
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка обновлении информации о пользователя. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
 }
 
 bool ControllerQT::resetPassword(User* u)
@@ -182,6 +218,8 @@ bool ControllerQT::changePassword(User* u, const QString& oldPassword, const QSt
 	{
 		u->setPassword(newPassword.toStdString(), oldPassword.toStdString());
 		connector.Update(*u);
+		mb.setText("Пароль изменен успешно");
+		mb.exec();
 	}
 	catch (std::exception& e)
 	{

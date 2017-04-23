@@ -148,6 +148,7 @@ void GUI_MainWindow::on_moreInfoButton_USER_clicked()
 {
 	GUI_UserInfo userInfo(&usersFromTable[currentSelectedRow_USER]);
 	userInfo.exec();
+	ui.tableWidget_USER->item(currentSelectedRow_USER, 0)->setText(QString::fromStdString(usersFromTable[currentSelectedRow_USER].getPersonalInfo().getSurname()));
 }
 
 void GUI_MainWindow::on_addFilterButton_USER_clicked()

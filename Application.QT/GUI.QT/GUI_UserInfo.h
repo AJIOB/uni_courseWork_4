@@ -24,4 +24,6 @@ private:
 private slots:
 	void on_editInfoButton_clicked();
 	void on_resetPasswordButton_clicked();
+	void on_editModeButtons_accepted();
+	void on_editModeButtons_rejected();
 };

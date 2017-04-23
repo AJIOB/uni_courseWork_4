@@ -68,3 +68,24 @@ void GUI_UserInfo::on_resetPasswordButton_clicked()
 	ControllerQT::get().resetPassword(cl_user);
 	resetPasswordButton->setEnabled(true);
 }
+
+void GUI_UserInfo::on_editModeButtons_accepted()
+{
+	if (ControllerQT::get().updateUser(cl_user, nameText->text(), surnameText->text(), fatherNameText->text(), passportNumText->text(), loginText->text(), userRoleComboBox->currentIndex()))
+	{
+		on_editModeButtons_rejected();
+	}
+	else
+	{
+		showAllRequred();
+	}
+}
+
+void GUI_UserInfo::on_editModeButtons_rejected()
+{
+	enableAllFields(false);
+	hideAllRequred();
+	fillAllUserInfo();
+	editModeButtons->hide();
+	mainButtonsWidget->show();
+}

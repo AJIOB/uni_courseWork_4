@@ -278,14 +278,17 @@
        </widget>
       </item>
      </layout>
-     <zorder></zorder>
-     <zorder></zorder>
+     <zorder>resetPasswordButton</zorder>
+     <zorder>getOutBookButton</zorder>
+     <zorder>getBackBookButton</zorder>
+     <zorder>editInfoButton</zorder>
+     <zorder>horizontalSpacer</zorder>
     </widget>
    </item>
    <item row="3" column="0">
     <widget class="QDialogButtonBox" name="editModeButtons">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
      </property>
     </widget>
    </item>
