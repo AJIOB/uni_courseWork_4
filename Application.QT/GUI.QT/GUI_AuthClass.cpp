@@ -45,3 +45,9 @@ void GUI_AuthClass::on_OKButton_clicked()
 
 	done(UPtoi(u.getPrivelege()));
 }
+
+void GUI_AuthClass::on_loginAsGuestButton_clicked()
+{
+	u = ControllerQT::get().loginAsGuest();
+	done(UPtoi(u.getPrivelege()));
+}

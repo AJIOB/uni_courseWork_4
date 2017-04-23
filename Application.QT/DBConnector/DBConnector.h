@@ -45,6 +45,7 @@ public:
 	virtual ~DBConnector();
 
 	User Authorize(const String& login, const String& password);
+	User LoginAsGuest() const;
 
 	void Add(User& user) const;
 	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view()) const;

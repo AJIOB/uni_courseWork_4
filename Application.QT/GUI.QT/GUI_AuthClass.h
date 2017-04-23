@@ -18,4 +18,5 @@ private:
 
 private slots:
 	void on_OKButton_clicked();
+	void on_loginAsGuestButton_clicked();
 };

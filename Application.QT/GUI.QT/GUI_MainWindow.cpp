@@ -54,19 +54,14 @@ void GUI_MainWindow::ClearAll_AddUser()
 
 void GUI_MainWindow::ClearAllTable_AddUser()
 {
-	ui.tableWidget_USERS->clearContents();
-	while (ui.tableWidget_USERS->rowCount() > 0)
+	ui.tableWidget_USER->clearContents();
+	while (ui.tableWidget_USER->rowCount() > 0)
 	{
-		ui.tableWidget_USERS->removeRow(0);
+		ui.tableWidget_USER->removeRow(0);
 	}
+	ui.tableWidget_USER->repaint();
 
-	for (auto tl : tableLabels)
-	{
-		delete tl;
-	}
-
-	tableLabels.clear();
-	ui.tableWidget_USERS->repaint();
+	usersFromTable.clear();
 }
 
 void GUI_MainWindow::on_ExitAction_triggered()
@@ -131,19 +126,19 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 	auto users = ControllerQT::get().findUsers(mmap);
 	for (auto u: users)
 	{
-		auto table = ui.tableWidget_USERS;
+		auto table = ui.tableWidget_USER;
 		int rowNum = table->rowCount();
 		table->insertRow(rowNum);
 
 		//name
 		QLabel* label = new QLabel(QString::fromStdString(u.getPersonalInfo().getSurname()), table);
 		table->setCellWidget(rowNum, 0, label);
-		tableLabels.push_back(label);
 		
 		//id
 		label = new QLabel(QString::fromStdString(u.getId().toString()), table);
 		table->setCellWidget(rowNum, 1, label);
-		tableLabels.push_back(label);
+
+		usersFromTable.push_back(u);
 	}
 	ui.searchButton_USER->setDisabled(false);
 }
@@ -174,4 +169,22 @@ void GUI_MainWindow::on_clearFilters_USER_clicked()
 	}
 
 	filters.clear();
+}
+
+void GUI_MainWindow::on_tableWidget_USER_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+	ui.moreInfoButton_USER->setDisabled(currentRow < 0);
+	ui.deleteButton_USER->setDisabled(currentRow < 0);
+	currentSelectedRow_USER = currentRow;
+}
+
+void GUI_MainWindow::on_deleteButton_USER_clicked()
+{
+	ui.deleteButton_USER->setEnabled(false);
+	if (ControllerQT::get().deleteUser(usersFromTable[currentSelectedRow_USER]))
+	{
+		usersFromTable.erase(usersFromTable.begin() + currentSelectedRow_USER);
+		ui.tableWidget_USER->removeRow(currentSelectedRow_USER);
+	}
+	ui.deleteButton_USER->setEnabled(true);
 }

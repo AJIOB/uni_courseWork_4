@@ -199,9 +199,9 @@ void DBConnector::Update(User& user)
 		throw ConfigException();
 	}
 
-	if (user.getLogin() == config["guest_login"] && user.isPasswordCorrect(config["guest_password"]))
+	if (user.getLogin() == config["guest_login"] || user.getId().isEmpty())
 	{
-		return;
+		throw GuestUpdateException();
 	}
 
 	db[config["userAuth"]].update_one(document{} << "_id" << user.getId().get() << finalize, 
@@ -226,6 +226,15 @@ void DBConnector::Update(User& user)
 
 void DBConnector::Delete(User& user)
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
+	{
+		throw ConfigException();
+	}
+
+	db[config["userAuth"]].delete_one(document{} << "_id" << user.getId().get() << finalize);
+	db[config["userPrivateInfo"]].delete_one(document{} << "_id" << user.getId().get() << finalize);
 }
 
 
@@ -329,4 +338,13 @@ void DBConnector::Update(Author& author)
 
 void DBConnector::Delete(Author& author)
 {
+}
+
+User DBConnector::LoginAsGuest() const
+{
+	User u;
+	u.setLogin(config["guest_login"]);
+	u.setPassword(config["guest_password"]);
+	u.setPrivelege(UserPriveleges::guest);
+	return u;
 }

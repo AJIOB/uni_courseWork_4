@@ -168,22 +168,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>loginAsGuestButton</sender>
-   <signal>clicked()</signal>
-   <receiver>GUI_AuthClass</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>96</x>
-     <y>177</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>103</x>
-     <y>278</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>CancelButton</sender>
    <signal>clicked()</signal>
    <receiver>GUI_AuthClass</receiver>

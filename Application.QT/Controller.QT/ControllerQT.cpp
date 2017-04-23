@@ -65,6 +65,24 @@ bool ControllerQT::addUser(const QString& name, const QString& surname, const QS
 	return res;
 }
 
+bool ControllerQT::deleteUser(User& u)
+{
+	try
+	{
+		connector.Delete(u);
+	}
+	catch(std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация об удалении пользователя");
+		mb.setText(QString::fromStdString("Ошибка удаления пользователя. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+		return false;
+	}
+
+	return true;
+}
+
 std::list<User> ControllerQT::findUsers(const std::multimap<QString, QString> filters)
 {
 	using namespace bsoncxx::builder::stream;
@@ -143,4 +161,9 @@ bool ControllerQT::changePassword(User* u, const QString& oldPassword, const QSt
 	}
 
 	return true;
+}
+
+User ControllerQT::loginAsGuest() const
+{
+	return connector.LoginAsGuest();
 }

@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_GUI_MainWindow.h"
+#include <deque>
 
 class User;
 class FindBlockWidget;
@@ -19,7 +20,8 @@ private:
 	User user;
 
 	std::list<FindBlockWidget*> filters;
-	std::list<QLabel*> tableLabels;
+	std::deque<User> usersFromTable;
+	int currentSelectedRow_USER;
 
 	void ShowAllMustHave_AddUser();
 	void HideAllMustHave_AddUser();
@@ -40,4 +42,6 @@ private slots:
 	void on_moreInfoButton_USER_clicked();
 	void on_addFilterButton_USER_clicked();
 	void on_clearFilters_USER_clicked();
+	void on_tableWidget_USER_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+	void on_deleteButton_USER_clicked();
 };
