@@ -133,6 +133,12 @@ bool ControllerQT::resetPassword(User* u)
 	return true;
 }
 
+bool ControllerQT::addBook(const QString& ISBN, const std::list<QString>& authors, const QString& name, const long& year, const unsigned long& pages, const unsigned long& copies)
+{
+	//todo
+	return true;
+}
+
 bool ControllerQT::deleteUser(User& u)
 {
 	try

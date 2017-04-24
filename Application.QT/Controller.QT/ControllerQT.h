@@ -30,4 +30,6 @@ public:
 
 	bool changePassword(User* u, const QString& oldPassword, const QString& newPassword, const QString& duplicatePassword);
 	bool resetPassword(User* u);
+
+	bool addBook(const QString& ISBN, const std::list<QString>& authors, const QString& name, const long int& year, const unsigned long int& pages, const unsigned long int& copies);
 };

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui version="4.0">
+  <class>GUI_AddBookWidget</class>
+  <widget class="QWidget" name="GUI_AddBookWidget">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>761</width>
+        <height>300</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>GUI_AddBookWidget</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+        <spacer name="horizontalSpacer">
+          <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+            <size>
+              <width>40</width>
+              <height>20</height>
+            </size>
+          </property>
+        </spacer>
+      </item>
+      <item row="1" column="1">
+        <spacer name="verticalSpacer">
+          <property name="orientation">
+            <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+            <size>
+              <width>20</width>
+              <height>40</height>
+            </size>
+          </property>
+        </spacer>
+      </item>
+      <item row="0" column="1">
+        <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+            <widget class="QLabel" name="headLabel">
+              <property name="font">
+                <font>
+                  <pointsize>12</pointsize>
+                  <kerning>false</kerning>
+                </font>
+              </property>
+              <property name="text">
+                <string>Добавление нового издания</string>
+              </property>
+              <property name="alignment">
+                <set>Qt::AlignCenter</set>
+              </property>
+            </widget>
+          </item>
+          <item>
+            <layout class="QGridLayout" name="gridLayout">
+              <item row="2" column="2">
+                <widget class="QLineEdit" name="nameText" />
+              </item>
+              <item row="3" column="2">
+                <widget class="QSpinBox" name="yearSpinBox">
+                  <property name="maximum">
+                    <number>2017</number>
+                  </property>
+                </widget>
+              </item>
+              <item row="4" column="2">
+                <widget class="QSpinBox" name="pagesSpinBox">
+                  <property name="maximum">
+                    <number>100000</number>
+                  </property>
+                </widget>
+              </item>
+              <item row="1" column="0">
+                <widget class="QLabel" name="authorLabel">
+                  <property name="text">
+                    <string>Автор(-ы):</string>
+                  </property>
+                  <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  </property>
+                </widget>
+              </item>
+              <item row="5" column="0">
+                <widget class="QLabel" name="copiesLabel">
+                  <property name="text">
+                    <string>Количество экземпляров:</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="2" column="0">
+                <widget class="QLabel" name="nameLabel">
+                  <property name="text">
+                    <string>Название:</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="2" column="1">
+                <widget class="QLabel" name="nameMUST">
+                  <property name="styleSheet">
+                    <string notr="true">color : red;</string>
+                  </property>
+                  <property name="text">
+                    <string notr="true">*</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="4" column="0">
+                <widget class="QLabel" name="pagesLabel">
+                  <property name="text">
+                    <string>Количество страниц:</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="5" column="2">
+                <widget class="QSpinBox" name="copiesSpinBox">
+                  <property name="minimum">
+                    <number>0</number>
+                  </property>
+                  <property name="maximum">
+                    <number>1000</number>
+                  </property>
+                </widget>
+              </item>
+              <item row="3" column="0">
+                <widget class="QLabel" name="yearLabel">
+                  <property name="text">
+                    <string>Год издания:</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="5" column="1">
+                <widget class="QLabel" name="copiesMUST">
+                  <property name="styleSheet">
+                    <string notr="true">color : red;</string>
+                  </property>
+                  <property name="text">
+                    <string notr="true">*</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="4" column="1">
+                <widget class="QLabel" name="pagesMUST">
+                  <property name="styleSheet">
+                    <string notr="true">color : red;</string>
+                  </property>
+                  <property name="text">
+                    <string notr="true">*</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="3" column="1">
+                <widget class="QLabel" name="yearMUST">
+                  <property name="styleSheet">
+                    <string notr="true">color : red;</string>
+                  </property>
+                  <property name="text">
+                    <string notr="true">*</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="1" column="3">
+                <widget class="QPushButton" name="addAuthorButton">
+                  <property name="text">
+                    <string />
+                  </property>
+                  <property name="icon">
+                    <iconset resource="Resouces.qrc">
+                      <normaloff>:/resource/icons/+.png</normaloff>:/resource/icons/+.png
+                    </iconset>
+                  </property>
+                </widget>
+              </item>
+              <item row="1" column="1">
+                <widget class="QLabel" name="authorMUST">
+                  <property name="styleSheet">
+                    <string notr="true">color : red;</string>
+                  </property>
+                  <property name="text">
+                    <string notr="true">*</string>
+                  </property>
+                  <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  </property>
+                </widget>
+              </item>
+              <item row="0" column="1">
+                <widget class="QLabel" name="ISBNMUST">
+                  <property name="styleSheet">
+                    <string notr="true">color : red;</string>
+                  </property>
+                  <property name="text">
+                    <string notr="true">*</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="0" column="2">
+                <widget class="QLineEdit" name="ISBNText">
+                  <property name="maxLength">
+                    <number>17</number>
+                  </property>
+                </widget>
+              </item>
+              <item row="0" column="0">
+                <widget class="QLabel" name="ISBNLabel">
+                  <property name="text">
+                    <string>ISBN номер:</string>
+                  </property>
+                </widget>
+              </item>
+              <item row="1" column="2">
+                <layout class="QVBoxLayout" name="authorLayout" />
+              </item>
+            </layout>
+          </item>
+          <item>
+            <layout class="QHBoxLayout" name="buttons">
+              <item>
+                <widget class="QPushButton" name="clearAuthorsButton">
+                  <property name="text">
+                    <string>Сбросить авторов</string>
+                  </property>
+                </widget>
+              </item>
+              <item>
+                <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                    <size>
+                      <width>40</width>
+                      <height>20</height>
+                    </size>
+                  </property>
+                </spacer>
+              </item>
+              <item>
+                <widget class="QPushButton" name="AddButton">
+                  <property name="text">
+                    <string>Добавить</string>
+                  </property>
+                </widget>
+              </item>
+              <item>
+                <widget class="QPushButton" name="ClearAllButton">
+                  <property name="text">
+                    <string>Очистить форму</string>
+                  </property>
+                </widget>
+              </item>
+            </layout>
+          </item>
+        </layout>
+      </item>
+      <item row="0" column="2">
+        <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+            <size>
+              <width>40</width>
+              <height>20</height>
+            </size>
+          </property>
+        </spacer>
+      </item>
+    </layout>
+  </widget>
+  <layoutdefault spacing="6" margin="11" />
+  <tabstops>
+    <tabstop>ISBNText</tabstop>
+    <tabstop>nameText</tabstop>
+    <tabstop>yearSpinBox</tabstop>
+    <tabstop>pagesSpinBox</tabstop>
+    <tabstop>copiesSpinBox</tabstop>
+    <tabstop>AddButton</tabstop>
+    <tabstop>ClearAllButton</tabstop>
+    <tabstop>addAuthorButton</tabstop>
+  </tabstops>
+  <resources>
+    <include location="Resouces.qrc" />
+  </resources>
+  <connections />
+</ui>

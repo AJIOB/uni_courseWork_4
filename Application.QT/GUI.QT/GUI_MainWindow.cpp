@@ -3,6 +3,7 @@
 #include "FindBlockWidget.h"
 #include "GUI_ChangePassword.h"
 #include "GUI_UserInfo.h"
+#include "GUI_AddBookWidget.h"
 
 GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
@@ -12,6 +13,9 @@ GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	ui.setupUi(this);
 
 	HideAllMustHave_AddUser();
+
+	addBookTabWidget = new GUI_AddBookWidget();
+	ui.addBookLayout->addWidget(addBookTabWidget);
 }
 
 GUI_MainWindow::~GUI_MainWindow()

@@ -6,6 +6,7 @@
 
 class User;
 class FindBlockWidget;
+class GUI_AddBookWidget;
 
 class GUI_MainWindow : public QMainWindow
 {
@@ -16,6 +17,8 @@ public:
 	~GUI_MainWindow();
 
 private:
+	GUI_AddBookWidget* addBookTabWidget;
+
 	Ui::GUI_MainWindow ui;
 	User user;
 

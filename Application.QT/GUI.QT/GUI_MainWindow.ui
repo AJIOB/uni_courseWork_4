@@ -15,10 +15,7 @@
       <string>Приложение &quot;Библиотека&quot;</string>
     </property>
     <widget class="QWidget" name="centralWidget">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="spacing">
-          <number>0</number>
-        </property>
+      <layout class="QGridLayout" name="gridLayout_3">
         <property name="leftMargin">
           <number>0</number>
         </property>
@@ -31,7 +28,7 @@
         <property name="bottomMargin">
           <number>0</number>
         </property>
-        <item>
+        <item row="0" column="0">
           <widget class="QTabWidget" name="tabWidget">
             <property name="tabPosition">
               <enum>QTabWidget::North</enum>
@@ -63,6 +60,7 @@
               <attribute name="toolTip">
                 <string>Вся информация по работе с книгами</string>
               </attribute>
+              <layout class="QGridLayout" name="gridLayout_6" />
             </widget>
             <widget class="QWidget" name="personTab">
               <attribute name="icon">
@@ -341,6 +339,23 @@
               <attribute name="title">
                 <string>Добавить новую книгу</string>
               </attribute>
+              <layout class="QGridLayout" name="addBookLayout">
+                <property name="leftMargin">
+                  <number>0</number>
+                </property>
+                <property name="topMargin">
+                  <number>0</number>
+                </property>
+                <property name="rightMargin">
+                  <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                  <number>0</number>
+                </property>
+                <property name="spacing">
+                  <number>0</number>
+                </property>
+              </layout>
             </widget>
             <widget class="QWidget" name="addPersonTab">
               <attribute name="icon">
