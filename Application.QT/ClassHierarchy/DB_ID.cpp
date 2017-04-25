@@ -35,3 +35,23 @@ bsoncxx::oid DB_ID::get() const
 {
 	return id;
 }
+
+bool DB_ID::operator==(const DB_ID& other) const
+{
+	if (cl_isEmpty != other.cl_isEmpty)
+	{
+		return false;
+	}
+
+	if (cl_isEmpty == true)
+	{
+		return true;
+	}
+
+	return id == other.id;
+}
+
+bool DB_ID::operator!=(const DB_ID& other) const
+{
+	return !operator==(other);
+}

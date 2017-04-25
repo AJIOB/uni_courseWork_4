@@ -297,6 +297,7 @@ void DBConnector::Add(Author& author) const
 	}*/
 	bsoncxx::document::view_or_value view = document <<
 		"name" << author.getName() <<
+		"father_name" << author.getFatherName() <<
 		"surname" << author.getSurname() <<
 		bsoncxx::builder::stream::finalize;
 

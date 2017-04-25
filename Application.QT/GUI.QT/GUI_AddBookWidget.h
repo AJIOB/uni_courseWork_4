@@ -13,6 +13,7 @@ public:
 
 private:
 	std::list<QLineEdit*> authors;
+	std::list<DB_ID> ids;
 
 	void hideAllMust();
 	void showAllMust();

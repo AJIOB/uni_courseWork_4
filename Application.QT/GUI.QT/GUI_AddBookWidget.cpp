@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GUI_AddBookWidget.h"
+#include "GUI_AddAuthor.h"
 
 GUI_AddBookWidget::GUI_AddBookWidget(QWidget* parent)
 	: QWidget(parent)
@@ -41,14 +42,23 @@ void GUI_AddBookWidget::on_clearAuthorsButton_clicked()
 	}
 
 	authors.clear();
-	on_addAuthorButton_clicked();
+	ids.clear();
 }
 
 void GUI_AddBookWidget::on_addAuthorButton_clicked()
 {
-	auto line = new QLineEdit(this);
-	authors.push_back(line);
-	authorLayout->addWidget(line);
+	GUI_AddAuthor window;
+	if (window.exec() == QDialog::Accepted)
+	{
+		auto line = new QLineEdit(this);
+		line->setEnabled(false);
+		authors.push_back(line);
+		authorLayout->addWidget(line);
+		
+		ids.push_back(window.getID());
+
+		line->setText(window.surnameText->text() + ", " + window.nameText->text() + " " + window.fatherNameText->text());
+	}
 }
 
 void GUI_AddBookWidget::on_ClearAllButton_clicked()
@@ -70,6 +80,8 @@ void GUI_AddBookWidget::on_AddButton_clicked()
 	ClearAllButton->repaint();
 
 	std::list<Author> authorNames;
+
+	//todo
 	/*for (auto a : authors)
 	{
 		authorNames.push_back(a->text());

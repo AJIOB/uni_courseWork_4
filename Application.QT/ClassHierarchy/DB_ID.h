@@ -27,5 +27,8 @@ public:
 	bool isEmpty() const;
 
 	bsoncxx::oid get() const;
+
+	bool operator==(const DB_ID& other) const;
+	bool operator!=(const DB_ID& other) const;
 };
 #endif // !defined(EA_B7E4D6F3_11D9_4ad5_867C_1DA7D5BAB3A1__INCLUDED_)

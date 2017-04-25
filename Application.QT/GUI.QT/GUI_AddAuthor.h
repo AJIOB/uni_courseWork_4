@@ -14,6 +14,8 @@ public:
 	DB_ID getID() const;
 
 private:
+	DB_ID id;
+
 	void hideAllMust();
 	void showAllMust();
 

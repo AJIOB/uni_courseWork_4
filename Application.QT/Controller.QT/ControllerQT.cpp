@@ -135,35 +135,41 @@ DB_ID ControllerQT::addAuthor(const QString& surname, const QString& name, const
 	}
 	catch (NonUniqueException&)
 	{
-		std::list<Author> authors;
-		try
-		{
-			connector.Get(authors, document{} <<
-				"name" << name.toStdString() <<
-				"surname" << surname.toStdString() <<
-				"father_name" << fatherName.toStdString() <<
-				finalize);
-		}
-		catch (std::exception& e)
-		{
-			mb.setText(QString::fromStdString("Ошибка добавления автора. Текст ошибки:\n" + std::string(e.what())));
-		}
-		
-		if (authors.size() != 1)
-		{
-			mb.setText("Ошибка уникальности полей в базе данных. Пожалуйста, обратитесь к системмному администратору");
-		}
-		else
-		{
-			mb.setText("Автор успешно найден");
-			res = authors.front().getId();
-		}
+		mb.setText("Автор успешно найден");
 	}
 	catch (std::exception& e)
 	{
 		mb.setText(QString::fromStdString("Ошибка добавления автора. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+		return res;
 	}
 
+	std::list<Author> authors;
+	try
+	{
+		connector.Get(authors, document{} <<
+			"name" << name.toStdString() <<
+			"surname" << surname.toStdString() <<
+			"father_name" << fatherName.toStdString() <<
+			finalize);
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка добавления автора. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+		return res;
+	}
+
+	if (authors.size() != 1)
+	{
+		mb.setText("Ошибка уникальности полей в базе данных. Пожалуйста, обратитесь к системному администратору");
+	}
+	else
+	{
+		res = authors.front().getId();
+	}
+
+	mb.exec();
 	return res;
 }
 
