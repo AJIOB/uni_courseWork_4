@@ -42,7 +42,19 @@ void Author::setSurname(String surname)
 }
 
 
-DB_ID Author::getID() const
+DB_ID Author::getId() const
 {
 	return _id;
+}
+
+
+String Author::getFatherName() const
+{
+	return fatherName;
+}
+
+
+void Author::setFatherName(const String& fatherName)
+{
+	this->fatherName = fatherName;
 }

@@ -69,11 +69,11 @@ void GUI_AddBookWidget::on_AddButton_clicked()
 	ClearAllButton->setDisabled(true);
 	ClearAllButton->repaint();
 
-	std::list<QString> authorNames;
-	for (auto a : authors)
+	std::list<Author> authorNames;
+	/*for (auto a : authors)
 	{
 		authorNames.push_back(a->text());
-	}
+	}*/
 
 	if (!ControllerQT::get().addBook(ISBNText->text(), authorNames, nameText->text(), yearSpinBox->value(), pagesSpinBox->value(), copiesSpinBox->value()))
 	{
@@ -83,7 +83,7 @@ void GUI_AddBookWidget::on_AddButton_clicked()
 	{
 		on_ClearAllButton_clicked();
 	}
-
+	
 	ClearAllButton->setDisabled(false);
 	AddButton->setDisabled(false);
 }

@@ -16,6 +16,7 @@ class Author
 	DB_ID _id;
 	String name;
 	String surname;
+	String fatherName;
 
 public:
 	explicit Author(const DB_ID& id = DB_ID());
@@ -25,6 +26,8 @@ public:
 	void setName(String name);
 	String getSurname() const;
 	void setSurname(String surname);
-	DB_ID getID() const;
+	DB_ID getId() const;
+	String getFatherName() const;
+	void setFatherName(const String& fatherName);
 };
 #endif // !defined(EA_93F468CD_D51D_4b2f_A90E_4DE9CCC66E66__INCLUDED_)

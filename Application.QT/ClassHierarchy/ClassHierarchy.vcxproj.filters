@@ -114,6 +114,9 @@
     <ClInclude Include="exceptions\GuestUpdateException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
+    <ClInclude Include="exceptions\NonUniqueException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

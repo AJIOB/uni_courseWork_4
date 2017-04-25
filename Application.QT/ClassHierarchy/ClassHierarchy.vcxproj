@@ -144,6 +144,7 @@
     <ClInclude Include="exceptions\GuestUpdateException.h" />
     <ClInclude Include="exceptions\MyException.h" />
     <ClInclude Include="exceptions\NoAuthException.h" />
+    <ClInclude Include="exceptions\NonUniqueException.h" />
     <ClInclude Include="exceptions\OperationException.h" />
     <ClInclude Include="exceptions\RangeException.h" />
     <ClInclude Include="ISBNClass.h" />

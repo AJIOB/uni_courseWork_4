@@ -7,3 +7,4 @@
 #include "exceptions/DBOperationCancelledException.h"
 #include "exceptions/NoAuthException.h"
 #include "exceptions/GuestUpdateException.h"
+#include "exceptions/NonUniqueException.h"

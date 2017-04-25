@@ -107,6 +107,66 @@ bool ControllerQT::updateUser(User* oldUser, const QString& name, const QString&
 	return res;
 }
 
+DB_ID ControllerQT::addAuthor(const QString& surname, const QString& name, const QString& fatherName)
+{
+	using namespace bsoncxx::builder::stream;
+	DB_ID res;
+
+	QMessageBox mb;
+	mb.setWindowTitle("Информация о добавлении автора");
+	mb.setIcon(QMessageBox::Information);
+
+	if (surname.isEmpty() || name.isEmpty())
+	{
+		mb.setText("Пожалуйста, заполните все поля, отмеченные символом '*'");
+		mb.exec();
+		return res;
+	}
+
+	Author author;
+	author.setName(name.toStdString());
+	author.setSurname(surname.toStdString());
+	author.setFatherName(fatherName.toStdString());
+
+	try
+	{
+		connector.Add(author);
+		mb.setText("Автор успешно добавлен");
+	}
+	catch (NonUniqueException&)
+	{
+		std::list<Author> authors;
+		try
+		{
+			connector.Get(authors, document{} <<
+				"name" << name.toStdString() <<
+				"surname" << surname.toStdString() <<
+				"father_name" << fatherName.toStdString() <<
+				finalize);
+		}
+		catch (std::exception& e)
+		{
+			mb.setText(QString::fromStdString("Ошибка добавления автора. Текст ошибки:\n" + std::string(e.what())));
+		}
+		
+		if (authors.size() != 1)
+		{
+			mb.setText("Ошибка уникальности полей в базе данных. Пожалуйста, обратитесь к системмному администратору");
+		}
+		else
+		{
+			mb.setText("Автор успешно найден");
+			res = authors.front().getId();
+		}
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка добавления автора. Текст ошибки:\n" + std::string(e.what())));
+	}
+
+	return res;
+}
+
 bool ControllerQT::resetPassword(User* u)
 {
 	QMessageBox mb;
@@ -133,10 +193,40 @@ bool ControllerQT::resetPassword(User* u)
 	return true;
 }
 
-bool ControllerQT::addBook(const QString& ISBN, const std::list<QString>& authors, const QString& name, const long& year, const unsigned long& pages, const unsigned long& copies)
+bool ControllerQT::addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long& year, const unsigned long& pages, const unsigned long& copies)
 {
-	//todo
-	return true;
+	bool res = true;
+
+	for (auto a : authors)
+	{
+		//addAuthor("", a);
+	}
+
+	Book book;
+	book.setName(name.toStdString());
+	book.setYear(year);
+	book.setPageCount(pages);
+	
+
+
+	QMessageBox mb;
+	mb.setWindowTitle("Информация о добавлении издания");
+
+	try
+	{
+		
+
+		connector.Add(book);
+		mb.setText("Издание успешно добавлено");
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка добавления издания. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
 }
 
 bool ControllerQT::deleteUser(User& u)

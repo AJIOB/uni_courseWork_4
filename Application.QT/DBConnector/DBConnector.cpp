@@ -100,11 +100,11 @@ void DBConnector::Add(User& user) const
 	}
 
 	bsoncxx::builder::stream::document document{};
-	if (!user.getId().isEmpty())
+	/*if (!user.getId().isEmpty())
 	{
 		document <<
 			"_id" << user.getId().get();
-	}
+	}*/
 	bsoncxx::document::view_or_value view = document <<
 		"login" << user.getLogin() <<
 		"password" << user.getCryptedPassword() <<
@@ -290,20 +290,28 @@ void DBConnector::Add(Author& author) const
 	}
 
 	bsoncxx::builder::stream::document document{};
-	if (!author.getID().isEmpty())
+	/*if (!author.getID().isEmpty())
 	{
 		document <<
 			"_id" << author.getID().get();
-	}
+	}*/
 	bsoncxx::document::view_or_value view = document <<
 		"name" << author.getName() <<
 		"surname" << author.getSurname() <<
 		bsoncxx::builder::stream::finalize;
 
+	std::list<Author> check;
+	Get(check, view);
+
+	if (!check.empty())
+	{
+		throw NonUniqueException();
+	}
+
 	Add(config["authors"], view);
 }
 
-void DBConnector::Get(std::list<Author>& authors, bsoncxx::document::view& filter) const
+void DBConnector::Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter) const
 {
 	using namespace bsoncxx::builder::stream;
 
@@ -333,11 +341,32 @@ void DBConnector::Get(std::list<Author>& authors, bsoncxx::document::view& filte
 
 void DBConnector::Update(Author& author)
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["authors"] == "")
+	{
+		throw ConfigException();
+	}
+
+	db[config["authors"]].update_one(document{} << "_id" << author.getId().get() << finalize,
+		document{} << "$set" << open_document <<
+		"name" << author.getName() <<
+		"surname" << author.getSurname() <<
+		close_document << finalize
+	);
 }
 
 
 void DBConnector::Delete(Author& author)
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["authors"] == "")
+	{
+		throw ConfigException();
+	}
+
+	db[config["authors"]].delete_one(document{} << "_id" << author.getId().get() << finalize);
 }
 
 User DBConnector::LoginAsGuest() const

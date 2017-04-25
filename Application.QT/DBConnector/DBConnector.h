@@ -60,7 +60,7 @@ public:
 	bool ArchieveBookCopy(BookCopy& bookCopy);
 	bool ReturnBookCopy(BookCopy& bookCopy);
 	void Add(Author& author) const;
-	void Get(std::list<Author>& authors, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view()) const;
+	void Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view()) const;
 	void Update(Author& author);
 	void Delete(Author& author);
 };
