@@ -12,8 +12,8 @@ public:
 	~GUI_AddBookWidget();
 
 private:
-	std::list<QLineEdit*> authors;
-	std::list<DB_ID> ids;
+	std::list<QLineEdit*> authorLines;
+	std::list<Author> authors;
 
 	void hideAllMust();
 	void showAllMust();

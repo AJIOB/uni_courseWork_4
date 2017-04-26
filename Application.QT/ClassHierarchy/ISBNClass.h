@@ -14,13 +14,12 @@ class ISBNClass
 
 	ulli GetAsNumWithoutCheckDigit() const;
 
-	bool ParseString(const std::string&);
-
 public:
 	ISBNClass();
 	~ISBNClass();
 
-	std::string GetAsString() const;
+	std::string toString() const;
+	bool ParseString(const std::string&);
 
 	bool operator==(const ISBNClass& that) const;
 	bool operator!=(const ISBNClass& that) const;

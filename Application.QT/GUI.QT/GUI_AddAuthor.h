@@ -11,10 +11,10 @@ public:
 	GUI_AddAuthor(QWidget *parent = Q_NULLPTR);
 	~GUI_AddAuthor();
 
-	DB_ID getID() const;
+	Author getAuthor() const;
 
 private:
-	DB_ID id;
+	Author author;
 
 	void hideAllMust();
 	void showAllMust();

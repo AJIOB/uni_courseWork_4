@@ -107,10 +107,10 @@ bool ControllerQT::updateUser(User* oldUser, const QString& name, const QString&
 	return res;
 }
 
-DB_ID ControllerQT::addAuthor(const QString& surname, const QString& name, const QString& fatherName)
+Author ControllerQT::addAuthor(const QString& surname, const QString& name, const QString& fatherName)
 {
 	using namespace bsoncxx::builder::stream;
-	DB_ID res;
+	Author res;
 
 	QMessageBox mb;
 	mb.setWindowTitle("Информация о добавлении автора");
@@ -166,7 +166,7 @@ DB_ID ControllerQT::addAuthor(const QString& surname, const QString& name, const
 	}
 	else
 	{
-		res = authors.front().getId();
+		res = authors.front();
 	}
 
 	mb.exec();
@@ -203,25 +203,27 @@ bool ControllerQT::addBook(const QString& ISBN, const std::list<Author>& authors
 {
 	bool res = true;
 
-	for (auto a : authors)
-	{
-		//addAuthor("", a);
-	}
-
-	Book book;
+	Book book(DB_ID(), copies);
 	book.setName(name.toStdString());
 	book.setYear(year);
 	book.setPageCount(pages);
+	book.setAuthors(authors);
 	
-
 
 	QMessageBox mb;
 	mb.setWindowTitle("Информация о добавлении издания");
 
+	ISBNClass isbn;
+	if (!isbn.ParseString(ISBN.toStdString()))
+	{
+		mb.setText("Некорректный ISBN номер");
+		mb.exec();
+		return res;
+	}
+	book.setISBN(isbn);
+
 	try
 	{
-		
-
 		connector.Add(book);
 		mb.setText("Издание успешно добавлено");
 	}

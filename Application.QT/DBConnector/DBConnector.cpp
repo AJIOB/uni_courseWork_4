@@ -13,6 +13,7 @@
 #include "ClassHierarchy/DB_ID.h"
 #include "ClassHierarchy/User.h"
 #include "ClassHierarchy/Author.h"
+#include "ClassHierarchy/Book.h"
 
 #include "ClassHierarchy/AllExceptions.h"
 
@@ -240,6 +241,46 @@ void DBConnector::Delete(User& user)
 
 void DBConnector::Add(Book& book)
 {
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	document doc{};
+	
+	doc <<
+		"isbn" << book.getISBN().toString() <<
+		"name" << book.getName() <<
+		"year" << book.getYear() <<
+		"page_count" << static_cast<li> (book.getPageCount());
+	
+	//write authors
+	document arrDoc{};
+	auto openedArray = arrDoc <<
+		"authors" << open_array;
+	for (auto a : book.getAuthors())
+	{
+		openedArray = openedArray << a.getId().get();
+	}
+	auto closedArray = openedArray << close_array;	
+	doc << concatenate(closedArray << finalize);
+	
+	document arrDoc2{};
+	openedArray = arrDoc2 <<
+		"copies" << open_array;
+	for (auto c : book.getCopies())
+	{
+		openedArray = openedArray << open_document <<
+			"_id" << c.getId().get() <<
+			"isArchieved" << c.getIsArchieved() <<
+			close_document;
+	}
+	closedArray = openedArray << close_array;
+	view_or_value viewValue = doc << concatenate(closedArray << finalize) << finalize;
+
+	Add(config["books"], viewValue);
 }
 
 void DBConnector::Get(std::list<Book>& books, bsoncxx::document::view& filter) const

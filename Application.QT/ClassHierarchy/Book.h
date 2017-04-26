@@ -25,7 +25,7 @@ class Book
 	std::list<BookCopy> copies;
 
 public:
-	explicit Book(const DB_ID& id = DB_ID());
+	explicit Book(const DB_ID& id = DB_ID(), const uli& copiesNum = 0);
 	virtual ~Book();
 
 	uli GetNumOfAllCopies() const;
@@ -36,6 +36,7 @@ public:
 	ISBNClass getISBN() const;
 	void setISBN(const ISBNClass& isbn);
 	std::list<Author> getAuthors() const;
+	void setAuthors(const std::list<Author>& authors);
 	String getName() const;
 	void setName(const String& name);
 	li getYear() const;
@@ -43,5 +44,6 @@ public:
 	uli getPageCount() const;
 	void setPageCount(const uli pageCount);
 	std::list<BookCopy> getCopies() const;
+	void addCopy(const BookCopy& copy);
 };
 #endif // !defined(EA_18AA30C7_1FD8_4bd2_ADC9_4EECF1F24FC6__INCLUDED_)

@@ -113,7 +113,7 @@ ISBNClass::~ISBNClass()
 {
 }
 
-std::string ISBNClass::GetAsString() const
+std::string ISBNClass::toString() const
 {
 	std::string buf;
 

@@ -4,6 +4,7 @@
 #include "DBConnector/DBConnector.h"
 #include "ClassHierarchy/User.h"
 #include "ClassHierarchy/Author.h"
+#include "ClassHierarchy/Book.h"
 
 TEST(DB_Work, connectToDB)
 {
@@ -65,4 +66,23 @@ TEST(DB_Work, getFilteredAuthors)
 
 	connector.Get(authors, d.view());
 	EXPECT_TRUE(authors.size() > 0);
+}
+
+TEST(DB_Work, addBook)
+{
+	Book book(DB_ID(), 3);
+	book.setName("MyName");
+	book.setYear(2016);
+	book.setPageCount(456);
+
+	std::list<Author> authors;
+	authors.push_back(Author(DB_ID("58ff6cd3eb758c200c00645b")));
+	book.setAuthors(authors);
+
+	ISBNClass isbn;
+	EXPECT_TRUE(isbn.ParseString("5-85273-056-4"));
+	book.setISBN(isbn);
+
+	DBConnector connector;
+	connector.Add(book);
 }

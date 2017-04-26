@@ -8,8 +8,12 @@
 #include "stdafx.h"
 #include "Book.h"
 
-Book::Book(const DB_ID& id) : _id(id), year(0), pageCount(0)
+Book::Book(const DB_ID& id, const uli& copiesNum) : _id(id), year(0), pageCount(0)
 {
+	for (auto i = 0; i < copiesNum; ++i)
+	{
+		copies.push_back(BookCopy());
+	}
 }
 
 Book::~Book()
@@ -53,6 +57,11 @@ std::list<Author> Book::getAuthors() const
 	return authors;
 }
 
+void Book::setAuthors(const std::list<Author>& authors)
+{
+	this->authors = authors;
+}
+
 String Book::getName() const
 {
 	return name;
@@ -86,4 +95,9 @@ void Book::setPageCount(const uli pageCount)
 std::list<BookCopy> Book::getCopies() const
 {
 	return copies;
+}
+
+void Book::addCopy(const BookCopy& copy)
+{
+	copies.push_back(copy);
 }

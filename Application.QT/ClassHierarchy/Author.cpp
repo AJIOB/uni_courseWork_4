@@ -58,3 +58,8 @@ void Author::setFatherName(const String& fatherName)
 {
 	this->fatherName = fatherName;
 }
+
+bool Author::operator==(const Author& that) const
+{
+	return _id == that._id && name == that.name && surname == that.surname && fatherName == that.fatherName;
+}

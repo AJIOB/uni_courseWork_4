@@ -13,9 +13,9 @@ GUI_AddAuthor::~GUI_AddAuthor()
 {
 }
 
-DB_ID GUI_AddAuthor::getID() const
+Author GUI_AddAuthor::getAuthor() const
 {
-	return id;
+	return author;
 }
 
 void GUI_AddAuthor::hideAllMust()
@@ -32,8 +32,8 @@ void GUI_AddAuthor::showAllMust()
 
 void GUI_AddAuthor::on_buttonBox_accepted()
 {
-	id = ControllerQT::get().addAuthor(surnameText->text(), nameText->text(), fatherNameText->text());
-	if (id == DB_ID())
+	author = ControllerQT::get().addAuthor(surnameText->text(), nameText->text(), fatherNameText->text());
+	if (author == Author())
 	{
 		showAllMust();
 	}

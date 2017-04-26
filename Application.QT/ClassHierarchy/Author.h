@@ -29,5 +29,7 @@ public:
 	DB_ID getId() const;
 	String getFatherName() const;
 	void setFatherName(const String& fatherName);
+
+	bool operator==(const Author& that) const;
 };
 #endif // !defined(EA_93F468CD_D51D_4b2f_A90E_4DE9CCC66E66__INCLUDED_)

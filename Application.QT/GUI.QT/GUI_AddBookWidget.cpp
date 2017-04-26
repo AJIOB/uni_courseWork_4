@@ -36,13 +36,13 @@ void GUI_AddBookWidget::showAllMust()
 
 void GUI_AddBookWidget::on_clearAuthorsButton_clicked()
 {
-	for (auto a : authors)
+	for (auto a : authorLines)
 	{
 		delete a;
 	}
 
+	authorLines.clear();
 	authors.clear();
-	ids.clear();
 }
 
 void GUI_AddBookWidget::on_addAuthorButton_clicked()
@@ -52,10 +52,10 @@ void GUI_AddBookWidget::on_addAuthorButton_clicked()
 	{
 		auto line = new QLineEdit(this);
 		line->setEnabled(false);
-		authors.push_back(line);
+		authorLines.push_back(line);
 		authorLayout->addWidget(line);
 		
-		ids.push_back(window.getID());
+		authors.push_back(window.getAuthor());
 
 		line->setText(window.surnameText->text() + ", " + window.nameText->text() + " " + window.fatherNameText->text());
 	}
@@ -79,15 +79,7 @@ void GUI_AddBookWidget::on_AddButton_clicked()
 	ClearAllButton->setDisabled(true);
 	ClearAllButton->repaint();
 
-	std::list<Author> authorNames;
-
-	//todo
-	/*for (auto a : authors)
-	{
-		authorNames.push_back(a->text());
-	}*/
-
-	if (!ControllerQT::get().addBook(ISBNText->text(), authorNames, nameText->text(), yearSpinBox->value(), pagesSpinBox->value(), copiesSpinBox->value()))
+	if (!ControllerQT::get().addBook(ISBNText->text(), authors, nameText->text(), yearSpinBox->value(), pagesSpinBox->value(), copiesSpinBox->value()))
 	{
 		showAllMust();
 	}
