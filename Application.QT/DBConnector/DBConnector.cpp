@@ -17,14 +17,14 @@
 
 #include "ClassHierarchy/AllExceptions.h"
 
+#define db (*(pool.acquire()))[config["database"]]
 
-bsoncxx::types::value DBConnector::Add(const std::string& collectionName, bsoncxx::document::view_or_value& view) const
+bsoncxx::types::value DBConnector::Add(const std::string& collectionName, const bsoncxx::document::view_or_value& view)
 {
-	auto collection = db[collectionName];
 	mongocxx::stdx::optional<mongocxx::result::insert_one> res;
 	try
 	{
-		res = collection.insert_one(view);
+		res = db[collectionName].insert_one(view);
 	}
 	catch (mongocxx::bulk_write_exception e)
 	{
@@ -49,7 +49,7 @@ void DBConnector::CheckAuth() const
 }
 
 
-DBConnector::DBConnector() : config("dbconfig"), client(mongocxx::uri{config["uri"]}), db(client[config["database"]]), isAuthorized(false), privelege(UserPriveleges::none)
+DBConnector::DBConnector() : config("dbconfig"), pool{ mongocxx::uri{ config["uri"] } }, isAuthorized(false), privelege(UserPriveleges::none)
 {
 }
 
@@ -93,7 +93,7 @@ User DBConnector::Authorize(const String& login, const String& password)
 }
 
 
-void DBConnector::Add(User& user) const
+void DBConnector::Add(User& user)
 {
 	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
 	{
@@ -104,7 +104,7 @@ void DBConnector::Add(User& user) const
 	/*if (!user.getId().isEmpty())
 	{
 		document <<
-			"_id" << user.getId().get();
+			"_id" << user.getId().getObjectID();
 	}*/
 	bsoncxx::document::view_or_value view = document <<
 		"login" << user.getLogin() <<
@@ -126,7 +126,7 @@ void DBConnector::Add(User& user) const
 	Add(config["userPrivateInfo"], view);
 }
 
-void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilter, const bsoncxx::document::view_or_value& privateFilter) const
+void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilter, const bsoncxx::document::view_or_value& privateFilter)
 {
 	using namespace bsoncxx::builder::stream;
 
@@ -205,7 +205,7 @@ void DBConnector::Update(User& user)
 		throw GuestUpdateException();
 	}
 
-	db[config["userAuth"]].update_one(document{} << "_id" << user.getId().get() << finalize,
+	db[config["userAuth"]].update_one(document{} << "_id" << user.getId().getObjectID() << finalize,
 	                                  document{} << "$set" << open_document <<
 	                                  "login" << user.getLogin() <<
 	                                  "password" << user.getCryptedPassword() <<
@@ -214,7 +214,7 @@ void DBConnector::Update(User& user)
 	);
 
 	UserPersonalInfo pi = user.getPersonalInfo();
-	db[config["userPrivateInfo"]].update_one(document{} << "_id" << user.getId().get() << finalize,
+	db[config["userPrivateInfo"]].update_one(document{} << "_id" << user.getId().getObjectID() << finalize,
 	                                         document{} << "$set" << open_document <<
 	                                         "name" << pi.getName() <<
 	                                         "surname" << pi.getSurname() <<
@@ -234,8 +234,8 @@ void DBConnector::Delete(User& user)
 		throw ConfigException();
 	}
 
-	db[config["userAuth"]].delete_one(document{} << "_id" << user.getId().get() << finalize);
-	db[config["userPrivateInfo"]].delete_one(document{} << "_id" << user.getId().get() << finalize);
+	db[config["userAuth"]].delete_one(document{} << "_id" << user.getId().getObjectID() << finalize);
+	db[config["userPrivateInfo"]].delete_one(document{} << "_id" << user.getId().getObjectID() << finalize);
 }
 
 
@@ -262,7 +262,7 @@ void DBConnector::Add(Book& book)
 		"authors" << open_array;
 	for (auto a : book.getAuthors())
 	{
-		openedArray = openedArray << a.getId().get();
+		openedArray = openedArray << a.getId().getObjectID();
 	}
 	auto closedArray = openedArray << close_array;	
 	doc << concatenate(closedArray << finalize);
@@ -273,7 +273,7 @@ void DBConnector::Add(Book& book)
 	for (auto c : book.getCopies())
 	{
 		openedArray = openedArray << open_document <<
-			"_id" << c.getId().get() <<
+			"_id" << c.getId().getObjectID() <<
 			"isArchieved" << c.getIsArchieved() <<
 			close_document;
 	}
@@ -283,7 +283,7 @@ void DBConnector::Add(Book& book)
 	Add(config["books"], viewValue);
 }
 
-void DBConnector::Get(std::list<Book>& books, bsoncxx::document::view& filter) const
+void DBConnector::Get(std::list<Book>& books, bsoncxx::document::view& filter)
 {
 }
 
@@ -323,7 +323,7 @@ bool DBConnector::ReturnBookCopy(BookCopy& bookCopy)
 }
 
 
-void DBConnector::Add(Author& author) const
+void DBConnector::Add(Author& author)
 {
 	if (config["authors"] == "")
 	{
@@ -334,7 +334,7 @@ void DBConnector::Add(Author& author) const
 	/*if (!author.getID().isEmpty())
 	{
 		document <<
-			"_id" << author.getID().get();
+			"_id" << author.getID().getObjectID();
 	}*/
 	bsoncxx::document::view_or_value view = document <<
 		"name" << author.getName() <<
@@ -353,7 +353,7 @@ void DBConnector::Add(Author& author) const
 	Add(config["authors"], view);
 }
 
-void DBConnector::Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter) const
+void DBConnector::Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter)
 {
 	using namespace bsoncxx::builder::stream;
 
@@ -390,7 +390,7 @@ void DBConnector::Update(Author& author)
 		throw ConfigException();
 	}
 
-	db[config["authors"]].update_one(document{} << "_id" << author.getId().get() << finalize,
+	db[config["authors"]].update_one(document{} << "_id" << author.getId().getObjectID() << finalize,
 		document{} << "$set" << open_document <<
 		"name" << author.getName() <<
 		"surname" << author.getSurname() <<
@@ -408,7 +408,7 @@ void DBConnector::Delete(Author& author)
 		throw ConfigException();
 	}
 
-	db[config["authors"]].delete_one(document{} << "_id" << author.getId().get() << finalize);
+	db[config["authors"]].delete_one(document{} << "_id" << author.getId().getObjectID() << finalize);
 }
 
 User DBConnector::LoginAsGuest() const
@@ -419,3 +419,5 @@ User DBConnector::LoginAsGuest() const
 	u.setPrivelege(UserPriveleges::guest);
 	return u;
 }
+
+#undef db

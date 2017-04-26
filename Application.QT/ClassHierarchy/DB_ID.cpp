@@ -31,7 +31,7 @@ bool DB_ID::isEmpty() const
 	return cl_isEmpty;
 }
 
-bsoncxx::oid DB_ID::get() const
+bsoncxx::oid DB_ID::getObjectID() const
 {
 	return id;
 }

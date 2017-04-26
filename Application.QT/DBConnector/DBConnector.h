@@ -13,8 +13,8 @@
 #include <list>
 #include <mongocxx/instance.hpp>
 #include <mongocxx/uri.hpp>
-#include <mongocxx/client.hpp>
 #include <mongocxx/database.hpp>
+#include <mongocxx/pool.hpp>
 
 #include "Configuration/ConfigClass.h"
 #include "ClassHierarchy/typedefs.h"
@@ -30,10 +30,9 @@ class DBConnector
 {
 	AJIOB::ConfigClass config;
 
-	mongocxx::client client;
-	mongocxx::database db;
+	mongocxx::pool pool;
 
-	bsoncxx::types::value Add(const std::string& collectionName, bsoncxx::document::view_or_value& view) const;
+	bsoncxx::types::value Add(const std::string& collectionName, const bsoncxx::document::view_or_value& view);
 
 	bool isAuthorized;
 	UserPriveleges privelege;
@@ -47,20 +46,20 @@ public:
 	User Authorize(const String& login, const String& password);
 	User LoginAsGuest() const;
 
-	void Add(User& user) const;
-	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view()) const;
+	void Add(User& user);
+	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view());
 	void Update(User& user);
 	void Delete(User& user);
 	void Add(Book& book);
-	void Get(std::list<Book>& books, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view()) const;
+	void Get(std::list<Book>& books, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view());
 	void Update(Book& book);
 	void Delete(Book& book);
 	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
 	bool RenewBookTime(BookCopy& bookCopy);
 	bool ArchieveBookCopy(BookCopy& bookCopy);
 	bool ReturnBookCopy(BookCopy& bookCopy);
-	void Add(Author& author) const;
-	void Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view()) const;
+	void Add(Author& author);
+	void Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view());
 	void Update(Author& author);
 	void Delete(Author& author);
 };

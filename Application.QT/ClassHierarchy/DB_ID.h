@@ -26,7 +26,7 @@ public:
 	String toString() const;
 	bool isEmpty() const;
 
-	bsoncxx::oid get() const;
+	bsoncxx::oid getObjectID() const;
 
 	bool operator==(const DB_ID& other) const;
 	bool operator!=(const DB_ID& other) const;
