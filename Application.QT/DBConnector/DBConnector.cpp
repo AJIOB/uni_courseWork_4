@@ -49,7 +49,8 @@ void DBConnector::CheckAuth() const
 }
 
 
-DBConnector::DBConnector() : config("dbconfig"), pool{ mongocxx::uri{ config["uri"] } }, isAuthorized(false), privelege(UserPriveleges::none)
+DBConnector::DBConnector(bool connectLocally) 
+	: config("dbconfig"), pool{ mongocxx::uri{ config[std::string("uri_") + (connectLocally ? "localhost" : "server")] } }, isAuthorized(false), privelege(UserPriveleges::none)
 {
 }
 

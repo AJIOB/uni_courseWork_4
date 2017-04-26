@@ -40,7 +40,7 @@ class DBConnector
 	void CheckAuth() const;
 
 public:
-	DBConnector();
+	DBConnector(bool connectLocally = true);
 	virtual ~DBConnector();
 
 	User Authorize(const String& login, const String& password);
