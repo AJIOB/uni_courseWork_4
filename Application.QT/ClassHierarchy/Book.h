@@ -45,5 +45,6 @@ public:
 	void setPageCount(const uli pageCount);
 	std::list<BookCopy> getCopies() const;
 	void addCopy(const BookCopy& copy);
+	std::string getAuthorsAsString() const;
 };
 #endif // !defined(EA_18AA30C7_1FD8_4bd2_ADC9_4EECF1F24FC6__INCLUDED_)

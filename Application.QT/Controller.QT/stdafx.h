@@ -5,6 +5,8 @@
 #include <QString>
 #include <QtWidgets/qmessagebox.h>
 
+#include "ClassHierarchy/Constants.h"
+
 #include "ClassHierarchy/User.h"
 #include "ClassHierarchy/Author.h"
 #include "ClassHierarchy/Book.h"

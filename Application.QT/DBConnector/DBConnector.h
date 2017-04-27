@@ -47,11 +47,11 @@ public:
 	User LoginAsGuest() const;
 
 	void Add(User& user);
-	void Get(std::list<User>& users, bsoncxx::document::view& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view());
+	void Get(std::list<User>& users, const bsoncxx::document::view_or_value& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view());
 	void Update(User& user);
 	void Delete(User& user);
 	void Add(Book& book);
-	void Get(std::list<Book>& books, bsoncxx::document::view& filter = bsoncxx::builder::stream::document{}.view());
+	void Get(std::list<Book>& books, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view());
 	void Update(Book& book);
 	void Delete(Book& book);
 	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);

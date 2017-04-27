@@ -4,6 +4,7 @@
 #include "GUI_ChangePassword.h"
 #include "GUI_UserInfo.h"
 #include "GUI_AddBookWidget.h"
+#include "GUI_ShowBooks.h"
 
 GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
@@ -16,6 +17,9 @@ GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 
 	addBookTabWidget = new GUI_AddBookWidget();
 	ui.addBookLayout->addWidget(addBookTabWidget);
+
+	showBooksTabWidget = new GUI_ShowBooks();
+	ui.booksTabLayout->addWidget(showBooksTabWidget);
 }
 
 GUI_MainWindow::~GUI_MainWindow()
@@ -57,7 +61,7 @@ void GUI_MainWindow::ClearAll_AddUser()
 	ui.userRoleComboBox_AddUser->setCurrentIndex(1);
 }
 
-void GUI_MainWindow::ClearAllTable_AddUser()
+void GUI_MainWindow::ClearAllTable_User()
 {
 	ui.tableWidget_USER->clearContents();
 	while (ui.tableWidget_USER->rowCount() > 0)
@@ -119,7 +123,7 @@ void GUI_MainWindow::on_searchButton_USER_clicked()
 {
 	ui.searchButton_USER->setDisabled(true);
 	ui.searchButton_USER->repaint();
-	ClearAllTable_AddUser();
+	ClearAllTable_User();
 	ui.moreInfoButton_USER->setEnabled(false);
 
 	std::multimap<QString, QString> mmap;

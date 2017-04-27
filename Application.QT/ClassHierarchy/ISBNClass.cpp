@@ -109,6 +109,14 @@ ISBNClass::ISBNClass()
 	cl_type = AJIOBTypes::ISBNType::none;
 }
 
+ISBNClass::ISBNClass(const std::string& s)
+{
+	if (!ParseString(s))
+	{
+		cl_type = AJIOBTypes::ISBNType::none;
+	}
+}
+
 ISBNClass::~ISBNClass()
 {
 }

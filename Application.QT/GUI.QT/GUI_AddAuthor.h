@@ -8,7 +8,7 @@ class GUI_AddAuthor : public QDialog, public Ui::GUI_AddAuthor
 	Q_OBJECT
 
 public:
-	GUI_AddAuthor(QWidget *parent = Q_NULLPTR);
+	GUI_AddAuthor(QWidget* parent = Q_NULLPTR);
 	~GUI_AddAuthor();
 
 	Author getAuthor() const;

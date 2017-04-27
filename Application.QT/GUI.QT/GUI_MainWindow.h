@@ -7,6 +7,7 @@
 class User;
 class FindBlockWidget;
 class GUI_AddBookWidget;
+class GUI_ShowBooks;
 
 class GUI_MainWindow : public QMainWindow
 {
@@ -18,6 +19,7 @@ public:
 
 private:
 	GUI_AddBookWidget* addBookTabWidget;
+	GUI_ShowBooks* showBooksTabWidget;
 
 	Ui::GUI_MainWindow ui;
 	User user;
@@ -29,7 +31,8 @@ private:
 	void ShowAllMustHave_AddUser();
 	void HideAllMustHave_AddUser();
 	void ClearAll_AddUser();
-	void ClearAllTable_AddUser();
+
+	void ClearAllTable_User();
 
 private slots:
 	//head

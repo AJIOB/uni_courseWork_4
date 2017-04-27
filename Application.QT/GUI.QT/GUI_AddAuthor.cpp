@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GUI_AddAuthor.h"
 
-GUI_AddAuthor::GUI_AddAuthor(QWidget *parent)
+GUI_AddAuthor::GUI_AddAuthor(QWidget* parent)
 	: QDialog(parent)
 {
 	setupUi(this);

@@ -54,7 +54,7 @@ void GUI_AddBookWidget::on_addAuthorButton_clicked()
 		line->setEnabled(false);
 		authorLines.push_back(line);
 		authorLayout->addWidget(line);
-		
+
 		authors.push_back(window.getAuthor());
 
 		line->setText(window.surnameText->text() + ", " + window.nameText->text() + " " + window.fatherNameText->text());
@@ -87,7 +87,7 @@ void GUI_AddBookWidget::on_AddButton_clicked()
 	{
 		on_ClearAllButton_clicked();
 	}
-	
+
 	ClearAllButton->setDisabled(false);
 	AddButton->setDisabled(false);
 }

@@ -10,7 +10,7 @@
 
 Book::Book(const DB_ID& id, const uli& copiesNum) : _id(id), year(0), pageCount(0)
 {
-	for (auto i = 0; i < copiesNum; ++i)
+	for (uli i = 0; i < copiesNum; ++i)
 	{
 		copies.push_back(BookCopy());
 	}
@@ -100,4 +100,23 @@ std::list<BookCopy> Book::getCopies() const
 void Book::addCopy(const BookCopy& copy)
 {
 	copies.push_back(copy);
+}
+
+std::string Book::getAuthorsAsString() const
+{
+	std::string res;
+
+	for (auto a : authors)
+	{
+		res += a.getSurname() + ", ";
+	}
+
+	if (!res.empty())
+	{
+		//last ", " symbols
+		res.pop_back();
+		res.pop_back();
+	}
+
+	return res;
 }

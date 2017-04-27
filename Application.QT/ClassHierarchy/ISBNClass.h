@@ -16,6 +16,7 @@ class ISBNClass
 
 public:
 	ISBNClass();
+	explicit ISBNClass(const std::string& s);
 	~ISBNClass();
 
 	std::string toString() const;

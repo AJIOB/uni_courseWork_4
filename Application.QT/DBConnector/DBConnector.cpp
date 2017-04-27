@@ -49,8 +49,8 @@ void DBConnector::CheckAuth() const
 }
 
 
-DBConnector::DBConnector(bool connectLocally) 
-	: config("dbconfig"), pool{ mongocxx::uri{ config[std::string("uri_") + (connectLocally ? "localhost" : "server")] } }, isAuthorized(false), privelege(UserPriveleges::none)
+DBConnector::DBConnector(bool connectLocally)
+	: config("dbconfig"), pool{mongocxx::uri{config[std::string("uri_") + (connectLocally ? "localhost" : "server")]}}, isAuthorized(false), privelege(UserPriveleges::none)
 {
 }
 
@@ -127,7 +127,7 @@ void DBConnector::Add(User& user)
 	Add(config["userPrivateInfo"], view);
 }
 
-void DBConnector::Get(std::list<User>& users, bsoncxx::document::view& authFilter, const bsoncxx::document::view_or_value& privateFilter)
+void DBConnector::Get(std::list<User>& users, const bsoncxx::document::view_or_value& authFilter, const bsoncxx::document::view_or_value& privateFilter)
 {
 	using namespace bsoncxx::builder::stream;
 
@@ -250,13 +250,13 @@ void DBConnector::Add(Book& book)
 	using namespace bsoncxx::builder::stream;
 	using namespace bsoncxx::document;
 	document doc{};
-	
+
 	doc <<
 		"isbn" << book.getISBN().toString() <<
 		"name" << book.getName() <<
 		"year" << book.getYear() <<
-		"page_count" << static_cast<li> (book.getPageCount());
-	
+		"page_count" << static_cast<li>(book.getPageCount());
+
 	//write authors
 	document arrDoc{};
 	auto openedArray = arrDoc <<
@@ -265,9 +265,9 @@ void DBConnector::Add(Book& book)
 	{
 		openedArray = openedArray << a.getId().getObjectID();
 	}
-	auto closedArray = openedArray << close_array;	
+	auto closedArray = openedArray << close_array;
 	doc << concatenate(closedArray << finalize);
-	
+
 	document arrDoc2{};
 	openedArray = arrDoc2 <<
 		"copies" << open_array;
@@ -284,8 +284,56 @@ void DBConnector::Add(Book& book)
 	Add(config["books"], viewValue);
 }
 
-void DBConnector::Get(std::list<Book>& books, bsoncxx::document::view& filter)
+void DBConnector::Get(std::list<Book>& books, const bsoncxx::document::view_or_value& filter)
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+
+	mongocxx::cursor cursor = db[config["books"]].find(filter);
+	for (auto doc : cursor)
+	{
+		bsoncxx::document::element element = doc["_id"];
+		if (element.type() != bsoncxx::type::k_oid)
+		{
+			throw OperationException();
+		}
+
+		Book book(DB_ID(element.get_oid().value.to_string()));
+
+		book.setISBN(ISBNClass(doc["isbn"].get_utf8().value.to_string()));
+		book.setName(doc["name"].get_utf8().value.to_string());
+		book.setYear(doc["year"].get_int32().value);
+		book.setPageCount(doc["page_count"].get_int32().value);
+
+		//copies
+		for (auto d : doc["copies"].get_array().value)
+		{
+			BookCopy copy(d["_id"].get_oid().value.to_string());
+			copy.setIsArchieved(d["isArchieved"].get_bool().value);
+			//todo: add good setIsGettedOut
+			copy.setIsGettedOut(false);
+			book.addCopy(copy);
+		}
+
+		//authors
+		document req{};
+		auto inArray = req << "_id" << open_document << "$in" << open_array;
+		for (auto d : doc["authors"].get_array().value)
+		{
+			inArray = inArray << d.get_oid();
+		}
+		auto outArray = inArray << close_array << close_document;
+
+		std::list<Author> authors;
+		Get(authors, outArray << finalize);
+		book.setAuthors(authors);
+
+		books.push_back(book);
+	}
 }
 
 
@@ -296,6 +344,14 @@ void DBConnector::Update(Book& book)
 
 void DBConnector::Delete(Book& book)
 {
+	using namespace bsoncxx::builder::stream;
+
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+
+	db[config["books"]].delete_one(document{} << "_id" << book.getId().getObjectID() << finalize);
 }
 
 
@@ -392,10 +448,10 @@ void DBConnector::Update(Author& author)
 	}
 
 	db[config["authors"]].update_one(document{} << "_id" << author.getId().getObjectID() << finalize,
-		document{} << "$set" << open_document <<
-		"name" << author.getName() <<
-		"surname" << author.getSurname() <<
-		close_document << finalize
+	                                 document{} << "$set" << open_document <<
+	                                 "name" << author.getName() <<
+	                                 "surname" << author.getSurname() <<
+	                                 close_document << finalize
 	);
 }
 

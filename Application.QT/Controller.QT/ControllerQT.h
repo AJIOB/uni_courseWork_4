@@ -31,6 +31,10 @@ public:
 	bool changePassword(User* u, const QString& oldPassword, const QString& newPassword, const QString& duplicatePassword);
 	bool resetPassword(User* u);
 
-	bool addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long int& year, const unsigned long int& pages, const unsigned long int& copies);
 	Author addAuthor(const QString& surname, const QString& name, const QString& fatherName);
+	std::list<Author> findAuthors(const std::multimap<QString, QString> filters);
+
+	bool addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long int& year, const unsigned long int& pages, const unsigned long int& copies);
+	std::list<Book> findBooks(const std::multimap<QString, QString> filters);
+	bool deleteBook(Book& u);
 };

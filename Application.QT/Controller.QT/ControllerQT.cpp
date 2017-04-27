@@ -107,6 +107,24 @@ bool ControllerQT::updateUser(User* oldUser, const QString& name, const QString&
 	return res;
 }
 
+bool ControllerQT::deleteBook(Book& u)
+{
+	try
+	{
+		connector.Delete(u);
+	}
+	catch (std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация об удалении издания");
+		mb.setText(QString::fromStdString("Ошибка удаления издания. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+		return false;
+	}
+
+	return true;
+}
+
 Author ControllerQT::addAuthor(const QString& surname, const QString& name, const QString& fatherName)
 {
 	using namespace bsoncxx::builder::stream;
@@ -148,10 +166,10 @@ Author ControllerQT::addAuthor(const QString& surname, const QString& name, cons
 	try
 	{
 		connector.Get(authors, document{} <<
-			"name" << name.toStdString() <<
-			"surname" << surname.toStdString() <<
-			"father_name" << fatherName.toStdString() <<
-			finalize);
+		              "name" << name.toStdString() <<
+		              "surname" << surname.toStdString() <<
+		              "father_name" << fatherName.toStdString() <<
+		              finalize);
 	}
 	catch (std::exception& e)
 	{
@@ -171,6 +189,127 @@ Author ControllerQT::addAuthor(const QString& surname, const QString& name, cons
 
 	mb.exec();
 	return res;
+}
+
+std::list<Book> ControllerQT::findBooks(const std::multimap<QString, QString> filters)
+{
+	using namespace bsoncxx::builder::stream;
+
+	std::set<QString> keys;
+	document info{};
+
+	for (auto f : filters)
+	{
+		keys.insert(f.first);
+	}
+
+	//формируме совпадающие элементы по "или"
+	for (auto k : keys)
+	{
+		if (k == AJIOB_Const::authorSurname)
+		{
+			continue;
+		}
+
+		document d{};
+		auto inArray = d << k.toStdString() << open_document << "$in" << open_array;
+
+		for (auto it = filters.find(k); it != filters.end(); ++it)
+		{
+			inArray = inArray << it->second.toStdString();
+		}
+
+		auto i = inArray << close_array << close_document;
+
+		info << concatenate(i << finalize);
+	}
+
+	std::list<Book> books;
+
+	if (filters.find(AJIOB_Const::authorSurname) != filters.end())
+	{
+		std::multimap<QString, QString> authorsMap;
+
+		for (auto it = filters.find(AJIOB_Const::authorSurname); it != filters.end(); ++it)
+		{
+			authorsMap.emplace("surname", it->second);
+		}
+
+		std::list<Author> authors = findAuthors(authorsMap);
+		/*if (authors.empty())
+		{
+			return books;
+		}*/
+
+		document d{};
+		auto inArray = d << "authors" << open_document << "$in" << open_array;
+
+		for (auto a : authors)
+		{
+			inArray = inArray << a.getId().getObjectID();
+		}
+
+		auto i = inArray << close_array << close_document;
+
+		info << concatenate(i << finalize);
+	}
+
+	try
+	{
+		connector.Get(books, info << finalize);
+	}
+	catch (std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация о поиске изданий");
+		mb.setText(QString::fromStdString("Ошибка получения списка изданий. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+	}
+
+	return books;
+}
+
+std::list<Author> ControllerQT::findAuthors(const std::multimap<QString, QString> filters)
+{
+	using namespace bsoncxx::builder::stream;
+
+	std::list<Author> authors;
+	std::set<QString> keys;
+	document info{};
+
+	for (auto f : filters)
+	{
+		keys.insert(f.first);
+	}
+
+	//формируме совпадающие элементы по "или"
+	for (auto k : keys)
+	{
+		document d{};
+		auto inArray = d << k.toStdString() << open_document << "$in" << open_array;
+
+		for (auto it = filters.find(k); it != filters.end(); ++it)
+		{
+			inArray = inArray << it->second.toStdString();
+		}
+
+		auto i = inArray << close_array << close_document;
+		info << concatenate(i << finalize);
+	}
+
+	try
+	{
+		connector.Get(authors, info << finalize);
+	}
+	catch (std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация о поиске авторов");
+		mb.setText(QString::fromStdString("Ошибка получения списка авторов. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+	}
+
+	return authors;
 }
 
 bool ControllerQT::resetPassword(User* u)
@@ -199,7 +338,7 @@ bool ControllerQT::resetPassword(User* u)
 	return true;
 }
 
-bool ControllerQT::addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long& year, const unsigned long& pages, const unsigned long& copies)
+bool ControllerQT::addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long int& year, const unsigned long int& pages, const unsigned long int& copies)
 {
 	bool res = true;
 
@@ -208,7 +347,7 @@ bool ControllerQT::addBook(const QString& ISBN, const std::list<Author>& authors
 	book.setYear(year);
 	book.setPageCount(pages);
 	book.setAuthors(authors);
-	
+
 
 	QMessageBox mb;
 	mb.setWindowTitle("Информация о добавлении издания");
