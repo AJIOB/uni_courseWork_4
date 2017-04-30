@@ -24,6 +24,7 @@ class BookCopy;
 class Book;
 class User;
 class DB_ID;
+class Transfer;
 enum class UserPriveleges;
 
 class DBConnector
@@ -67,5 +68,7 @@ public:
 	void Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view());
 	void Update(Author& author);
 	void Delete(Author& author);
+
+	void Get(std::list<Transfer>& transfers, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view());
 };
 #endif // !defined(EA_C9B1BA3E_E86D_454b_A78D_68365533B1BE__INCLUDED_)

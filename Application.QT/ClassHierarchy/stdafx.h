@@ -13,6 +13,8 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <iomanip>
+#include <sstream>
 
 #include "typedefs.h"
 

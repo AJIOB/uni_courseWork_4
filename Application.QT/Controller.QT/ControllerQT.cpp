@@ -125,6 +125,75 @@ bool ControllerQT::deleteBook(Book& u)
 	return true;
 }
 
+std::map<Transfer, Book> ControllerQT::getAllNonClosedTransfers(const User* u)
+{
+	using namespace bsoncxx::builder::stream;
+
+	std::map<Transfer, Book> res;
+	document filter{};
+
+	filter <<
+		"user_id" << u->getId().getObjectID();
+
+	std::list<Transfer> transfers;
+	try
+	{
+		connector.Get(transfers, filter << finalize);
+	}
+	catch (std::exception& e)
+	{
+		QMessageBox mb;
+		mb.setWindowTitle("Информация о получении списка выдач");
+		mb.setText(QString::fromStdString("Ошибка получения списка выдач. Текст ошибки:\n" + std::string(e.what())));
+		mb.exec();
+		return res;
+	}
+
+	for (auto t : transfers)
+	{
+		std::list<Book> books;
+
+		document info{};
+
+		info <<
+			"copies" << open_document <<
+				"$elemMatch" << open_document <<
+					"_id" << open_document <<
+						"$in" << open_array <<
+							t.getCopyId().getObjectID() <<
+						close_array <<
+					close_document <<
+				close_document <<
+			close_document;
+
+		try
+		{
+			connector.Get(books, info << finalize);
+		}
+		catch (std::exception& e)
+		{
+			QMessageBox mb;
+			mb.setWindowTitle("Информация о поиске изданий");
+			mb.setText(QString::fromStdString("Ошибка получения списка изданий. Текст ошибки:\n" + std::string(e.what())));
+			mb.exec();
+			return std::map<Transfer, Book>();
+		}
+		
+		if (books.size() != 1)
+		{
+			QMessageBox mb;
+			mb.setWindowTitle("Информация о получении списка выдач");
+			mb.setText("Ошибка получения списка изданий. Возможно, нарушена уникальность идентификаторов копий");
+			mb.exec();
+			return std::map<Transfer, Book>();
+		}
+
+		res.emplace(t, books.front());
+	}
+
+	return res;
+}
+
 bool ControllerQT::getOutBook(User* u, const QString& bookID)
 {
 	QMessageBox mb;

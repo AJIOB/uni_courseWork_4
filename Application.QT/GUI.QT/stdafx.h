@@ -11,6 +11,7 @@
 #include "ClassHierarchy/AllExceptions.h"
 #include "ClassHierarchy/DB_ID.h"
 #include "ClassHierarchy/Book.h"
+#include "ClassHierarchy/Transfer.h"
 
 #include "Controller.QT/ControllerQT.h"
 #include "DBConnector/DBConnector.h"

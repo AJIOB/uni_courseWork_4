@@ -123,6 +123,12 @@
     <ClInclude Include="exceptions\NotBookCopyIDException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
+    <ClInclude Include="Transfer.h">
+      <Filter>Header Files\Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -157,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="UserPersonalInfo.cpp">
       <Filter>Source Files\Users</Filter>
+    </ClCompile>
+    <ClCompile Include="Transfer.cpp">
+      <Filter>Source Files\Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Date.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,10 +10,12 @@ GUI_UserInfo::GUI_UserInfo(User* u, QWidget* parent)
 	hideAllRequred();
 	editModeButtons->hide();
 	fillAllUserInfo();
+	fillAllBookInfo();
 }
 
 GUI_UserInfo::~GUI_UserInfo()
 {
+	clearAllTable();
 }
 
 void GUI_UserInfo::enableAllFields(bool enable)
@@ -52,6 +54,57 @@ void GUI_UserInfo::fillAllUserInfo()
 	passportNumText->setText(QString(cl_user->getPersonalInfo().getPassportNumber().c_str()));
 	loginText->setText(QString(cl_user->getLogin().c_str()));
 	userRoleComboBox->setCurrentIndex(UPtoi(cl_user->getPrivelege()) - 1);
+}
+
+void GUI_UserInfo::fillAllBookInfo()
+{
+	clearAllTable();
+
+	//Transfer, Book
+	auto results = ControllerQT::get().getAllNonClosedTransfers(cl_user);
+	for (auto r : results)
+	{
+		int rowNum = bookInfoTable->rowCount();
+		bookInfoTable->insertRow(rowNum);
+		
+		//ISBN
+		QLabel* label = new QLabel(QString::fromStdString(r.second.getISBN().toString()), bookInfoTable);
+		bookInfoTable->setCellWidget(rowNum, 0, label);
+
+		//authors
+		label = new QLabel(QString::fromStdString(r.second.getAuthorsAsString()), bookInfoTable);
+		bookInfoTable->setCellWidget(rowNum, 1, label);
+
+		//name
+		label = new QLabel(QString::fromStdString(r.second.getName()), bookInfoTable);
+		bookInfoTable->setCellWidget(rowNum, 2, label);
+
+		//copy id
+		label = new QLabel(QString::fromStdString(r.first.getCopyId().toString()), bookInfoTable);
+		bookInfoTable->setCellWidget(rowNum, 3, label);
+
+		//get out date
+		label = new QLabel(QString::fromStdString(r.first.getFirstGetDate().toString()), bookInfoTable);
+		bookInfoTable->setCellWidget(rowNum, 4, label);
+
+		//last continue date
+		label = new QLabel(QString::fromStdString(r.first.getLastContinueDate().toString()), bookInfoTable);
+		bookInfoTable->setCellWidget(rowNum, 5, label);
+
+		objects.push_back(r.first);
+	}
+}
+
+void GUI_UserInfo::clearAllTable()
+{
+	bookInfoTable->clearContents();
+	while (bookInfoTable->rowCount() > 0)
+	{
+		bookInfoTable->removeRow(0);
+	}
+	bookInfoTable->repaint();
+
+	objects.clear();
 }
 
 void GUI_UserInfo::on_editInfoButton_clicked()
@@ -95,7 +148,10 @@ void GUI_UserInfo::on_getOutBookButton_clicked()
 {
 	//todo
 	GUI_GetOutBook box(cl_user, this);
-	box.exec();
+	if (box.exec() == QMessageBox::Accepted)
+	{
+		fillAllBookInfo();
+	}
 }
 
 void GUI_UserInfo::on_getBackBookButton_clicked()
@@ -106,4 +162,11 @@ void GUI_UserInfo::on_getBackBookButton_clicked()
 void GUI_UserInfo::on_renewBookButton_clicked()
 {
 	//todo
+}
+
+void GUI_UserInfo::on_bookInfoTable_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+	renewBookButton->setDisabled(currentRow < 0);
+	getBackBookButton->setDisabled(currentRow < 0);
+	currentSelectedRow = currentRow;
 }

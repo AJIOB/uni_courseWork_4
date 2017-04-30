@@ -14,6 +14,7 @@
 #include "ClassHierarchy/User.h"
 #include "ClassHierarchy/Author.h"
 #include "ClassHierarchy/Book.h"
+#include "ClassHierarchy/Transfer.h"
 
 #include "ClassHierarchy/AllExceptions.h"
 
@@ -518,6 +519,45 @@ void DBConnector::Delete(Author& author)
 	}
 
 	db[config["authors"]].delete_one(document{} << "_id" << author.getId().getObjectID() << finalize);
+}
+
+void DBConnector::Get(std::list<Transfer>& transfers, const bsoncxx::document::view_or_value& filter)
+{
+	using namespace bsoncxx::builder::stream;
+
+	if (config["transfers"] == "")
+	{
+		throw ConfigException();
+	}
+
+	mongocxx::cursor cursor = db[config["transfers"]].find(filter);
+	for (auto doc : cursor)
+	{
+		bsoncxx::document::element element = doc["_id"];
+		if (element.type() != bsoncxx::type::k_oid)
+		{
+			throw OperationException();
+		}
+
+		DB_ID ID(doc["_id"].get_oid().value.to_string());
+		DB_ID copyID(doc["copy_id"].get_oid().value.to_string());
+		DB_ID userID(doc["user_id"].get_oid().value.to_string());
+
+		Date firstGetDate(doc["first_get_date"].get_date());
+
+		Date lastContinueDate;
+		if (doc.find("last_continue_date") != doc.end() && doc["last_continue_date"].type() == bsoncxx::type::k_date)
+		{
+			lastContinueDate = Date(doc["last_continue_date"].get_date());
+		}
+		Date returnDate;
+		if (doc.find("last_continue_date") != doc.end() && doc["return_date"].type() == bsoncxx::type::k_date)
+		{
+			returnDate = Date(doc["return_date"].get_date());
+		}
+
+		transfers.push_back(Transfer(ID, copyID, userID, firstGetDate, lastContinueDate, returnDate));
+	}
 }
 
 User DBConnector::LoginAsGuest() const

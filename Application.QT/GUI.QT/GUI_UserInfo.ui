@@ -277,7 +277,59 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QTableWidget" name="bookInfoTable"/>
+    <widget class="QTableWidget" name="bookInfoTable">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>ISBN</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Автор</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Название</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>ID копии</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Дата выдачи</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Дата последнего продления</string>
+      </property>
+     </column>
+    </widget>
    </item>
   </layout>
  </widget>

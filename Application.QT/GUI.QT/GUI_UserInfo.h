@@ -1,5 +1,7 @@
 #pragma once
 
+#include <deque>
+
 #include <QDialog>
 #include "ui_GUI_UserInfo.h"
 
@@ -16,10 +18,17 @@ public:
 private:
 	User* cl_user;
 
+	std::deque<Transfer> objects;
+	int currentSelectedRow;
+
 	void enableAllFields(bool enable);
 	void showAllRequred();
 	void hideAllRequred();
 	void fillAllUserInfo();
+
+	void fillAllBookInfo();
+
+	void clearAllTable();
 
 private slots:
 	void on_editInfoButton_clicked();
@@ -29,4 +38,5 @@ private slots:
 	void on_getOutBookButton_clicked();
 	void on_getBackBookButton_clicked();
 	void on_renewBookButton_clicked();
+	void on_bookInfoTable_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 };
