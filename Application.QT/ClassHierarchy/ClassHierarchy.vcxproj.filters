@@ -117,6 +117,12 @@
     <ClInclude Include="exceptions\NonUniqueException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
+    <ClInclude Include="exceptions\AlreadyGettedOutException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\NotBookCopyIDException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

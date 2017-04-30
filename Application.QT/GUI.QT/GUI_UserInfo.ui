@@ -1,312 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <ui version="4.0">
-  <class>GUI_UserInfo</class>
-  <widget class="QDialog" name="GUI_UserInfo">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>730</width>
-        <height>520</height>
-      </rect>
-    </property>
-    <property name="windowTitle">
+ <class>GUI_UserInfo</class>
+ <widget class="QDialog" name="GUI_UserInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>730</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Информация о пользователе</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QLabel" name="headLabel">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <kerning>false</kerning>
+      </font>
+     </property>
+     <property name="text">
       <string>Информация о пользователе</string>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-        <widget class="QLabel" name="headLabel">
-          <property name="font">
-            <font>
-              <pointsize>12</pointsize>
-              <kerning>false</kerning>
-            </font>
-          </property>
-          <property name="text">
-            <string>Информация о пользователе</string>
-          </property>
-          <property name="alignment">
-            <set>Qt::AlignCenter</set>
-          </property>
-        </widget>
-      </item>
-      <item row="1" column="0">
-        <layout class="QGridLayout" name="gridLayout">
-          <item row="1" column="0">
-            <widget class="QLabel" name="nameLabel">
-              <property name="text">
-                <string>Имя:</string>
-              </property>
-            </widget>
-          </item>
-          <item row="3" column="0">
-            <widget class="QLabel" name="passportNumLabel">
-              <property name="text">
-                <string>Номер паспорта:</string>
-              </property>
-            </widget>
-          </item>
-          <item row="0" column="2">
-            <widget class="QLineEdit" name="surnameText">
-              <property name="enabled">
-                <bool>false</bool>
-              </property>
-            </widget>
-          </item>
-          <item row="2" column="2">
-            <widget class="QLineEdit" name="fatherNameText">
-              <property name="enabled">
-                <bool>false</bool>
-              </property>
-            </widget>
-          </item>
-          <item row="0" column="0">
-            <widget class="QLabel" name="surnameLabel">
-              <property name="text">
-                <string>Фамилия:</string>
-              </property>
-            </widget>
-          </item>
-          <item row="1" column="2">
-            <widget class="QLineEdit" name="nameText">
-              <property name="enabled">
-                <bool>false</bool>
-              </property>
-            </widget>
-          </item>
-          <item row="2" column="0">
-            <widget class="QLabel" name="fatherNameLabel">
-              <property name="text">
-                <string>Отчество:</string>
-              </property>
-            </widget>
-          </item>
-          <item row="5" column="0">
-            <widget class="QLabel" name="userRoleLabel">
-              <property name="text">
-                <string>Права пользователя:</string>
-              </property>
-            </widget>
-          </item>
-          <item row="4" column="0">
-            <widget class="QLabel" name="loginLabel">
-              <property name="text">
-                <string>Логин:</string>
-              </property>
-            </widget>
-          </item>
-          <item row="4" column="2">
-            <widget class="QLineEdit" name="loginText">
-              <property name="enabled">
-                <bool>false</bool>
-              </property>
-            </widget>
-          </item>
-          <item row="3" column="2">
-            <widget class="QLineEdit" name="passportNumText">
-              <property name="enabled">
-                <bool>false</bool>
-              </property>
-            </widget>
-          </item>
-          <item row="5" column="2">
-            <widget class="QComboBox" name="userRoleComboBox">
-              <property name="enabled">
-                <bool>false</bool>
-              </property>
-              <property name="toolTip">
-                <string>Выберите права доступа для нового пользователя</string>
-              </property>
-              <property name="currentText">
-                <string>Читатель</string>
-              </property>
-              <property name="currentIndex">
-                <number>1</number>
-              </property>
-              <item>
-                <property name="text">
-                  <string comment="guest">Гость</string>
-                </property>
-              </item>
-              <item>
-                <property name="text">
-                  <string comment="user">Читатель</string>
-                </property>
-              </item>
-              <item>
-                <property name="text">
-                  <string comment="admin">Работник</string>
-                </property>
-              </item>
-            </widget>
-          </item>
-          <item row="3" column="1">
-            <widget class="QLabel" name="passportNumMUST">
-              <property name="styleSheet">
-                <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-                <string notr="true">*</string>
-              </property>
-            </widget>
-          </item>
-          <item row="4" column="1">
-            <widget class="QLabel" name="loginMUST">
-              <property name="styleSheet">
-                <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-                <string notr="true">*</string>
-              </property>
-            </widget>
-          </item>
-          <item row="5" column="1">
-            <widget class="QLabel" name="userPrivelegesMUST">
-              <property name="styleSheet">
-                <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-                <string notr="true">*</string>
-              </property>
-            </widget>
-          </item>
-          <item row="0" column="1">
-            <widget class="QLabel" name="surnameMUST">
-              <property name="styleSheet">
-                <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-                <string notr="true">*</string>
-              </property>
-            </widget>
-          </item>
-          <item row="1" column="1">
-            <widget class="QLabel" name="nameMUST">
-              <property name="styleSheet">
-                <string notr="true">color : red;</string>
-              </property>
-              <property name="text">
-                <string notr="true">*</string>
-              </property>
-            </widget>
-          </item>
-        </layout>
-      </item>
-      <item row="2" column="0">
-        <widget class="QWidget" name="mainButtonsWidget" native="true">
-          <layout class="QHBoxLayout" name="horizontalLayout">
-            <property name="leftMargin">
-              <number>0</number>
-            </property>
-            <property name="topMargin">
-              <number>0</number>
-            </property>
-            <property name="rightMargin">
-              <number>0</number>
-            </property>
-            <property name="bottomMargin">
-              <number>0</number>
-            </property>
-            <item>
-              <widget class="QPushButton" name="editInfoButton">
-                <property name="text">
-                  <string>Редактировать информацию</string>
-                </property>
-              </widget>
-            </item>
-            <item>
-              <spacer name="horizontalSpacer">
-                <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                  <size>
-                    <width>85</width>
-                    <height>20</height>
-                  </size>
-                </property>
-              </spacer>
-            </item>
-            <item>
-              <widget class="QPushButton" name="resetPasswordButton">
-                <property name="text">
-                  <string>Сбросить пароль</string>
-                </property>
-              </widget>
-            </item>
-            <item>
-              <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                  <size>
-                    <width>86</width>
-                    <height>20</height>
-                  </size>
-                </property>
-              </spacer>
-            </item>
-            <item>
-              <widget class="QPushButton" name="getOutBookButton">
-                <property name="text">
-                  <string>Выдать книгу</string>
-                </property>
-              </widget>
-            </item>
-            <item>
-              <spacer name="horizontalSpacer_2">
-                <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                  <size>
-                    <width>85</width>
-                    <height>20</height>
-                  </size>
-                </property>
-              </spacer>
-            </item>
-            <item>
-              <widget class="QPushButton" name="getBackBookButton">
-                <property name="enabled">
-                  <bool>false</bool>
-                </property>
-                <property name="text">
-                  <string>Списать книгу</string>
-                </property>
-              </widget>
-            </item>
-          </layout>
-          <zorder>resetPasswordButton</zorder>
-          <zorder>getOutBookButton</zorder>
-          <zorder>getBackBookButton</zorder>
-          <zorder>editInfoButton</zorder>
-          <zorder>horizontalSpacer</zorder>
-        </widget>
-      </item>
-      <item row="3" column="0">
-        <widget class="QDialogButtonBox" name="editModeButtons">
-          <property name="standardButtons">
-            <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
-          </property>
-        </widget>
-      </item>
-      <item row="4" column="0">
-        <widget class="QTableWidget" name="bookInfoTable" />
-      </item>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string>Имя:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="passportNumLabel">
+       <property name="text">
+        <string>Номер паспорта:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="surnameText">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="fatherNameText">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="surnameLabel">
+       <property name="text">
+        <string>Фамилия:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="nameText">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="fatherNameLabel">
+       <property name="text">
+        <string>Отчество:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="userRoleLabel">
+       <property name="text">
+        <string>Права пользователя:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="loginLabel">
+       <property name="text">
+        <string>Логин:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLineEdit" name="loginText">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="passportNumText">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QComboBox" name="userRoleComboBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Выберите права доступа для нового пользователя</string>
+       </property>
+       <property name="currentText">
+        <string>Читатель</string>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string comment="guest">Гость</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string comment="user">Читатель</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string comment="admin">Работник</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="passportNumMUST">
+       <property name="styleSheet">
+        <string notr="true">color : red;</string>
+       </property>
+       <property name="text">
+        <string notr="true">*</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="loginMUST">
+       <property name="styleSheet">
+        <string notr="true">color : red;</string>
+       </property>
+       <property name="text">
+        <string notr="true">*</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="userPrivelegesMUST">
+       <property name="styleSheet">
+        <string notr="true">color : red;</string>
+       </property>
+       <property name="text">
+        <string notr="true">*</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="surnameMUST">
+       <property name="styleSheet">
+        <string notr="true">color : red;</string>
+       </property>
+       <property name="text">
+        <string notr="true">*</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="nameMUST">
+       <property name="styleSheet">
+        <string notr="true">color : red;</string>
+       </property>
+       <property name="text">
+        <string notr="true">*</string>
+       </property>
+      </widget>
+     </item>
     </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11" />
-  <tabstops>
-    <tabstop>surnameText</tabstop>
-    <tabstop>nameText</tabstop>
-    <tabstop>fatherNameText</tabstop>
-    <tabstop>passportNumText</tabstop>
-    <tabstop>loginText</tabstop>
-    <tabstop>userRoleComboBox</tabstop>
-  </tabstops>
-  <resources />
-  <connections />
+   </item>
+   <item row="2" column="0">
+    <widget class="QWidget" name="mainButtonsWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="editInfoButton">
+        <property name="text">
+         <string>Редактировать информацию</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="resetPasswordButton">
+        <property name="text">
+         <string>Сбросить пароль</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>86</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="getOutBookButton">
+        <property name="text">
+         <string>Выдать книгу</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="renewBookButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Продлить книгу</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="getBackBookButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Списать книгу</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>resetPasswordButton</zorder>
+     <zorder>getOutBookButton</zorder>
+     <zorder>getBackBookButton</zorder>
+     <zorder>editInfoButton</zorder>
+     <zorder>renewBookButton</zorder>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QDialogButtonBox" name="editModeButtons">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QTableWidget" name="bookInfoTable"/>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>surnameText</tabstop>
+  <tabstop>nameText</tabstop>
+  <tabstop>fatherNameText</tabstop>
+  <tabstop>passportNumText</tabstop>
+  <tabstop>loginText</tabstop>
+  <tabstop>userRoleComboBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
 </ui>

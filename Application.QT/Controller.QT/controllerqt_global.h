@@ -3,7 +3,9 @@
 #include <QtCore/qglobal.h>
 
 //to use shared heareds & build only static lib
+#ifndef BUILD_STATIC
 #define BUILD_STATIC
+#endif
 
 #ifndef BUILD_STATIC
 # if defined(CONTROLLERQT_LIB)

@@ -37,4 +37,6 @@ public:
 	bool addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long int& year, const unsigned long int& pages, const unsigned long int& copies);
 	std::list<Book> findBooks(const std::multimap<QString, QString> filters);
 	bool deleteBook(Book& u);
+
+	bool getOutBook(User* u, const QString& bookID);
 };

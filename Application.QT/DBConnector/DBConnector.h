@@ -39,12 +39,21 @@ class DBConnector
 
 	void CheckAuth() const;
 
+	static std::chrono::system_clock::time_point getCurrentTimePoint();
+	bool isItBookCopyID(DB_ID idToCheck);
+
 public:
 	DBConnector(bool connectLocally = true);
 	virtual ~DBConnector();
 
 	User Authorize(const String& login, const String& password);
 	User LoginAsGuest() const;
+
+	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
+	bool RenewBookTime(BookCopy& bookCopy);
+	bool ReturnBookCopy(BookCopy& bookCopy);
+	bool ArchieveBookCopy(BookCopy& bookCopy);
+	bool isCopyGettedOut(BookCopy& bookCopy);
 
 	void Add(User& user);
 	void Get(std::list<User>& users, const bsoncxx::document::view_or_value& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view());
@@ -54,10 +63,6 @@ public:
 	void Get(std::list<Book>& books, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view());
 	void Update(Book& book);
 	void Delete(Book& book);
-	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
-	bool RenewBookTime(BookCopy& bookCopy);
-	bool ArchieveBookCopy(BookCopy& bookCopy);
-	bool ReturnBookCopy(BookCopy& bookCopy);
 	void Add(Author& author);
 	void Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter = bsoncxx::builder::stream::document{}.view());
 	void Update(Author& author);

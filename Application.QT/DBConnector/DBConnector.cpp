@@ -314,8 +314,7 @@ void DBConnector::Get(std::list<Book>& books, const bsoncxx::document::view_or_v
 		{
 			BookCopy copy(d["_id"].get_oid().value.to_string());
 			copy.setIsArchieved(d["isArchieved"].get_bool().value);
-			//todo: add good setIsGettedOut
-			copy.setIsGettedOut(false);
+			copy.setIsGettedOut(isCopyGettedOut(copy));
 			book.addCopy(copy);
 		}
 
@@ -355,10 +354,40 @@ void DBConnector::Delete(Book& book)
 }
 
 
+std::chrono::system_clock::time_point DBConnector::getCurrentTimePoint()
+{
+	return std::chrono::system_clock::time_point(std::chrono::system_clock::now());
+}
+
 DB_ID DBConnector::GiveOutBook(BookCopy& bookCopy, User& user)
 {
-	//todo
-	return DB_ID();
+	if (config["transfers"] == "")
+	{
+		throw ConfigException();
+	}
+	if (!isItBookCopyID(bookCopy.getId()))
+	{
+		throw NotBookCopyIDException();
+	}
+	if (isCopyGettedOut(bookCopy))
+	{
+		throw AlreadyGettedOutException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+	document doc{};
+
+	doc <<
+		"copy_id" << bookCopy.getId().getObjectID() <<
+		"user_id" << user.getId().getObjectID() <<
+		"first_get_date" << b_date(getCurrentTimePoint());
+
+	view_or_value viewValue = doc << finalize;
+
+	auto id = Add(config["transfers"], viewValue);
+	return DB_ID(id.get_oid().value.to_string());
 }
 
 
@@ -371,6 +400,29 @@ bool DBConnector::RenewBookTime(BookCopy& bookCopy)
 bool DBConnector::ArchieveBookCopy(BookCopy& bookCopy)
 {
 	return false;
+}
+
+bool DBConnector::isCopyGettedOut(BookCopy& bookCopy)
+{
+	if (config["transfers"] == "")
+	{
+		throw ConfigException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+	document doc{};
+
+	doc <<
+		"copy_id" << bookCopy.getId().getObjectID() <<
+		"return_date" << open_document <<
+			"$exists" << false <<
+		close_document;
+
+	view_or_value viewValue = doc << finalize;
+	mongocxx::cursor cursor = db[config["transfers"]].find(viewValue);
+	return cursor.begin() != cursor.end();
 }
 
 
@@ -475,6 +527,34 @@ User DBConnector::LoginAsGuest() const
 	u.setPassword(config["guest_password"]);
 	u.setPrivelege(UserPriveleges::guest);
 	return u;
+}
+
+bool DBConnector::isItBookCopyID(DB_ID idToCheck)
+{
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+	document doc{};
+
+	doc <<
+		"copies" << open_document <<
+			"$elemMatch" << open_document <<
+				"_id" << open_document <<
+					"$in" << open_array <<
+						idToCheck.getObjectID() <<
+					close_array <<
+				close_document <<
+			close_document <<
+		close_document;
+
+	view_or_value viewValue = doc << finalize;
+	mongocxx::cursor cursor = db[config["books"]].find(viewValue);
+	return cursor.begin() != cursor.end();
 }
 
 #undef db

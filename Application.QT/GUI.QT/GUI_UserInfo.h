@@ -28,4 +28,5 @@ private slots:
 	void on_editModeButtons_rejected();
 	void on_getOutBookButton_clicked();
 	void on_getBackBookButton_clicked();
+	void on_renewBookButton_clicked();
 };

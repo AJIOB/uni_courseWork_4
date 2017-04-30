@@ -8,3 +8,5 @@
 #include "exceptions/NoAuthException.h"
 #include "exceptions/GuestUpdateException.h"
 #include "exceptions/NonUniqueException.h"
+#include "exceptions/AlreadyGettedOutException.h"
+#include "exceptions/NotBookCopyIDException.h"

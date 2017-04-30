@@ -125,6 +125,36 @@ bool ControllerQT::deleteBook(Book& u)
 	return true;
 }
 
+bool ControllerQT::getOutBook(User* u, const QString& bookID)
+{
+	QMessageBox mb;
+	mb.setIcon(QMessageBox::Information);
+	mb.setWindowTitle("Информация о выдаче издания");
+
+	bool res = true;
+
+	try
+	{
+		if (connector.GiveOutBook(BookCopy(DB_ID(bookID.toStdString())), *u) == DB_ID())
+		{
+			mb.setText("Ошибка выдачи издания");
+			res = false;
+		}
+		else
+		{
+			mb.setText("Выдача прошла успешно");
+		}
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка выдачи издания. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
+}
+
 Author ControllerQT::addAuthor(const QString& surname, const QString& name, const QString& fatherName)
 {
 	using namespace bsoncxx::builder::stream;

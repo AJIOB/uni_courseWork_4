@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GUI_UserInfo.h"
+#include "GUI_GetOutBook.h"
 
 GUI_UserInfo::GUI_UserInfo(User* u, QWidget* parent)
 	: QDialog(parent), cl_user(u)
@@ -93,9 +94,16 @@ void GUI_UserInfo::on_editModeButtons_rejected()
 void GUI_UserInfo::on_getOutBookButton_clicked()
 {
 	//todo
+	GUI_GetOutBook box(cl_user, this);
+	box.exec();
 }
 
 void GUI_UserInfo::on_getBackBookButton_clicked()
+{
+	//todo
+}
+
+void GUI_UserInfo::on_renewBookButton_clicked()
 {
 	//todo
 }
