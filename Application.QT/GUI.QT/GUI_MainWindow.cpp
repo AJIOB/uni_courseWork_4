@@ -199,6 +199,4 @@ void GUI_MainWindow::on_deleteButton_USER_clicked()
 		ui.tableWidget_USER->removeRow(currentSelectedRow_USER);
 	}
 	ui.deleteButton_USER->setEnabled(true);
-
-	//todo: check if books are getted out
 }

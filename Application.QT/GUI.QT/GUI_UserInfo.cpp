@@ -146,7 +146,6 @@ void GUI_UserInfo::on_editModeButtons_rejected()
 
 void GUI_UserInfo::on_getOutBookButton_clicked()
 {
-	//todo
 	GUI_GetOutBook box(cl_user, this);
 	if (box.exec() == QMessageBox::Accepted)
 	{
@@ -156,12 +155,19 @@ void GUI_UserInfo::on_getOutBookButton_clicked()
 
 void GUI_UserInfo::on_getBackBookButton_clicked()
 {
-	//todo
+	if (ControllerQT::get().returnBook(cl_user, objects[currentSelectedRow]))
+	{
+		objects.erase(objects.begin() + currentSelectedRow);
+		bookInfoTable->removeRow(currentSelectedRow);
+	}
 }
 
 void GUI_UserInfo::on_renewBookButton_clicked()
 {
-	//todo
+	if (ControllerQT::get().renewBook(cl_user, objects[currentSelectedRow]))
+	{
+		fillAllBookInfo();
+	}
 }
 
 void GUI_UserInfo::on_bookInfoTable_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)

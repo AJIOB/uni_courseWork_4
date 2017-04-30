@@ -10,3 +10,7 @@
 #include "exceptions/NonUniqueException.h"
 #include "exceptions/AlreadyGettedOutException.h"
 #include "exceptions/NotBookCopyIDException.h"
+#include "exceptions/AlreadyArchievedException.h"
+#include "exceptions/NotGettedOutException.h"
+#include "exceptions/UserGetOutSomethingException.h"
+#include "exceptions/BookGettedOutBySomebody.h"

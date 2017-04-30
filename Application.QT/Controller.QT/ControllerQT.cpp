@@ -133,7 +133,10 @@ std::map<Transfer, Book> ControllerQT::getAllNonClosedTransfers(const User* u)
 	document filter{};
 
 	filter <<
-		"user_id" << u->getId().getObjectID();
+		"user_id" << u->getId().getObjectID() <<
+		"return_date" << open_document <<
+		"$exists" << false <<
+		close_document;
 
 	std::list<Transfer> transfers;
 	try
@@ -217,6 +220,52 @@ bool ControllerQT::getOutBook(User* u, const QString& bookID)
 	catch (std::exception& e)
 	{
 		mb.setText(QString::fromStdString("Ошибка выдачи издания. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
+}
+
+bool ControllerQT::renewBook(User* u, const Transfer& transfer)
+{
+	QMessageBox mb;
+	mb.setIcon(QMessageBox::Information);
+	mb.setWindowTitle("Информация о продлении издания");
+	mb.setText("Продление прошло успешно");
+
+	bool res = true;
+
+	try
+	{
+		connector.RenewBookTime(BookCopy(transfer.getCopyId()));
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка продления издания. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
+}
+
+bool ControllerQT::returnBook(User* u, const Transfer& transfer)
+{
+	QMessageBox mb;
+	mb.setIcon(QMessageBox::Information);
+	mb.setWindowTitle("Информация о возврате издания");
+	mb.setText("Возврат прошел успешно");
+
+	bool res = true;
+
+	try
+	{
+		connector.ReturnBookCopy(BookCopy(transfer.getCopyId()));
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка возврата издания. Текст ошибки:\n" + std::string(e.what())));
 		res = false;
 	}
 

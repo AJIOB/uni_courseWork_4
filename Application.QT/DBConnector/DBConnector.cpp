@@ -236,6 +236,13 @@ void DBConnector::Delete(User& user)
 		throw ConfigException();
 	}
 
+	std::list<Transfer> transfers;
+	Get(transfers, document{} << "user_id" << user.getId().getObjectID() << finalize);
+	if (!transfers.empty())
+	{
+		throw UserGetOutSomethingException();
+	}
+
 	db[config["userAuth"]].delete_one(document{} << "_id" << user.getId().getObjectID() << finalize);
 	db[config["userPrivateInfo"]].delete_one(document{} << "_id" << user.getId().getObjectID() << finalize);
 }
@@ -339,16 +346,34 @@ void DBConnector::Get(std::list<Book>& books, const bsoncxx::document::view_or_v
 
 void DBConnector::Update(Book& book)
 {
+	//todo
 }
 
 
 void DBConnector::Delete(Book& book)
 {
-	using namespace bsoncxx::builder::stream;
-
 	if (config["books"] == "")
 	{
 		throw ConfigException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+
+	std::list<Transfer> transfers;
+	document doc{};
+	auto inArray = 
+		doc << "copy_id" << open_document <<
+		"$in" << open_array;
+		
+	for (auto bc : book.getCopies())
+	{
+		inArray = inArray << bc.getId().getObjectID();
+	}
+
+	Get(transfers, inArray << close_array << close_document << finalize);
+	if (!transfers.empty())
+	{
+		throw BookGettedOutBySomebody();
 	}
 
 	db[config["books"]].delete_one(document{} << "_id" << book.getId().getObjectID() << finalize);
@@ -370,6 +395,11 @@ DB_ID DBConnector::GiveOutBook(BookCopy& bookCopy, User& user)
 	{
 		throw NotBookCopyIDException();
 	}
+	if (isCopyArchieved(bookCopy))
+	{
+		throw AlreadyArchievedException();
+	}
+
 	if (isCopyGettedOut(bookCopy))
 	{
 		throw AlreadyGettedOutException();
@@ -392,14 +422,47 @@ DB_ID DBConnector::GiveOutBook(BookCopy& bookCopy, User& user)
 }
 
 
-bool DBConnector::RenewBookTime(BookCopy& bookCopy)
+void DBConnector::RenewBookTime(BookCopy& bookCopy)
 {
-	return false;
+	if (config["transfers"] == "")
+	{
+		throw ConfigException();
+	}
+	if (!isItBookCopyID(bookCopy.getId()))
+	{
+		throw NotBookCopyIDException();
+	}
+	if (isCopyArchieved(bookCopy))
+	{
+		throw AlreadyArchievedException();
+	}
+
+	if (!isCopyGettedOut(bookCopy))
+	{
+		throw NotGettedOutException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+
+	db[config["transfers"]].update_one(
+		document{} <<
+		"copy_id" << bookCopy.getId().getObjectID() <<
+		"return_date" << open_document <<
+		"$exists" << false <<
+		close_document <<
+		finalize,
+		document{} << "$currentDate" << open_document <<
+		"last_continue_date" << true <<
+		close_document << finalize
+	);
 }
 
 
 bool DBConnector::ArchieveBookCopy(BookCopy& bookCopy)
 {
+	//todo
 	return false;
 }
 
@@ -426,10 +489,71 @@ bool DBConnector::isCopyGettedOut(BookCopy& bookCopy)
 	return cursor.begin() != cursor.end();
 }
 
-
-bool DBConnector::ReturnBookCopy(BookCopy& bookCopy)
+bool DBConnector::isCopyArchieved(const BookCopy& bookCopy)
 {
-	return false;
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+	if (!isItBookCopyID(bookCopy.getId()))
+	{
+		throw NotBookCopyIDException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+	document doc{};
+
+	doc <<
+		"copies" << open_document <<
+		"$elemMatch" << open_document <<
+			"_id" << bookCopy.getId().getObjectID() <<
+			"isArchieved" << true <<
+		close_document <<
+		close_document;
+
+	view_or_value viewValue = doc << finalize;
+	mongocxx::cursor cursor = db[config["books"]].find(viewValue);
+	return cursor.begin() != cursor.end();
+}
+
+
+void DBConnector::ReturnBookCopy(BookCopy& bookCopy)
+{
+	if (config["transfers"] == "")
+	{
+		throw ConfigException();
+	}
+	if (!isItBookCopyID(bookCopy.getId()))
+	{
+		throw NotBookCopyIDException();
+	}
+	if (isCopyArchieved(bookCopy))
+	{
+		throw AlreadyArchievedException();
+	}
+
+	if (!isCopyGettedOut(bookCopy))
+	{
+		throw NotGettedOutException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+	
+	db[config["transfers"]].update_one(
+		document{} << 
+			"copy_id" << bookCopy.getId().getObjectID() << 
+			"return_date" << open_document <<
+				"$exists" << false <<
+			close_document <<
+		finalize,
+		document{} << "$currentDate" << open_document <<
+		"return_date" << true <<
+		close_document << finalize
+	);
 }
 
 
@@ -551,7 +675,7 @@ void DBConnector::Get(std::list<Transfer>& transfers, const bsoncxx::document::v
 			lastContinueDate = Date(doc["last_continue_date"].get_date());
 		}
 		Date returnDate;
-		if (doc.find("last_continue_date") != doc.end() && doc["return_date"].type() == bsoncxx::type::k_date)
+		if (doc.find("return_date") != doc.end() && doc["return_date"].type() == bsoncxx::type::k_date)
 		{
 			returnDate = Date(doc["return_date"].get_date());
 		}

@@ -129,6 +129,18 @@
     <ClInclude Include="Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="exceptions\AlreadyArchievedException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\NotGettedOutException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\UserGetOutSomethingException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
+    <ClInclude Include="exceptions\BookGettedOutBySomebody.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

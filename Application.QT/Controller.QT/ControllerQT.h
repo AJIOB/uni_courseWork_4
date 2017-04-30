@@ -42,4 +42,6 @@ public:
 	std::map<Transfer, Book> getAllNonClosedTransfers(const User* u);
 
 	bool getOutBook(User* u, const QString& bookID);
+	bool renewBook(User* u, const Transfer& transfer);
+	bool returnBook(User* u, const Transfer& transfer);
 };

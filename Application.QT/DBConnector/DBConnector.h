@@ -51,10 +51,12 @@ public:
 	User LoginAsGuest() const;
 
 	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
-	bool RenewBookTime(BookCopy& bookCopy);
-	bool ReturnBookCopy(BookCopy& bookCopy);
+	void RenewBookTime(BookCopy& bookCopy);
+	void ReturnBookCopy(BookCopy& bookCopy);
 	bool ArchieveBookCopy(BookCopy& bookCopy);
+
 	bool isCopyGettedOut(BookCopy& bookCopy);
+	bool isCopyArchieved(const BookCopy& bookCopy);
 
 	void Add(User& user);
 	void Get(std::list<User>& users, const bsoncxx::document::view_or_value& authFilter = bsoncxx::builder::stream::document{}.view(), const bsoncxx::document::view_or_value& privateFilter = bsoncxx::builder::stream::document{}.view());

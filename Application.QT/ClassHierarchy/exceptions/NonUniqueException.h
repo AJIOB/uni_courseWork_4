@@ -5,7 +5,7 @@
 class NonUniqueException : public MyException
 {
 public:
-	NonUniqueException() : MyException("You are try to element that already exist in database")
+	NonUniqueException() : MyException("You are try to create element that already exist in database")
 	{
 	}
 };
