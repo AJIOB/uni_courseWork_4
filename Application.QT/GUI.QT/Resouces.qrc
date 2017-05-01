@@ -1,10 +1,11 @@
 <RCC>
-  <qresource prefix="/resource">
-    <file>icons/+.png</file>
-    <file>icons/x.png</file>
-    <file>icons/add books.png</file>
-    <file>icons/add person.png</file>
-    <file>icons/books.png</file>
-    <file>icons/persons.png</file>
-  </qresource>
+    <qresource prefix="/resource">
+        <file>icons/+.png</file>
+        <file>icons/x.png</file>
+        <file>icons/add books.png</file>
+        <file>icons/add person.png</file>
+        <file>icons/books.png</file>
+        <file>icons/persons.png</file>
+        <file>icons/my books.png</file>
+    </qresource>
 </RCC>

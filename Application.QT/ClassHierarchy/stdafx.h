@@ -26,5 +26,3 @@
 #include "HashFuncs/hash/sha3.h"
 
 typedef SHA3 HashClass;
-
-// TODO: reference additional headers your program requires here

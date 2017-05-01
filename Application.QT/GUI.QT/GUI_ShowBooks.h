@@ -12,13 +12,15 @@ class GUI_ShowBooks : public QWidget, public Ui::GUI_ShowBooks
 	Q_OBJECT
 
 public:
-	GUI_ShowBooks(QWidget* parent = Q_NULLPTR);
+	GUI_ShowBooks(const User* user, QWidget* parent = Q_NULLPTR);
 	~GUI_ShowBooks();
 
 private:
 	std::list<FindBlockWidget*> filters;
 	std::deque<Book> objects;
 	int currentSelectedRow;
+
+	const User* cl_user;
 
 	void ClearAllTable();
 

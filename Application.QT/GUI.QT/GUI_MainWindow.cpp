@@ -5,21 +5,35 @@
 #include "GUI_UserInfo.h"
 #include "GUI_AddBookWidget.h"
 #include "GUI_ShowBooks.h"
+#include "GUI_ShowMyBooks.h"
 
 GUI_MainWindow::GUI_MainWindow(User u, QWidget* parent)
 	: QMainWindow(parent), user(u)
 {
-	//todo: different interface, which depends of user
-
 	ui.setupUi(this);
 
 	HideAllMustHave_AddUser();
 
-	addBookTabWidget = new GUI_AddBookWidget();
+	addBookTabWidget = new GUI_AddBookWidget(ui.tabWidget);
 	ui.addBookLayout->addWidget(addBookTabWidget);
 
-	showBooksTabWidget = new GUI_ShowBooks();
+	showBooksTabWidget = new GUI_ShowBooks(&user, ui.tabWidget);
 	ui.booksTabLayout->addWidget(showBooksTabWidget);
+
+	showMyBooksTabWidget = new GUI_ShowMyBooks(&user, ui.tabWidget);
+	ui.myBooksLayout->addWidget(showMyBooksTabWidget);
+	
+	if (user.getPrivelege() < UserPriveleges::user)
+	{
+		ui.tabWidget->removeTab(4);
+	}
+	
+	if (user.getPrivelege() < UserPriveleges::admin)
+	{
+		ui.tabWidget->removeTab(3);
+		ui.tabWidget->removeTab(2);
+		ui.tabWidget->removeTab(1);
+	}
 }
 
 GUI_MainWindow::~GUI_MainWindow()
@@ -199,4 +213,12 @@ void GUI_MainWindow::on_deleteButton_USER_clicked()
 		ui.tableWidget_USER->removeRow(currentSelectedRow_USER);
 	}
 	ui.deleteButton_USER->setEnabled(true);
+}
+
+void GUI_MainWindow::on_tabWidget_currentChanged(int index)
+{
+	if (index == 4)
+	{
+		showMyBooksTabWidget->refillAllInfo();
+	}
 }

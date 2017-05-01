@@ -40,8 +40,10 @@ public:
 	bool deleteBook(Book& u);
 
 	std::map<Transfer, Book> getAllNonClosedTransfers(const User* u);
+	std::list<Transfer> getAllNonClosedTransfers(const Book* b);
 
 	bool getOutBook(User* u, const QString& bookID);
-	bool renewBook(User* u, const Transfer& transfer);
-	bool returnBook(User* u, const Transfer& transfer);
+	bool renewBook(const Transfer& transfer);
+	bool returnBook(const Transfer& transfer, Book* book = nullptr);
+	bool archieveBook(BookCopy* copy, Book* book);
 };

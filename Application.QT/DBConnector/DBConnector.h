@@ -53,7 +53,7 @@ public:
 	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
 	void RenewBookTime(BookCopy& bookCopy);
 	void ReturnBookCopy(BookCopy& bookCopy);
-	bool ArchieveBookCopy(BookCopy& bookCopy);
+	void ArchieveBookCopy(BookCopy& bookCopy);
 
 	bool isCopyGettedOut(BookCopy& bookCopy);
 	bool isCopyArchieved(const BookCopy& bookCopy);

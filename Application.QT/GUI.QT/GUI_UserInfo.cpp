@@ -155,7 +155,7 @@ void GUI_UserInfo::on_getOutBookButton_clicked()
 
 void GUI_UserInfo::on_getBackBookButton_clicked()
 {
-	if (ControllerQT::get().returnBook(cl_user, objects[currentSelectedRow]))
+	if (ControllerQT::get().returnBook(objects[currentSelectedRow]))
 	{
 		objects.erase(objects.begin() + currentSelectedRow);
 		bookInfoTable->removeRow(currentSelectedRow);
@@ -164,7 +164,7 @@ void GUI_UserInfo::on_getBackBookButton_clicked()
 
 void GUI_UserInfo::on_renewBookButton_clicked()
 {
-	if (ControllerQT::get().renewBook(cl_user, objects[currentSelectedRow]))
+	if (ControllerQT::get().renewBook(objects[currentSelectedRow]))
 	{
 		fillAllBookInfo();
 	}

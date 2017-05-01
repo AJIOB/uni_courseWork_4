@@ -197,6 +197,43 @@ std::map<Transfer, Book> ControllerQT::getAllNonClosedTransfers(const User* u)
 	return res;
 }
 
+std::list<Transfer> ControllerQT::getAllNonClosedTransfers(const Book* b)
+{
+	using namespace bsoncxx::builder::stream;
+
+	std::list<Transfer> res;
+	for (auto bc : b->getCopies())
+	{
+		document filter{};
+
+		filter <<
+			"copy_id" << bc.getId().getObjectID() <<
+			"return_date" << open_document <<
+			"$exists" << false <<
+			close_document;
+
+		std::list<Transfer> transfers;
+		try
+		{
+			connector.Get(transfers, filter << finalize);
+			if (transfers.size() > 1)
+			{
+				throw std::exception("Экземпляр был выдан сразу нескольким людям");
+			}
+			res.insert(res.end(), transfers.begin(), transfers.end());
+		}
+		catch (std::exception& e)
+		{
+			QMessageBox mb;
+			mb.setWindowTitle("Информация о получении списка выдач");
+			mb.setText(QString::fromStdString("Ошибка получения списка выдач. Текст ошибки:\n" + std::string(e.what())));
+			mb.exec();
+			return std::list<Transfer>();
+		}
+	}
+	return res;
+}
+
 bool ControllerQT::getOutBook(User* u, const QString& bookID)
 {
 	QMessageBox mb;
@@ -227,7 +264,7 @@ bool ControllerQT::getOutBook(User* u, const QString& bookID)
 	return res;
 }
 
-bool ControllerQT::renewBook(User* u, const Transfer& transfer)
+bool ControllerQT::renewBook(const Transfer& transfer)
 {
 	QMessageBox mb;
 	mb.setIcon(QMessageBox::Information);
@@ -250,7 +287,7 @@ bool ControllerQT::renewBook(User* u, const Transfer& transfer)
 	return res;
 }
 
-bool ControllerQT::returnBook(User* u, const Transfer& transfer)
+bool ControllerQT::returnBook(const Transfer& transfer, Book* book)
 {
 	QMessageBox mb;
 	mb.setIcon(QMessageBox::Information);
@@ -259,13 +296,52 @@ bool ControllerQT::returnBook(User* u, const Transfer& transfer)
 
 	bool res = true;
 
+	using namespace bsoncxx::builder::stream;
+
 	try
 	{
 		connector.ReturnBookCopy(BookCopy(transfer.getCopyId()));
+		if (book)
+		{
+			std::list<Book> books;
+			connector.Get(books, document{} << "_id" << book->getId().getObjectID() << finalize);
+			*book = books.front();
+		}
 	}
 	catch (std::exception& e)
 	{
 		mb.setText(QString::fromStdString("Ошибка возврата издания. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
+}
+
+bool ControllerQT::archieveBook(BookCopy* copy, Book* book)
+{
+	QMessageBox mb;
+	mb.setIcon(QMessageBox::Information);
+	mb.setWindowTitle("Информация об архивации издания");
+	mb.setText("Архивация прошла успешно");
+
+	bool res = true;
+
+	using namespace bsoncxx::builder::stream;
+
+	try
+	{
+		connector.ArchieveBookCopy(*copy);
+		if (book)
+		{
+			std::list<Book> books;
+			connector.Get(books, document{} << "_id" << book->getId().getObjectID() << finalize);
+			*book = books.front();
+		}
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка архивации издания. Текст ошибки:\n" + std::string(e.what())));
 		res = false;
 	}
 

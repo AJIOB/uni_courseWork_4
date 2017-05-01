@@ -2,11 +2,17 @@
 #include "GUI_ShowBooks.h"
 
 #include "FindBlockWidget.h"
+#include "GUI_BookInfo.h"
 
-GUI_ShowBooks::GUI_ShowBooks(QWidget* parent)
-	: QWidget(parent)
+GUI_ShowBooks::GUI_ShowBooks(const User* user, QWidget* parent)
+	: QWidget(parent), cl_user(user)
 {
 	setupUi(this);
+
+	if (user->getPrivelege() < UserPriveleges::admin)
+	{
+		deleteButton->hide();
+	}
 }
 
 GUI_ShowBooks::~GUI_ShowBooks()
@@ -63,9 +69,8 @@ void GUI_ShowBooks::on_searchButton_clicked()
 
 void GUI_ShowBooks::on_moreInfoButton_clicked()
 {
-	/*todo: run requred UI
-	GUIInfo userInfo(&objects[currentSelectedRow]);
-	userInfo.exec();*/
+	GUI_BookInfo userInfo(cl_user, &objects[currentSelectedRow]);
+	userInfo.exec();
 	QLabel* label = new QLabel(QString::fromStdString(objects[currentSelectedRow].getAuthorsAsString()), tableWidget);
 	tableWidget->setCellWidget(currentSelectedRow, 0, label);
 	label = new QLabel(QString::fromStdString(objects[currentSelectedRow].getName()), tableWidget);
@@ -111,6 +116,4 @@ void GUI_ShowBooks::on_deleteButton_clicked()
 		tableWidget->removeRow(currentSelectedRow);
 	}
 	deleteButton->setEnabled(true);
-
-	//todo: check if books are getted out
 }

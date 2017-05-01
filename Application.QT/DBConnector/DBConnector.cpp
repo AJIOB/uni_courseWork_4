@@ -102,17 +102,21 @@ void DBConnector::Add(User& user)
 		throw ConfigException();
 	}
 
-	bsoncxx::builder::stream::document document{};
-	/*if (!user.getId().isEmpty())
+	using namespace bsoncxx::builder::stream;
+
+	std::list<User> users;
+	Get(users, document{} << "login" << user.getLogin() << finalize, document{} << finalize);
+	if (users.size() != 0)
 	{
-		document <<
-			"_id" << user.getId().getObjectID();
-	}*/
+		throw NonUniqueException();
+	}
+
+	document document{};
 	bsoncxx::document::view_or_value view = document <<
 		"login" << user.getLogin() <<
 		"password" << user.getCryptedPassword() <<
 		"privelege" << UPtoS(user.getPrivelege()) <<
-		bsoncxx::builder::stream::finalize;
+		finalize;
 
 	auto id = Add(config["userAuth"], view);
 
@@ -123,7 +127,7 @@ void DBConnector::Add(User& user)
 		"surname" << pi.getSurname() <<
 		"father_name" << pi.getFatherName() <<
 		"passport_number" << pi.getPassportNumber() <<
-		bsoncxx::builder::stream::finalize;
+		finalize;
 
 	Add(config["userPrivateInfo"], view);
 }
@@ -346,7 +350,50 @@ void DBConnector::Get(std::list<Book>& books, const bsoncxx::document::view_or_v
 
 void DBConnector::Update(Book& book)
 {
-	//todo
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+
+	document doc{};
+	doc <<
+		"isbn" << book.getISBN().toString() <<
+		"name" << book.getName() <<
+		"year" << book.getYear() <<
+		"page_count" << static_cast<li>(book.getPageCount());
+
+	//write authors
+	document arrDoc{};
+	auto openedArray = arrDoc <<
+		"authors" << open_array;
+	for (auto a : book.getAuthors())
+	{
+		openedArray = openedArray << a.getId().getObjectID();
+	}
+	auto closedArray = openedArray << close_array;
+	doc << concatenate(closedArray << finalize);
+
+	document arrDoc2{};
+	openedArray = arrDoc2 <<
+		"copies" << open_array;
+	for (auto c : book.getCopies())
+	{
+		openedArray = openedArray << open_document <<
+			"_id" << c.getId().getObjectID() <<
+			"isArchieved" << c.getIsArchieved() <<
+			close_document;
+	}
+	closedArray = openedArray << close_array;
+	view_or_value viewValue = doc << concatenate(closedArray << finalize) << finalize;
+
+	db[config["books"]].update_one(document{} << "_id" << book.getId().getObjectID() << finalize,
+		document{} << "$set" << open_document <<
+		concatenate(viewValue) << close_document << 
+		finalize
+	);
 }
 
 
@@ -460,10 +507,39 @@ void DBConnector::RenewBookTime(BookCopy& bookCopy)
 }
 
 
-bool DBConnector::ArchieveBookCopy(BookCopy& bookCopy)
+void DBConnector::ArchieveBookCopy(BookCopy& bookCopy)
 {
-	//todo
-	return false;
+	if (config["books"] == "")
+	{
+		throw ConfigException();
+	}
+	if (!isItBookCopyID(bookCopy.getId()))
+	{
+		throw NotBookCopyIDException();
+	}
+	if (isCopyArchieved(bookCopy))
+	{
+		throw AlreadyArchievedException();
+	}
+	if (isCopyGettedOut(bookCopy))
+	{
+		throw AlreadyGettedOutException();
+	}
+
+	using namespace bsoncxx::builder::stream;
+	using namespace bsoncxx::document;
+	using namespace bsoncxx::types;
+
+	db[config["books"]].update_one(
+		document{} <<
+		"copies._id" << bookCopy.getId().getObjectID() << 
+		finalize,
+		document{} << "$set" << open_document <<
+		"copies.$.isArchieved" << true <<
+		close_document << finalize
+	);
+
+	bookCopy.setIsArchieved(true);
 }
 
 bool DBConnector::isCopyGettedOut(BookCopy& bookCopy)
@@ -554,6 +630,8 @@ void DBConnector::ReturnBookCopy(BookCopy& bookCopy)
 		"return_date" << true <<
 		close_document << finalize
 	);
+
+	bookCopy.setIsGettedOut(false);
 }
 
 

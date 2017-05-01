@@ -8,6 +8,7 @@ class User;
 class FindBlockWidget;
 class GUI_AddBookWidget;
 class GUI_ShowBooks;
+class GUI_ShowMyBooks;
 
 class GUI_MainWindow : public QMainWindow
 {
@@ -20,6 +21,7 @@ public:
 private:
 	GUI_AddBookWidget* addBookTabWidget;
 	GUI_ShowBooks* showBooksTabWidget;
+	GUI_ShowMyBooks* showMyBooksTabWidget;
 
 	Ui::GUI_MainWindow ui;
 	User user;
@@ -50,4 +52,7 @@ private slots:
 	void on_clearFilters_USER_clicked();
 	void on_tableWidget_USER_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 	void on_deleteButton_USER_clicked();
+
+	//all tabs
+	void on_tabWidget_currentChanged(int index);
 };
