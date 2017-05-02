@@ -1,0 +1,5 @@
+;*.odt diff=oodiff
+
+*.ods diff=odf
+*.odt diff=odf
+*.odp diff=odf
