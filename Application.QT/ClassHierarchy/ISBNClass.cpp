@@ -113,7 +113,7 @@ ISBNClass::ISBNClass(const std::string& s)
 {
 	if (!ParseString(s))
 	{
-		cl_type = AJIOBTypes::ISBNType::none;
+		throw NotISBNException();
 	}
 }
 

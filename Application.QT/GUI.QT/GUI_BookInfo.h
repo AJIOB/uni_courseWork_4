@@ -2,7 +2,6 @@
 
 #include <QDialog>
 #include "ui_GUI_BookInfo.h"
-#include <algorithm>
 
 class GUI_BookInfo : public QDialog, public Ui::GUI_BookInfo
 {
@@ -18,6 +17,8 @@ private:
 	
 	std::list<Transfer> transfers;
 	int currentSelectedRow;
+
+	std::list<Author> newAuthors;
 
 	void enableAllFields(bool enable);
 	void showAllRequred();
@@ -42,4 +43,5 @@ private slots :
 	void on_renewBookButton_clicked();
 	void on_archieveBookButton_clicked();
 	void on_bookInfoTable_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+	void on_editAuthorsButton_clicked();
 };

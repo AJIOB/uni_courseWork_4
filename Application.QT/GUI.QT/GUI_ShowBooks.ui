@@ -1,290 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <ui version="4.0">
-  <class>GUI_ShowBooks</class>
-  <widget class="QWidget" name="GUI_ShowBooks">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>933</width>
-        <height>300</height>
-      </rect>
-    </property>
-    <property name="windowTitle">
-      <string>GUI_ShowBooks</string>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-        <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-            <size>
-              <width>40</width>
-              <height>20</height>
-            </size>
-          </property>
+ <class>GUI_ShowBooks</class>
+ <widget class="QWidget" name="GUI_ShowBooks">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>933</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GUI_ShowBooks</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Для удаления фильтра нажмите &quot;X&quot;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>480</width>
+          <height>223</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="listLayout"/>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="middleButtons">
+       <item>
+        <spacer name="horizontalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
         </spacer>
-      </item>
-      <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-              <item>
-                <widget class="QLabel" name="label">
-                  <property name="font">
-                    <font>
-                      <pointsize>10</pointsize>
-                    </font>
-                  </property>
-                  <property name="text">
-                    <string>Для удаления фильтра нажмите &quot;X&quot;</string>
-                  </property>
-                  <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                  </property>
-                </widget>
-              </item>
-            </layout>
-          </item>
-          <item>
-            <widget class="QScrollArea" name="scrollArea_2">
-              <property name="widgetResizable">
-                <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents_2">
-                <property name="geometry">
-                  <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>480</width>
-                    <height>223</height>
-                  </rect>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_5">
-                  <property name="leftMargin">
-                    <number>0</number>
-                  </property>
-                  <property name="topMargin">
-                    <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                    <number>0</number>
-                  </property>
-                  <property name="bottomMargin">
-                    <number>0</number>
-                  </property>
-                  <property name="spacing">
-                    <number>5</number>
-                  </property>
-                  <item row="0" column="0">
-                    <layout class="QVBoxLayout" name="listLayout">
-                      <property name="spacing">
-                        <number>0</number>
-                      </property>
-                      <property name="rightMargin">
-                        <number>0</number>
-                      </property>
-                    </layout>
-                  </item>
-                </layout>
-              </widget>
-            </widget>
-          </item>
-          <item>
-            <layout class="QHBoxLayout" name="middleButtons">
-              <item>
-                <spacer name="horizontalSpacer_9">
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                    <size>
-                      <width>40</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                </spacer>
-              </item>
-              <item>
-                <widget class="QPushButton" name="addFilterButton">
-                  <property name="text">
-                    <string>Добавить фильтр</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <spacer name="horizontalSpacer_10">
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                    <size>
-                      <width>40</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                </spacer>
-              </item>
-              <item>
-                <widget class="QPushButton" name="clearFilters">
-                  <property name="text">
-                    <string>Очистить все фильтры</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <spacer name="horizontalSpacer_5">
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                    <size>
-                      <width>40</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                </spacer>
-              </item>
-              <item>
-                <widget class="QPushButton" name="searchButton">
-                  <property name="text">
-                    <string>Поиск</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <spacer name="horizontalSpacer_4">
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                    <size>
-                      <width>40</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                </spacer>
-              </item>
-            </layout>
-          </item>
-        </layout>
-      </item>
-      <item>
-        <spacer name="horizontalSpacer">
-          <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-            <size>
-              <width>40</width>
-              <height>20</height>
-            </size>
-          </property>
+       </item>
+       <item>
+        <widget class="QPushButton" name="addFilterButton">
+         <property name="text">
+          <string>Добавить фильтр</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
         </spacer>
-      </item>
-      <item>
-        <layout class="QVBoxLayout" name="rigthPart">
-          <item>
-            <widget class="QTableWidget" name="tableWidget">
-              <property name="minimumSize">
-                <size>
-                  <width>365</width>
-                  <height>0</height>
-                </size>
-              </property>
-              <property name="editTriggers">
-                <set>QAbstractItemView::NoEditTriggers</set>
-              </property>
-              <property name="selectionMode">
-                <enum>QAbstractItemView::SingleSelection</enum>
-              </property>
-              <property name="selectionBehavior">
-                <enum>QAbstractItemView::SelectRows</enum>
-              </property>
-              <attribute name="horizontalHeaderDefaultSectionSize">
-                <number>120</number>
-              </attribute>
-              <attribute name="horizontalHeaderHighlightSections">
-                <bool>false</bool>
-              </attribute>
-              <attribute name="verticalHeaderVisible">
-                <bool>false</bool>
-              </attribute>
-              <column>
-                <property name="text">
-                  <string>Автор(-ы)</string>
-                </property>
-              </column>
-              <column>
-                <property name="text">
-                  <string>Название</string>
-                </property>
-              </column>
-              <column>
-                <property name="text">
-                  <string>Идентификатор (ID)</string>
-                </property>
-              </column>
-            </widget>
-          </item>
-          <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-                <spacer name="horizontalSpacer_11">
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                    <size>
-                      <width>40</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                </spacer>
-              </item>
-              <item>
-                <widget class="QPushButton" name="deleteButton">
-                  <property name="enabled">
-                    <bool>false</bool>
-                  </property>
-                  <property name="text">
-                    <string>Удалить</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <spacer name="horizontalSpacer_6">
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                    <size>
-                      <width>37</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                </spacer>
-              </item>
-              <item>
-                <widget class="QPushButton" name="moreInfoButton">
-                  <property name="enabled">
-                    <bool>false</bool>
-                  </property>
-                  <property name="text">
-                    <string>Подробнее</string>
-                  </property>
-                </widget>
-              </item>
-            </layout>
-          </item>
-        </layout>
-      </item>
+       </item>
+       <item>
+        <widget class="QPushButton" name="clearFilters">
+         <property name="text">
+          <string>Очистить все фильтры</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="searchButton">
+         <property name="text">
+          <string>Поиск</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
     </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11" />
-  <resources />
-  <connections />
+   </item>
+   <item row="0" column="3">
+    <layout class="QVBoxLayout" name="rigthPart">
+     <item>
+      <widget class="QTableWidget" name="tableWidget">
+       <property name="minimumSize">
+        <size>
+         <width>365</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>120</number>
+       </attribute>
+       <attribute name="horizontalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>Автор(-ы)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Название</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Идентификатор (ID)</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <spacer name="horizontalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="deleteButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Удалить</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>37</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="moreInfoButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Подробнее</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
 </ui>

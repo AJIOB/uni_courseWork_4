@@ -1,5 +1,4 @@
-;*.odt diff=oodiff
-
+;OpenDocument files (with odt2txt)
 *.ods diff=odf
 *.odt diff=odf
 *.odp diff=odf

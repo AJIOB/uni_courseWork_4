@@ -104,6 +104,11 @@ void Book::addCopy(const BookCopy& copy)
 
 std::string Book::getAuthorsAsString() const
 {
+	return getAuthorsAsString(authors);
+}
+
+std::string Book::getAuthorsAsString(const std::list<Author>& authors)
+{
 	std::string res;
 
 	for (auto a : authors)

@@ -20,11 +20,11 @@ GUI_UserInfo::~GUI_UserInfo()
 
 void GUI_UserInfo::enableAllFields(bool enable)
 {
-	surnameText->setEnabled(enable);
-	nameText->setEnabled(enable);
-	fatherNameText->setEnabled(enable);
-	passportNumText->setEnabled(enable);
-	loginText->setEnabled(enable);
+	surnameText->setReadOnly(!enable);
+	nameText->setReadOnly(!enable);
+	fatherNameText->setReadOnly(!enable);
+	passportNumText->setReadOnly(!enable);
+	loginText->setReadOnly(!enable);
 	userRoleComboBox->setEnabled(enable);
 }
 
@@ -54,6 +54,12 @@ void GUI_UserInfo::fillAllUserInfo()
 	passportNumText->setText(QString(cl_user->getPersonalInfo().getPassportNumber().c_str()));
 	loginText->setText(QString(cl_user->getLogin().c_str()));
 	userRoleComboBox->setCurrentIndex(UPtoi(cl_user->getPrivelege()) - 1);
+
+	surnameText->setCursorPosition(0);
+	nameText->setCursorPosition(0);
+	fatherNameText->setCursorPosition(0);
+	passportNumText->setCursorPosition(0);
+	loginText->setCursorPosition(0);
 }
 
 void GUI_UserInfo::fillAllBookInfo()

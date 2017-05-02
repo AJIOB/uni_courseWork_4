@@ -141,6 +141,9 @@
     <ClInclude Include="exceptions\BookGettedOutBySomebody.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
+    <ClInclude Include="exceptions\NotISBNException.h">
+      <Filter>Exceptions\all</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

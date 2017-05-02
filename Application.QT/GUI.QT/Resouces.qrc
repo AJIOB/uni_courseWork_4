@@ -7,5 +7,6 @@
         <file>icons/books.png</file>
         <file>icons/persons.png</file>
         <file>icons/my books.png</file>
+        <file>icons/pencil.png</file>
     </qresource>
 </RCC>

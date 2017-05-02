@@ -46,5 +46,7 @@ public:
 	std::list<BookCopy> getCopies() const;
 	void addCopy(const BookCopy& copy);
 	std::string getAuthorsAsString() const;
+
+	static std::string getAuthorsAsString(const std::list<Author>& authors);
 };
 #endif // !defined(EA_18AA30C7_1FD8_4bd2_ADC9_4EECF1F24FC6__INCLUDED_)

@@ -58,7 +58,23 @@
        <attribute name="toolTip">
         <string>Вся информация по работе с книгами</string>
        </attribute>
-       <layout class="QGridLayout" name="booksTabLayout"/>
+       <layout class="QGridLayout" name="booksTabLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+       </layout>
       </widget>
       <widget class="QWidget" name="personTab">
        <attribute name="icon">
@@ -104,11 +120,14 @@
            </layout>
           </item>
           <item>
-           <widget class="QScrollArea" name="scrollArea_2">
+           <widget class="QScrollArea" name="scrollArea">
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -117,33 +136,7 @@
                <height>363</height>
               </rect>
              </property>
-             <layout class="QGridLayout" name="gridLayout_5">
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <property name="spacing">
-               <number>5</number>
-              </property>
-              <item row="0" column="0">
-               <layout class="QVBoxLayout" name="listLayout_USER">
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-               </layout>
-              </item>
-             </layout>
+             <layout class="QVBoxLayout" name="listLayout_USER"/>
             </widget>
            </widget>
           </item>
@@ -694,7 +687,6 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>CancelButton_AddUser</tabstop>
   <tabstop>deleteButton_USER</tabstop>
-  <tabstop>scrollArea_2</tabstop>
  </tabstops>
  <resources>
   <include location="Resouces.qrc"/>

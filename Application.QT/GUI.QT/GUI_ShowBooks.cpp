@@ -13,6 +13,8 @@ GUI_ShowBooks::GUI_ShowBooks(const User* user, QWidget* parent)
 	{
 		deleteButton->hide();
 	}
+
+	scrollAreaWidgetContents->setLayout(listLayout);
 }
 
 GUI_ShowBooks::~GUI_ShowBooks()

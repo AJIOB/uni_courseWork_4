@@ -51,7 +51,7 @@ void GUI_AddBookWidget::on_addAuthorButton_clicked()
 	if (window.exec() == QDialog::Accepted)
 	{
 		auto line = new QLineEdit(this);
-		line->setEnabled(false);
+		line->setReadOnly(true);
 		authorLines.push_back(line);
 		authorLayout->addWidget(line);
 

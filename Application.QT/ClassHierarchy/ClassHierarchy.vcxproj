@@ -151,6 +151,7 @@
     <ClInclude Include="exceptions\NonUniqueException.h" />
     <ClInclude Include="exceptions\NotBookCopyIDException.h" />
     <ClInclude Include="exceptions\NotGettedOutException.h" />
+    <ClInclude Include="exceptions\NotISBNException.h" />
     <ClInclude Include="exceptions\OperationException.h" />
     <ClInclude Include="exceptions\RangeException.h" />
     <ClInclude Include="exceptions\UserGetOutSomethingException.h" />

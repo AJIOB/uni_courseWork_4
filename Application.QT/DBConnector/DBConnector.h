@@ -44,7 +44,7 @@ class DBConnector
 	bool isItBookCopyID(DB_ID idToCheck);
 
 public:
-	DBConnector(bool connectLocally = true);
+	DBConnector(String connectTo = "localhost");
 	virtual ~DBConnector();
 
 	User Authorize(const String& login, const String& password);

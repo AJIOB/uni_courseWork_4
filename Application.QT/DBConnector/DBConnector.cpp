@@ -50,8 +50,8 @@ void DBConnector::CheckAuth() const
 }
 
 
-DBConnector::DBConnector(bool connectLocally)
-	: config("dbconfig"), pool{mongocxx::uri{config[std::string("uri_") + (connectLocally ? "localhost" : "server")]}}, isAuthorized(false), privelege(UserPriveleges::none)
+DBConnector::DBConnector(String connectTo)
+	: config("dbconfig"), pool{mongocxx::uri{config["uri_" + connectTo]}}, isAuthorized(false), privelege(UserPriveleges::none)
 {
 }
 
@@ -687,6 +687,7 @@ void DBConnector::Get(std::list<Author>& authors, const bsoncxx::document::view_
 
 		author.setName(doc["name"].get_utf8().value.to_string());
 		author.setSurname(doc["surname"].get_utf8().value.to_string());
+		author.setFatherName(doc["father_name"].get_utf8().value.to_string());
 
 		authors.push_back(author);
 	}

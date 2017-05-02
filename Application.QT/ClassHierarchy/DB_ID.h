@@ -19,7 +19,7 @@ class DB_ID
 	bsoncxx::oid id;
 
 public:
-	DB_ID();
+	DB_ID(bool isEmpty = true);
 	DB_ID(const std::string& id);
 	virtual ~DB_ID();
 

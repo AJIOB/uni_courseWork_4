@@ -9,7 +9,7 @@
 #include "DB_ID.h"
 
 
-DB_ID::DB_ID() : cl_isEmpty(true)
+DB_ID::DB_ID(bool isEmpty) : cl_isEmpty(isEmpty)
 {
 }
 

@@ -3,7 +3,7 @@
 
 ControllerQT* ControllerQT::singleton = nullptr;
 
-ControllerQT::ControllerQT()
+ControllerQT::ControllerQT() : config("controller"), connector(config["connectTo"])
 {
 }
 
@@ -593,6 +593,60 @@ bool ControllerQT::addBook(const QString& ISBN, const std::list<Author>& authors
 	catch (std::exception& e)
 	{
 		mb.setText(QString::fromStdString("Ошибка добавления издания. Текст ошибки:\n" + std::string(e.what())));
+		res = false;
+	}
+
+	mb.exec();
+	return res;
+}
+
+bool ControllerQT::updateBook(Book* oldBook, const QString& ISBN, const std::list<Author>& authors, const QString& name, const int& year, const int& pages, const int& copies)
+{
+	bool res = true;
+
+	QMessageBox mb;
+	mb.setWindowTitle("Информация об обновлении издания");
+
+	if (ISBN.isEmpty() || name.isEmpty())
+	{
+		mb.setText("Пожалуйста, заполните все поля, обозначенные символом '*'");
+		mb.exec();
+		return false;
+	}
+
+	if (copies < oldBook->getCopies().size())
+	{
+		mb.setText("Количество копий издания не может быть уменьшено");
+		mb.exec();
+		return false;
+	}
+
+	try
+	{
+		Book book(oldBook->getId());
+		book.setISBN(ISBNClass(ISBN.toStdString()));
+		book.setAuthors(authors);
+		book.setName(name.toStdString());
+		book.setYear(year);
+		book.setPageCount(pages);
+		
+		for (auto copy : oldBook->getCopies())
+		{
+			book.addCopy(copy);
+		}
+
+		while (book.getCopies().size() < copies)
+		{
+			book.addCopy(BookCopy(DB_ID(false)));
+		}
+
+		connector.Update(book);
+		mb.setText("Информация об издании успешно обновлена");
+		*oldBook = book;
+	}
+	catch (std::exception& e)
+	{
+		mb.setText(QString::fromStdString("Ошибка обновлении информации об издании. Текст ошибки:\n" + std::string(e.what())));
 		res = false;
 	}
 

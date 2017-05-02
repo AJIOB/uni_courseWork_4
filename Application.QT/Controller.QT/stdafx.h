@@ -5,6 +5,8 @@
 #include <QString>
 #include <QtWidgets/qmessagebox.h>
 
+#include "Configuration/ConfigClass.h"
+
 #include "ClassHierarchy/Constants.h"
 
 #include "ClassHierarchy/User.h"

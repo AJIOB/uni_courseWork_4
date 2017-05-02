@@ -16,6 +16,7 @@ class CONTROLLERQT_EXPORT ControllerQT
 
 	static ControllerQT* singleton;
 
+	AJIOB::ConfigClass config;
 	DBConnector connector;
 
 public:
@@ -36,6 +37,7 @@ public:
 	std::list<Author> findAuthors(const std::multimap<QString, QString> filters);
 
 	bool addBook(const QString& ISBN, const std::list<Author>& authors, const QString& name, const long int& year, const unsigned long int& pages, const unsigned long int& copies);
+	bool updateBook(Book* oldBook, const QString& ISBN, const std::list<Author>& authors, const QString& name, const int& year, const int& pages, const int& copies);
 	std::list<Book> findBooks(const std::multimap<QString, QString> filters);
 	bool deleteBook(Book& u);
 
