@@ -1,7 +1,8 @@
 ﻿#pragma once
 
 #include "DB_ID.h"
-#include "Date.h"
+
+class Date;
 
 class Transfer
 {

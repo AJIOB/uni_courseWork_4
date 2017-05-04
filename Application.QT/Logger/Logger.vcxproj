@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{469AF4B6-A64D-4B0D-B367-34EF312E32DC}</ProjectGuid>
+    <ProjectGuid>{92C9004D-42C5-4AE6-B1C3-91F55AF3B381}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ClassHierarchy</RootNamespace>
+    <RootNamespace>Logger</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -29,14 +29,14 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -81,7 +81,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -106,7 +105,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -133,57 +131,20 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllExceptions.h" />
-    <ClInclude Include="Author.h" />
-    <ClInclude Include="Book.h" />
-    <ClInclude Include="BookCopy.h" />
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="DB_ID.h" />
-    <ClInclude Include="exceptions\AlreadyArchievedException.h" />
-    <ClInclude Include="exceptions\BookGettedOutBySomebody.h" />
-    <ClInclude Include="exceptions\ConfigException.h" />
-    <ClInclude Include="exceptions\DBOperationCancelledException.h" />
-    <ClInclude Include="exceptions\GuestUpdateException.h" />
-    <ClInclude Include="exceptions\AlreadyGettedOutException.h" />
-    <ClInclude Include="exceptions\MyException.h" />
-    <ClInclude Include="exceptions\NoAuthException.h" />
-    <ClInclude Include="exceptions\NonUniqueException.h" />
-    <ClInclude Include="exceptions\NotBookCopyIDException.h" />
-    <ClInclude Include="exceptions\NotGettedOutException.h" />
-    <ClInclude Include="exceptions\NotISBNException.h" />
-    <ClInclude Include="exceptions\OperationException.h" />
-    <ClInclude Include="exceptions\RangeException.h" />
-    <ClInclude Include="exceptions\UserGetOutSomethingException.h" />
-    <ClInclude Include="ISBNClass.h" />
-    <ClInclude Include="ISBNOnePart.h" />
-    <ClInclude Include="ISBNType.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="StringFuncs.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Transfer.h" />
-    <ClInclude Include="typedefs.h" />
-    <ClInclude Include="User.h" />
-    <ClInclude Include="UserPersonalInfo.h" />
-    <ClInclude Include="UserPriveleges.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Author.cpp" />
-    <ClCompile Include="Book.cpp" />
-    <ClCompile Include="BookCopy.cpp" />
-    <ClCompile Include="DB_ID.cpp" />
-    <ClCompile Include="exceptions\MyException.cpp" />
-    <ClCompile Include="ISBNClass.cpp" />
-    <ClCompile Include="ISBNOnePart.cpp" />
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringFuncs.cpp" />
-    <ClCompile Include="Transfer.cpp" />
-    <ClCompile Include="User.cpp" />
-    <ClCompile Include="UserPersonalInfo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

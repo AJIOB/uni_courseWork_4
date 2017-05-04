@@ -19,6 +19,7 @@
 #include "ClassHierarchy/AllExceptions.h"
 
 #define db (*(pool.acquire()))[config["database"]]
+#define AJIOB_LOG Logger::get().write
 
 bsoncxx::types::value DBConnector::Add(const std::string& collectionName, const bsoncxx::document::view_or_value& view)
 {
@@ -62,6 +63,8 @@ DBConnector::~DBConnector()
 
 User DBConnector::Authorize(const String& login, const String& password)
 {
+	AJIOB_LOG("Someone tries to autorize");
+
 	if (login == config["guest_login"] && password == config["guest_password"])
 	{
 		User u;
@@ -91,12 +94,15 @@ User DBConnector::Authorize(const String& login, const String& password)
 	isAuthorized = true;
 	privelege = users.front().getPrivelege();
 
+	AJIOB_LOG("Autorization is successful. Login is " + login);
 	return users.front();
 }
 
 
 void DBConnector::Add(User& user)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to add user");
+
 	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
 	{
 		throw ConfigException();
@@ -130,10 +136,12 @@ void DBConnector::Add(User& user)
 		finalize;
 
 	Add(config["userPrivateInfo"], view);
+	AJIOB_LOG("Adding user is successful");
 }
 
 void DBConnector::Get(std::list<User>& users, const bsoncxx::document::view_or_value& authFilter, const bsoncxx::document::view_or_value& privateFilter)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to get users");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
@@ -194,11 +202,13 @@ void DBConnector::Get(std::list<User>& users, const bsoncxx::document::view_or_v
 		user.setPersonalInfo(upi);
 		users.push_back(user);
 	}
+	AJIOB_LOG("Getting users is successful");
 }
 
 
 void DBConnector::Update(User& user)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to update user");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
@@ -228,11 +238,13 @@ void DBConnector::Update(User& user)
 	                                         "passport_number" << pi.getPassportNumber() <<
 	                                         close_document << finalize
 	);
+	AJIOB_LOG("Updating user is successful");
 }
 
 
 void DBConnector::Delete(User& user)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to delete user");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["userAuth"] == "" || config["userPrivateInfo"] == "")
@@ -249,11 +261,13 @@ void DBConnector::Delete(User& user)
 
 	db[config["userAuth"]].delete_one(document{} << "_id" << user.getId().getObjectID() << finalize);
 	db[config["userPrivateInfo"]].delete_one(document{} << "_id" << user.getId().getObjectID() << finalize);
+	AJIOB_LOG("Deleting user is successful");
 }
 
 
 void DBConnector::Add(Book& book)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to add book");
 	if (config["books"] == "")
 	{
 		throw ConfigException();
@@ -294,10 +308,12 @@ void DBConnector::Add(Book& book)
 	view_or_value viewValue = doc << concatenate(closedArray << finalize) << finalize;
 
 	Add(config["books"], viewValue);
+	AJIOB_LOG("Adding book is successful");
 }
 
 void DBConnector::Get(std::list<Book>& books, const bsoncxx::document::view_or_value& filter)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to get books");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["books"] == "")
@@ -345,11 +361,13 @@ void DBConnector::Get(std::list<Book>& books, const bsoncxx::document::view_or_v
 
 		books.push_back(book);
 	}
+	AJIOB_LOG("Getting books is successful");
 }
 
 
 void DBConnector::Update(Book& book)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to update book");
 	if (config["books"] == "")
 	{
 		throw ConfigException();
@@ -394,11 +412,13 @@ void DBConnector::Update(Book& book)
 		concatenate(viewValue) << close_document << 
 		finalize
 	);
+	AJIOB_LOG("Updating book is successful");
 }
 
 
 void DBConnector::Delete(Book& book)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to delete book");
 	if (config["books"] == "")
 	{
 		throw ConfigException();
@@ -424,16 +444,18 @@ void DBConnector::Delete(Book& book)
 	}
 
 	db[config["books"]].delete_one(document{} << "_id" << book.getId().getObjectID() << finalize);
+	AJIOB_LOG("Deleting book is successful");
 }
 
 
 std::chrono::system_clock::time_point DBConnector::getCurrentTimePoint()
 {
-	return std::chrono::system_clock::time_point(std::chrono::system_clock::now());
+	return std::chrono::system_clock::now();
 }
 
 DB_ID DBConnector::GiveOutBook(BookCopy& bookCopy, User& user)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to give out book copy");
 	if (config["transfers"] == "")
 	{
 		throw ConfigException();
@@ -465,12 +487,14 @@ DB_ID DBConnector::GiveOutBook(BookCopy& bookCopy, User& user)
 	view_or_value viewValue = doc << finalize;
 
 	auto id = Add(config["transfers"], viewValue);
+	AJIOB_LOG("Giving out book copy is successful");
 	return DB_ID(id.get_oid().value.to_string());
 }
 
 
 void DBConnector::RenewBookTime(BookCopy& bookCopy)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to renew book copy");
 	if (config["transfers"] == "")
 	{
 		throw ConfigException();
@@ -504,11 +528,13 @@ void DBConnector::RenewBookTime(BookCopy& bookCopy)
 		"last_continue_date" << true <<
 		close_document << finalize
 	);
+	AJIOB_LOG("Renewing book copy is successful");
 }
 
 
 void DBConnector::ArchieveBookCopy(BookCopy& bookCopy)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to archieve book copy");
 	if (config["books"] == "")
 	{
 		throw ConfigException();
@@ -540,10 +566,12 @@ void DBConnector::ArchieveBookCopy(BookCopy& bookCopy)
 	);
 
 	bookCopy.setIsArchieved(true);
+	AJIOB_LOG("Archieving book copy is successful");
 }
 
 bool DBConnector::isCopyGettedOut(BookCopy& bookCopy)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to get info about if book copy getted out");
 	if (config["transfers"] == "")
 	{
 		throw ConfigException();
@@ -562,11 +590,13 @@ bool DBConnector::isCopyGettedOut(BookCopy& bookCopy)
 
 	view_or_value viewValue = doc << finalize;
 	mongocxx::cursor cursor = db[config["transfers"]].find(viewValue);
+	AJIOB_LOG("Giving info about is book copy giving out is successful");
 	return cursor.begin() != cursor.end();
 }
 
 bool DBConnector::isCopyArchieved(const BookCopy& bookCopy)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to get info about if book copy archieved");
 	if (config["books"] == "")
 	{
 		throw ConfigException();
@@ -591,12 +621,13 @@ bool DBConnector::isCopyArchieved(const BookCopy& bookCopy)
 
 	view_or_value viewValue = doc << finalize;
 	mongocxx::cursor cursor = db[config["books"]].find(viewValue);
+	AJIOB_LOG("Giving info about is book copy archieved is successful");
 	return cursor.begin() != cursor.end();
 }
 
-
 void DBConnector::ReturnBookCopy(BookCopy& bookCopy)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to return book copy");
 	if (config["transfers"] == "")
 	{
 		throw ConfigException();
@@ -632,22 +663,19 @@ void DBConnector::ReturnBookCopy(BookCopy& bookCopy)
 	);
 
 	bookCopy.setIsGettedOut(false);
+	AJIOB_LOG("Peturning book copy is successful");
 }
-
 
 void DBConnector::Add(Author& author)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to add author");
 	if (config["authors"] == "")
 	{
 		throw ConfigException();
 	}
 
 	bsoncxx::builder::stream::document document{};
-	/*if (!author.getID().isEmpty())
-	{
-		document <<
-			"_id" << author.getID().getObjectID();
-	}*/
+
 	bsoncxx::document::view_or_value view = document <<
 		"name" << author.getName() <<
 		"father_name" << author.getFatherName() <<
@@ -663,10 +691,12 @@ void DBConnector::Add(Author& author)
 	}
 
 	Add(config["authors"], view);
+	AJIOB_LOG("Adding author is successful");
 }
 
 void DBConnector::Get(std::list<Author>& authors, const bsoncxx::document::view_or_value& filter)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to get authors");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["authors"] == "")
@@ -691,11 +721,13 @@ void DBConnector::Get(std::list<Author>& authors, const bsoncxx::document::view_
 
 		authors.push_back(author);
 	}
+	AJIOB_LOG("Getting authors is successful");
 }
 
 
 void DBConnector::Update(Author& author)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to update author");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["authors"] == "")
@@ -709,11 +741,13 @@ void DBConnector::Update(Author& author)
 	                                 "surname" << author.getSurname() <<
 	                                 close_document << finalize
 	);
+	AJIOB_LOG("Updating author is successful");
 }
 
 
 void DBConnector::Delete(Author& author)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to delete author");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["authors"] == "")
@@ -722,10 +756,12 @@ void DBConnector::Delete(Author& author)
 	}
 
 	db[config["authors"]].delete_one(document{} << "_id" << author.getId().getObjectID() << finalize);
+	AJIOB_LOG("Deleting author is successful");
 }
 
 void DBConnector::Get(std::list<Transfer>& transfers, const bsoncxx::document::view_or_value& filter)
 {
+	AJIOB_LOG(UPtoS(privelege) + " privelege user tries to get transfers");
 	using namespace bsoncxx::builder::stream;
 
 	if (config["transfers"] == "")
@@ -761,14 +797,18 @@ void DBConnector::Get(std::list<Transfer>& transfers, const bsoncxx::document::v
 
 		transfers.push_back(Transfer(ID, copyID, userID, firstGetDate, lastContinueDate, returnDate));
 	}
+	AJIOB_LOG("Getting transfers is successful");
 }
 
-User DBConnector::LoginAsGuest() const
+User DBConnector::LoginAsGuest()
 {
+	AJIOB_LOG("Someone tries to autorize as guest");
 	User u;
 	u.setLogin(config["guest_login"]);
 	u.setPassword(config["guest_password"]);
 	u.setPrivelege(UserPriveleges::guest);
+	privelege = u.getPrivelege();
+	AJIOB_LOG("Autorization as guest is successful");
 	return u;
 }
 
@@ -800,4 +840,5 @@ bool DBConnector::isItBookCopyID(DB_ID idToCheck)
 	return cursor.begin() != cursor.end();
 }
 
+#undef AJIOB_LOG
 #undef db

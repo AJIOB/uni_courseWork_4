@@ -754,7 +754,7 @@ bool ControllerQT::changePassword(User* u, const QString& oldPassword, const QSt
 	return true;
 }
 
-User ControllerQT::loginAsGuest() const
+User ControllerQT::loginAsGuest()
 {
 	return connector.LoginAsGuest();
 }

@@ -2,6 +2,7 @@
 
 #include "DB_Work.h"
 #include "Other.h"
+#include "logs.h"
 
 int main(int argc, char* argv[])
 {

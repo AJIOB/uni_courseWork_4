@@ -48,7 +48,7 @@ public:
 	virtual ~DBConnector();
 
 	User Authorize(const String& login, const String& password);
-	User LoginAsGuest() const;
+	User LoginAsGuest();
 
 	DB_ID GiveOutBook(BookCopy& bookCopy, User& user);
 	void RenewBookTime(BookCopy& bookCopy);

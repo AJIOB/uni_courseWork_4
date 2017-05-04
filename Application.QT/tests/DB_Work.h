@@ -30,6 +30,25 @@ TEST(DB_Work, addUser)
 	connector.Add(usr);
 }
 
+TEST(DB_Work, addUserToServer)
+{
+	User usr;
+	usr.setLogin("Login");
+	usr.setPassword("Password");
+	usr.setPrivelege(UserPriveleges::admin);
+
+	UserPersonalInfo upi;
+	upi.setName("MyName");
+	upi.setSurname("MySurname");
+	upi.setFatherName("MyFatherName");
+	upi.setPassportNumber("MyPassportNum");
+
+	usr.setPersonalInfo(upi);
+
+	DBConnector connector("server");
+	connector.Add(usr);
+}
+
 TEST(DB_Work, addAuthor)
 {
 	Author usr;

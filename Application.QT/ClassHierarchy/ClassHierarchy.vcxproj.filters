@@ -126,9 +126,6 @@
     <ClInclude Include="Transfer.h">
       <Filter>Header Files\Books</Filter>
     </ClInclude>
-    <ClInclude Include="Date.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="exceptions\AlreadyArchievedException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
@@ -181,9 +178,6 @@
     </ClCompile>
     <ClCompile Include="Transfer.cpp">
       <Filter>Source Files\Books</Filter>
-    </ClCompile>
-    <ClCompile Include="Date.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

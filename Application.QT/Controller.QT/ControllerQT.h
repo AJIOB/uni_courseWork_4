@@ -23,7 +23,7 @@ public:
 	static ControllerQT& get();
 
 	User checkAuth(const QString& login, const QString& password);
-	User loginAsGuest() const;
+	User loginAsGuest();
 
 	bool addUser(const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole);
 	bool updateUser(User* oldUser, const QString& name, const QString& surname, const QString& fatherName, const QString& passportNum, const QString& login, const int& userRole);
