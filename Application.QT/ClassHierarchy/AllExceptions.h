@@ -13,5 +13,5 @@
 #include "exceptions/AlreadyArchievedException.h"
 #include "exceptions/NotGettedOutException.h"
 #include "exceptions/UserGetOutSomethingException.h"
-#include "exceptions/BookGettedOutBySomebody.h"
+#include "exceptions/BookGettedOutBySomebodyException.h"
 #include "exceptions/NotISBNException.h"

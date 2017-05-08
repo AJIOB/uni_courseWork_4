@@ -440,7 +440,7 @@ void DBConnector::Delete(Book& book)
 	Get(transfers, inArray << close_array << close_document << finalize);
 	if (!transfers.empty())
 	{
-		throw BookGettedOutBySomebody();
+		throw BookGettedOutBySomebodyException();
 	}
 
 	db[config["books"]].delete_one(document{} << "_id" << book.getId().getObjectID() << finalize);

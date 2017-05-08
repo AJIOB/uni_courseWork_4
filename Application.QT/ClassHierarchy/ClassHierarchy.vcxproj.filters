@@ -135,10 +135,10 @@
     <ClInclude Include="exceptions\UserGetOutSomethingException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
-    <ClInclude Include="exceptions\BookGettedOutBySomebody.h">
+    <ClInclude Include="exceptions\NotISBNException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
-    <ClInclude Include="exceptions\NotISBNException.h">
+    <ClInclude Include="exceptions\BookGettedOutBySomebodyException.h">
       <Filter>Exceptions\all</Filter>
     </ClInclude>
   </ItemGroup>

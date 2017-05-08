@@ -140,7 +140,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DB_ID.h" />
     <ClInclude Include="exceptions\AlreadyArchievedException.h" />
-    <ClInclude Include="exceptions\BookGettedOutBySomebody.h" />
+    <ClInclude Include="exceptions\BookGettedOutBySomebodyException.h" />
     <ClInclude Include="exceptions\ConfigException.h" />
     <ClInclude Include="exceptions\DBOperationCancelledException.h" />
     <ClInclude Include="exceptions\GuestUpdateException.h" />
