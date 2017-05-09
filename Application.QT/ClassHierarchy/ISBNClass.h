@@ -6,7 +6,7 @@
 
 class ISBNClass
 {
-	AJIOBTypes::ISBNType::ISBNType cl_type;
+	AJIOBTypes::ISBNType cl_type;
 	ISBNOnePart cl_fields[AJIOB_Const::numOfISBNFields];
 
 	uli CalculateISBN10CheckDigit() const;
