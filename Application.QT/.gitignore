@@ -289,3 +289,5 @@ __pycache__/
 
 # AJIOB excluded
 **/GeneratedFiles/*
+Qt.deps/
+Qt release.txt

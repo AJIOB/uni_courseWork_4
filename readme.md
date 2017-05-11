@@ -7,6 +7,7 @@ This is project, which can help persons to structure & store information about b
 To develop and build this project I'm using:  
 * Microsoft Visual Studio 2015 Update 3, Enterprise Edition  
 * Qt OpenSource v5.7.1 for msvc2015  
+* InstallShield 2015 Limited Edition for Visual Studio 2015  
 * External libraries:  
 
 | Library   |      Version     |  Dependent from |  

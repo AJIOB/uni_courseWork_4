@@ -80,9 +80,8 @@
       <AdditionalDependencies>Logger.lib;ClassHierarchy.lib;Configuration.lib;Controller.QT.lib;DBConnector.lib;HashFuncs.lib;qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /E /Y $(LocalDebuggerWorkingDirectory) $(OutDir)
-SET VCInstallDir=$(VCInstallDir)
-$(QTDIR)\bin\windeployqt.exe --release $(OutDir)</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
