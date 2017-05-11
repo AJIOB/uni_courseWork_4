@@ -291,3 +291,5 @@ __pycache__/
 **/GeneratedFiles/*
 Qt.deps/
 Qt release.txt
+
+!StableVersion/*
