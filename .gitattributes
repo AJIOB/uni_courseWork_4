@@ -2,4 +2,6 @@
 *.ods diff=odf
 *.odt diff=odf
 *.odp diff=odf
+
+;Git LFS
 *.exe filter=lfs diff=lfs merge=lfs -binary
