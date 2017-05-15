@@ -1,7 +1,10 @@
-;OpenDocument files (with odt2txt)
+; OpenDocument files (with odt2txt)
 *.ods diff=odf
 *.odt diff=odf
 *.odp diff=odf
 
-;Git LFS
+; Git LFS
 *.exe filter=lfs diff=lfs merge=lfs -binary
+
+; Other
+*.pdf diff=astextplain

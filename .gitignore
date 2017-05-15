@@ -281,8 +281,11 @@ __pycache__/
 *.jmconfig
 
 
-#AJIOB Exclude
+## AJIOB Exclude
 *.stackdump
 
-#LibreOffice temp files
+# LibreOffice temp files
 **/.~lock.*#
+
+# All backup files
+*.bak
