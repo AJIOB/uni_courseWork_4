@@ -580,7 +580,7 @@
 		<row><td>LicenseAgreement</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsLicenseDlg_LicenseAgreement##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>PushButton</td><td>301</td><td>188</td><td>65</td><td>17</td><td>3</td><td/><td>##IDS_PRINT_BUTTON##</td><td>Agree</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>&lt;ISProductFolder&gt;\Redist\0409\Eula.rtf</td><td/></row>
+		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>&lt;VSSolutionFolder&gt;\Setup\license.rtf</td><td/></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_BACK##</td><td>Next</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Banner</td><td>Bitmap</td><td>0</td><td>0</td><td>374</td><td>44</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary1</td></row>
@@ -966,11 +966,11 @@
 		<row><td>InstallChangeFolder</td><td>Up</td><td>DirectoryListUp</td><td>0</td><td>1</td><td>0</td></row>
 		<row><td>InstallWelcome</td><td>Back</td><td>NewDialog</td><td>SplashBitmap</td><td>Display_IsBitmapDlg</td><td>0</td></row>
 		<row><td>InstallWelcome</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
-		<row><td>InstallWelcome</td><td>Next</td><td>NewDialog</td><td>ReadmeInformation</td><td>1</td><td>0</td></row>
-		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>1</td><td>0</td></row>
+		<row><td>InstallWelcome</td><td>Next</td><td>NewDialog</td><td>LicenseAgreement</td><td>1</td><td>0</td></row>
+		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>ReadmeInformation</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Next</td><td>NewDialog</td><td>CustomSetup</td><td>_IsMaintenance = "Change"</td><td>12</td></row>
@@ -997,7 +997,7 @@
 		<row><td>PatchWelcome</td><td>Next</td><td>EndDialog</td><td>Return</td><td>1</td><td>3</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>Reinstall</td><td>ALL</td><td>PATCH And REINSTALL=""</td><td>1</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>ReinstallMode</td><td>omus</td><td>PATCH And REINSTALLMODE=""</td><td>2</td></row>
-		<row><td>ReadmeInformation</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>NOT Installed</td><td>1</td></row>
+		<row><td>ReadmeInformation</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>ReadmeInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>ReadmeInformation</td><td>Next</td><td>NewDialog</td><td>DestinationFolder</td><td>1</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CustomSetup</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
@@ -2794,7 +2794,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>AJIOB Company</td><td>0</td><td/><td>1520773619</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>AJIOB Company</td><td>0</td><td/><td>186983246</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1520807058</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1520807058</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>1520807058</td></row>
@@ -3922,7 +3922,7 @@
 		<row><td>ID_STRING18</td><td>1049</td><td>DataBase</td><td>0</td><td/><td>1520809618</td></row>
 		<row><td>ID_STRING19</td><td>1033</td><td>database</td><td>0</td><td/><td>1520809618</td></row>
 		<row><td>ID_STRING19</td><td>1049</td><td>database</td><td>0</td><td/><td>1520809618</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.example.com</td><td>0</td><td/><td>1520794644</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.AJIOBCompany.com</td><td>0</td><td/><td>186983246</td></row>
 		<row><td>ID_STRING20</td><td>1033</td><td>books</td><td>0</td><td/><td>1520809618</td></row>
 		<row><td>ID_STRING20</td><td>1049</td><td>books</td><td>0</td><td/><td>1520809618</td></row>
 		<row><td>ID_STRING21</td><td>1033</td><td>authors</td><td>0</td><td/><td>1520809618</td></row>
@@ -3939,7 +3939,7 @@
 		<row><td>ID_STRING26</td><td>1049</td><td>guest_login</td><td>0</td><td/><td>1520809618</td></row>
 		<row><td>ID_STRING27</td><td>1033</td><td>guest_password</td><td>0</td><td/><td>1520809618</td></row>
 		<row><td>ID_STRING27</td><td>1049</td><td>guest_password</td><td>0</td><td/><td>1520809618</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>AJIOB Company</td><td>0</td><td/><td>1520773619</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>AJIOB Company</td><td>0</td><td/><td>186983246</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>LibraryApp</td><td>0</td><td/><td>1520807058</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>LibraryApp</td><td>0</td><td/><td>1520807058</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>LibraryApp</td><td>0</td><td/><td>1520808978</td></row>
@@ -4207,7 +4207,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{756E0D11-F607-4A88-9994-92CD564FAB3F}</td></row>
 		<row><td>ISUSSignature</td><td>{198C181D-EA93-480E-8BA1-FE8D01CF52AE}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewISToday,viewLearnMore,viewRelease,viewSystemSearch,viewProject,viewAppFiles,viewUpdateService,viewUpgradePaths,viewObjects,viewShortcuts,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewServices,viewVRoots,viewUI,viewTextMessages</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewISToday,viewLearnMore,viewRelease,viewSystemSearch,viewProject,viewAppFiles,viewUpdateService,viewUpgradePaths,viewObjects,viewShortcuts,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewServices,viewVRoots,viewUI,viewTextMessages,viewCustomActions</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
