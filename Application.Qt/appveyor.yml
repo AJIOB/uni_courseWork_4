@@ -1,0 +1,6 @@
+version: '{build}'
+init:
+  -ps: ./InitQTDIRvariable.ps1 -qtdir "C:\Qt\5.7\msvc2015"
+build:
+  project: LibraryQT.sln
+  verbosity: minimal
