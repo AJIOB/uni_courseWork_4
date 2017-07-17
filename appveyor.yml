@@ -1,5 +1,14 @@
 version: '{build}'
-build_script:
+
+cache:
+  - Application.Qt/external -> pre_build.bat
+  - C:\libmongoc
+  - c:\mongo-c-driver
+  - C:\mongo-cxx-driver
+
+before_build:
   - cmd: cd Application.Qt
-  - ps: ./InitQTDIRvariable.ps1 -qtdir "C:\Qt\5.7\msvc2015"
-  - ps: ./build.ps1
+  - cmd: ./pre_build.bat
+
+build_script:
+  - ps: ./build.ps1 -QTDIR "C:\Qt\5.7\msvc2015"
