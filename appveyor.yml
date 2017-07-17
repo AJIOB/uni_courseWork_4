@@ -1,0 +1,5 @@
+version: '{build}'
+build_script:
+  - cmd: cd Application.Qt
+  - ps: ./InitQTDIRvariable.ps1 -qtdir "C:\Qt\5.7\msvc2015"
+  - ps: ./build.ps1
